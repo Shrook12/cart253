@@ -33,8 +33,22 @@ function setup() {
  * Displays a UFO
 */
 function draw() {
+    // Dawn
+    skyShade = skyShade + 1;
     // Display the sky
     background(skyShade);
+
+    //Move the UFO
+    ufo.x = ufo.x + 0.5;
+    ufo.y = ufo.y - 2;
+
+    // Change its fill
+    ufo.fill = ufo.fill * 0.990;
+
+    //Change its shape
+    ufo.width = ufo.width / 1.003;
+    ufo.height = ufo.height / 1.003;
+
 
     // Draw the UFO based on its properties
     push();
