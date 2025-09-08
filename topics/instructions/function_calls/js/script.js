@@ -1,20 +1,30 @@
 /**
- * Function Calls
+ * The Blank Page
  * Shrook
  * 
- * Working on the function calls examples.
+ *An exploration of the existential angst of a novelist confronting
+ * the blank page while under huge pressure from their publisher.
+ * 
+ * The program is non-interactive intentionally in order to simulate the
+ * writer's inability to get started on the project. 
  */
 
 "use strict";
 
-
+/**
+ * Create a canvas for our masterpiece
+ */
 function setup() {
-    //Once at the beginning of the program 
+    //Create the canvas at a standard resolution
     createCanvas(640, 480);
 }
 
+/**
+ * Draws the writer's desktop and a blank piece of paper
+ */
 function draw() {
-    // Every frame
+    // the pink desktop
     background(255, 100, 100);
-    rect(200, 80, 240, 320)
+    //the blank piece of paper
+    rect(200, 80, 240, 320);
 }
