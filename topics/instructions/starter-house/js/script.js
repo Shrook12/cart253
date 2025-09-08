@@ -1,6 +1,6 @@
 /**
- * My House
- * Pippin Barr
+ * Starter House
+ * Shrook Ahmed
  * 
  * Draws a house with shapes.
  * 
@@ -22,10 +22,28 @@ function setup() {
  * Draws a house
  */
 function draw() {
-    // The sky
-    background(150, 200, 250);
 
-    // A cloud
+    /**
+     * draws a house and its immediate environment
+     */
+    drawSky();
+    drawCloud();
+    drawGround();
+    drawHouse();
+
+
+}
+
+/**
+ * display a blue sky
+ */
+function drawSky() {
+    background(150, 200, 250);
+}
+/**
+ * Draws a fluffy white cloud
+ */
+function drawCloud() {
     push();
     noStroke();
     // Note: using a single number for a colour will be greyscale
@@ -38,30 +56,53 @@ function draw() {
     ellipse(190, 130, 60, 60);
     ellipse(220, 120, 60, 60);
     pop();
-
-    // The ground
+}
+/**
+ * Draw a ground
+ */
+function drawGround() {
     push();
     noStroke();
     fill(200);
     rect(0, 400, 640, 480);
     pop();
+}
 
-    // The main body of the house
+/**
+ * Draws a house, with window,door, roof etc.
+ */
+function drawHouse() {
+    drawHouseBody();
+    drawHouseRoof();
+    drawHouseWindow();
+    drawHouseDoor();
+
+}
+/**
+ * Draws the house body
+ */
+function drawHouseBody() {
     push();
     noStroke();
     fill(250, 250, 200);
     rect(200, 240, 280, 180);
     pop();
-
-    // The roof
+}
+/**
+ * Draws the house roof
+ */
+function drawHouseRoof() {
     push();
     noStroke();
     // You can also write colors in hex code in quote marks
     fill("#dc143c");
     triangle(180, 240, 340, 120, 500, 240);
     pop();
-
-    // A window
+}
+/**
+ * Draws the house window
+ */
+function drawHouseWindow() {
     push();
     // You can also write colour names from the CSS standard in quotes
     // https://www.w3.org/wiki/CSS/Properties/color/keywords
@@ -70,10 +111,12 @@ function draw() {
     fill("blanchedalmond");
     rect(220, 260, 80, 80);
     pop();
+}
+/**
+ * draw the house door
+ */
 
-    // An entrace
-
-    // The door
+function drawHouseDoor() {
     push();
     noStroke();
     fill(0, 128, 0);
