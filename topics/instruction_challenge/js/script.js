@@ -22,9 +22,22 @@ function setup() {
 function draw() {
 
     background(0, 0, 139);
+    //some stars
+    push();
+    fill("#a7a7a7ff");
+    noStroke();
+    ellipse(100, 600, 30, 30);
+    ellipse(300, 450, 80, 80);
+    ellipse(550, 480, 60, 60);
+    ellipse(600, 650, 40, 40);
+    ellipse(700, 580, 50, 50);
+    ellipse(900, 520, 70, 70);
+
+    pop();
     //draw land
     push();
     fill("#e0e0e0ff");
+    noStroke();
     rect(0, 400, 920, 320);
     pop();
     //draw circles in land
@@ -62,6 +75,67 @@ function draw() {
     noStroke();
     ellipse(240, 160, 140, 140);
     pop();
+
+    //house
+
+    push();
+    fill("#ffdb78ff");
+    noStroke();
+    rect(470, 150, 200, 250);
+    pop();
+    push();
+    fill("#ffe59fff");
+    noStroke();
+    rect(470, 150, 170, 220);
+    pop();
+    //house door
+    push();
+    fill("#ed7070ff");
+    noStroke();
+    rect(520, 270, 100, 130);
+    pop();
+    push();
+    push();
+    fill("#945151ff");
+    noStroke();
+    rect(520, 370, 100, 30);
+    pop();
+    push();
+
+    push();
+    fill("#ffbf3fff");
+    noStroke();
+    ellipse(600, 340, 10, 10);
+    pop();
+
+    //windows
+    push();
+    fill("#ed7070ff");
+    noStroke();
+    ellipse(570, 210, 90, 90);
+    pop();
+
+    push();
+    fill("#adc1ffff");
+    noStroke();
+    ellipse(570, 210, 70, 70);
+    pop();
+
+    push();
+    fill("#ed7070ff");
+    noStroke();
+    triangle(468, 151, 572, 70, 672, 151);
+    pop();
+
+    //home roff
+
+    push();
+    fill("#c7d5ffff");
+    noStroke();
+    ellipse(570, 210, 50, 50);
+    pop();
+
+
     //darw bird alien
 
     //leg1 
