@@ -24,14 +24,15 @@ function draw() {
     background(0, 0, 139);
     //some stars
     push();
-    fill("#a7a7a7ff");
+    fill("#ffffffff");
     noStroke();
-    ellipse(100, 600, 30, 30);
-    ellipse(300, 450, 80, 80);
-    ellipse(550, 480, 60, 60);
-    ellipse(600, 650, 40, 40);
-    ellipse(700, 580, 50, 50);
-    ellipse(900, 520, 70, 70);
+    ellipse(100, 100, 5, 5);
+    ellipse(150, 380, 5, 5);
+    ellipse(300, 250, 8, 8);
+    ellipse(400, 350, 6, 6);
+    ellipse(450, 150, 4, 4);
+    ellipse(600, 50, 5, 5);
+    ellipse(900, 100, 7, 7);
 
     pop();
     //draw land
