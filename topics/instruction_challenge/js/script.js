@@ -22,12 +22,12 @@ function setup() {
 function draw() {
 
     background(0, 0, 139);
-
+    //draw land
     push();
     fill("#e0e0e0ff");
     rect(0, 400, 920, 320);
     pop();
-
+    //draw circles in land
     push();
     fill("#a7a7a7ff");
     noStroke();
@@ -50,7 +50,7 @@ function draw() {
     pop();
 
 
-
+    //draw moon
     push();
     fill("#d490ffff");
     noStroke();
@@ -62,5 +62,75 @@ function draw() {
     noStroke();
     ellipse(240, 160, 140, 140);
     pop();
+    //darw bird alien
+
+    //leg1 
+    push();
+    fill("#d29a00ff");
+    noStroke();
+    rect(705, 300, 10, 100);
+    rect(705, 380, 50, 20);
+    pop();
+
+    push();
+    fill("#ffbb00ff");
+    noStroke();
+    rect(675, 300, 10, 100);
+    rect(675, 380, 50, 20);
+    pop();
+
+    push();
+    fill("#44cbcbff");
+    noStroke();
+    ellipse(700, 260, 100, 100);
+    pop();
+
+    push();
+    fill("#52d5d5ff");
+    noStroke();
+    ellipse(700, 260, 80, 80);
+    pop();
+
+
+    //eyes1
+    push();
+    fill("#ffffffff");
+    noStroke();
+    ellipse(675, 255, 25, 25);
+    pop();
+
+    push();
+    fill("#000000ff");
+    noStroke();
+    ellipse(675, 255, 15, 15);
+    pop();
+
+    //eye2
+    push();
+    fill("#ffffffff");
+    noStroke();
+    ellipse(725, 255, 25, 25);
+    pop();
+
+    push();
+    fill("#000000ff");
+    noStroke();
+    ellipse(725, 255, 15, 15);
+    pop();
+
+    //bird alien nose
+    push();
+    fill("#ffd500ff");
+    noStroke();
+    rect(695, 265, 30, 10);
+    pop();
+
+
+
+
+
+
+
+
 
 }
