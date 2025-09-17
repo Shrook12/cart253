@@ -33,6 +33,8 @@ function setup() {
  */
 function draw() {
     background(160, 180, 200);
+    mrFurious.fill.g = mrFurious.fill.g - 1;
+    mrFurious.fill.b = mrFurious.fill.b - 1;
 
     // Draw Mr. Furious as a coloured circle
     push();
