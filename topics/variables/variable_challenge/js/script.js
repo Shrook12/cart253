@@ -24,8 +24,18 @@ let skyColor = {
     fill: {
         r: 160,
         g: 180,
-        b: 200,
+        b: 200
     }
+};
+let birdProperties = {
+    speed: 2,
+
+    fill: {
+        r: 64,
+        g: 224,
+        b: 208
+    }
+
 }
 
 /**
@@ -55,5 +65,15 @@ function draw() {
     noStroke();
     fill(mrFurious.fill.r, mrFurious.fill.g, mrFurious.fill.b);
     ellipse(mrFurious.x, mrFurious.y, mrFurious.size);
+    pop();
+
+    bird();
+}
+
+function bird() {
+    push();
+    fill(birdProperties.fill.r, birdProperties.fill.g, birdProperties.fill.b);
+    noStroke();
+    rect(30, 200, 50, 20);
     pop();
 }
