@@ -1,6 +1,6 @@
 /**
  * Mr. Furious
- * Shrook Ahmed
+ * Shrook Ahmed + Blaise Treverton
  *
  * A guy who becomes visibly furious!
  */
