@@ -35,9 +35,18 @@ let birdProperties = {
         r: 64,
         g: 224,
         b: 208
+    },
+
+
+    velocity: {
+        x: 1,
+        y: 0.5
+
     }
 
-}
+
+};
+
 
 /**
  * Create the canvas
@@ -61,6 +70,8 @@ function draw() {
     mrFurious.fill.g = mrFurious.fill.g - 1;
     mrFurious.fill.b = mrFurious.fill.b - 1;
 
+    mrFurious.x = mrFurious.x + random(-1, 1);
+
     // Draw Mr. Furious as a coloured circle
     push();
     noStroke();
@@ -72,7 +83,11 @@ function draw() {
 }
 
 function bird() {
-    birdProperties.x = birdProperties.x + 1;
+    birdProperties.x = birdProperties.x + birdProperties.velocity.x;
+    birdProperties.x = constrain(birdProperties.x, 30, 300);
+    birdProperties.y = birdProperties.y + birdProperties.velocity.y;
+    birdProperties.y = constrain(birdProperties.y, 150, 250);
+
     push();
     fill(birdProperties.fill.r, birdProperties.fill.g, birdProperties.fill.b);
     noStroke();
