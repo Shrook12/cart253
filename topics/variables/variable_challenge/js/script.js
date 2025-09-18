@@ -47,6 +47,11 @@ let birdProperties = {
 
 };
 
+let rage = {
+    min: -5,
+    max: 5,
+}
+
 
 /**
  * Create the canvas
@@ -70,7 +75,14 @@ function draw() {
     mrFurious.fill.g = mrFurious.fill.g - 1;
     mrFurious.fill.b = mrFurious.fill.b - 1;
 
-    mrFurious.x = mrFurious.x + random(-1, 1);
+
+    rage.min = rage.min - 0.1;
+    rage.max = rage.max + 0.1;
+    mrFurious.x = constrain(mrFurious.x, 100, 300);
+
+
+
+    mrFurious.x = mrFurious.x + random(rage.min, rage.max);
 
     // Draw Mr. Furious as a coloured circle
     push();
