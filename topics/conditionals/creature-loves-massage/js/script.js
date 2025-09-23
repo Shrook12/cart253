@@ -1,8 +1,8 @@
 /**
- * Creature Loves Mouse
+ * Creature Loves Massage
  * Pippin Barr
  * 
- * A creature that responds to the mouse by changing colour
+ * A creature that responds to mouse massage by changing colour
  */
 
 "use strict";
@@ -18,7 +18,7 @@ const creature = {
     fill: "#000000", // Starts out bored
     // Possible fills for the creature that show its mood
     // We'll need these when we start changing its colour
-    // and it's nice to keep them along with all the other info
+    // and its nice to keep them along with all the other info
     // about the creature
     fills: {
         bored: "#000000", // Black
@@ -48,20 +48,16 @@ function draw() {
  * Responds to user input
  */
 function checkInput() {
-    // check if the mouse button is pressed
-    if (mouseIsPressed) {
-        //If it is, the creature becomes happy!
-        creature.fill = creature.fills.happy;
 
-    }
-    //check if a key is pressed
-    else if (keyIsPressed) {
-        //if so, creature is angry
-        creature.fill = creature.fills.angry;
+    const distance = dist(mouseX, mouseY, creature.x, creature.y);
+    const mouseOverlapsCreature = (distance < creature.size / 2);
+
+    const mouseIsMoving = (movedX !== 0 || movedY !== 0);
+
+    if (mouseOverlapsCreature && mouseIsMoving) {
+        creature.fill = creature.fills.happy;
     }
     else {
-        // if the mouse not pressed, the mouse get bored
-
         creature.fill = creature.fills.bored;
     }
 }
