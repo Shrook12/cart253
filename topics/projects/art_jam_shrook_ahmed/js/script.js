@@ -10,7 +10,7 @@
 
 let hijabShape =
 {
-    x: 600,
+    x: 590,
     y: 400
 }
 
@@ -36,40 +36,65 @@ function setup() {
 function draw() {
     background("#023975ff");
 
+    drawSweater();
     drawHijab();
     drawFace();
+    drawEyes();
+
 
 
 
 
 }
 
+function drawSweater() {
+    push();
+    noStroke();
+    fill("#2b2b2bff");
+    rotate(QUARTER_PI / 2);
+    rect(500, 350, 80, 400, 100);
+    pop();
 
+    push();
+    noStroke();
+    fill("#2b2b2bff");
+    rotate(QUARTER_PI / 2);
+    rotate(QUARTER_PI / 2);
+    rect(900, 350, 80, 400, 100);
+    pop();
+
+    push();
+    noStroke();
+    fill("#2b2b2bff");
+    rect(335, 530, 250, 400, 100);
+    pop();
+
+}
 function drawHijab() {
 
     push();
     noStroke();
-    fill("#8e31abff");
+    fill("#876aaf");
     rect(340, 500, 250, 100, 150);
     pop();
 
     push();
     noStroke();
-    fill("#8e31abff");
+    fill("#876aaf");
     rect(320, 500, 100, 270, 150);
     pop();
 
 
     push();
     noStroke();
-    fill("#712289ff");
-    rect(hijabShape.x / 2, hijabShape.y / 2, 320, 370, 150);
+    fill("#7b5ca7");
+    rect(hijabShape.x / 2, hijabShape.y / 2, 320, 370, 155);
     pop();
 
     push();
     noStroke();
-    fill("#8e31abff");
-    rect(hijabShape.x / 2, hijabShape.y / 2, 300, 350, 150);
+    fill("#876aaf");
+    rect(hijabShape.x / 2, hijabShape.y / 2, 300, 350, 155);
     pop();
 
 }
@@ -77,14 +102,41 @@ function drawHijab() {
 function drawFace() {
     push();
     noStroke();
-    fill("#e59165ff");
+    fill("#de8463ff");
     rect(faceShape.x / 2, faceShape.y / 2, 250, 270, 150);
     pop();
 
     push();
     noStroke();
-    fill("#e8a785ff");
-    rect(faceShape.x / 2, faceShape.y / 2, 230, 250, 150);
+    fill("#e18e71");
+    rect(335, 500 / 2, 230, 250, 150);
     pop();
 
 }
+
+function drawEyes() {
+    push();
+    noStroke();
+    fill("#ffffffff");
+    rect(360, 320, 75, 95, 60);
+    pop();
+
+    push();
+    noStroke();
+    fill("#ffffffff");
+    rect(465, 320, 75, 95, 60);
+    pop();
+
+    push();
+    noStroke();
+    fill("#000000ff");
+    rect(380, 340, 30, 45, 60);
+    pop();
+
+    push();
+    noStroke();
+    fill("#000000ff");
+    rect(485, 340, 30, 45, 60);
+    pop();
+}
+
