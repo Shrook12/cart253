@@ -1,6 +1,6 @@
 /**
  * Circle Master
- * Shrook Ahmed
+ * Shrook Ahmed and Blaise Treverton
  *
  * This will be a program in which the user can push a circle
  * on the canvas using their own circle.
