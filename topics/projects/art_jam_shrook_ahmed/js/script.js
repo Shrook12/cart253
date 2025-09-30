@@ -143,6 +143,41 @@ let mouth = {
     fill: "#3b2f2fff"
 }
 
+/*let iceCream = {
+    size: {
+        ellipseSize: 100,
+        triangleX1: 397,
+        triangleY1: 400,
+        triangleX2: 450,
+        triangleY2: 600,
+        triangleX3: 503,
+        triangleY3: 400,
+
+    }
+}*/
+
+let colorCircles = {
+    sizes: {
+        s1: 200,
+        s2: 100,
+        s3: 150,
+
+    },
+    location: {
+        x1: 200,
+        y1: 200,
+        x2: 100,
+        y2: 600,
+        x3: 750,
+        y3: 400
+    },
+    colors: {
+        color1: "#ff2c2cff",
+        color2: "#fff82cff",
+        color3: "#6090ffff"
+    },
+    sizeChange: 0.7
+}
 /**
  * draw the background
 */
@@ -160,31 +195,38 @@ function draw() {
     background("#023975ff");
 
 
+    drawColor1();
+    drawColor2();
+    drawColor3();
     drawSweater();
     drawHijab();
     drawFace();
     drawEyes();
     drawMouth();
     drawCircle();
-    drawIcecream();
+    //   drawIcecream();
     checkInput();
+
 
 
 }
 
-function drawIcecream() {
+/**function drawIcecream() {
+
+
     //draw ice cream ball
     push();
     noStroke();
     fill("#7a5c58ff");
-    ellipse(450, 400, 100, 100);
+    ellipse(450, 400, iceCream.size.ellipseSize, iceCream.size.ellipseSize);
     pop();
 
     //ice cream bottom part
     push();
     noStroke();
     fill("#ffd966ff");
-    triangle(397, 400, 450, 600, 503, 400);
+    //triangle(397, 400, 450, 600, 503, 400);
+    triangle(iceCream.size.triangleX1, iceCream.size.triangleY1, iceCream.size.triangleX2, iceCream.size.triangleY2, iceCream.size.triangleX3, iceCream.size.triangleY3);
     pop();
     //line on ice cream
     push();
@@ -198,7 +240,7 @@ function drawIcecream() {
     line(490, 435, 422, 480);
     line(480, 475, 434, 520);
     pop();
-}
+}*/
 
 /**
  * here is to draw the the dark grey sweater
@@ -341,5 +383,32 @@ function checkInput() {
         hijab.purple_1 = hijab.color_1;
         hijab.shadow.fills.purple_2 = hijab.shadow.fills.color_2;
     }
+}
+
+function drawColor1() {
+    colorCircles.sizes.s1 += colorCircles.sizeChange;
+    colorCircles.sizes.s1 = constrain(colorCircles.sizes.s1, colorCircles.sizes.s1, 300);
+    push();
+    fill(colorCircles.colors.color1);
+    noStroke();
+    ellipse(colorCircles.location.x1, colorCircles.location.y1, colorCircles.sizes.s1, colorCircles.sizes.s1);
+    pop();
+}
+function drawColor2() {
+    colorCircles.sizes.s2 += colorCircles.sizeChange;
+    push();
+    fill(colorCircles.colors.color2);
+    noStroke();
+    ellipse(colorCircles.location.x2, colorCircles.location.y2, colorCircles.sizes.s2, colorCircles.sizes.s2);
+    pop();
+}
+
+function drawColor3() {
+    colorCircles.sizes.s3 += colorCircles.sizeChange;
+    push();
+    fill(colorCircles.colors.color3);
+    noStroke();
+    ellipse(colorCircles.location.x3, colorCircles.location.y3, colorCircles.sizes.s3, colorCircles.sizes.s3);
+    pop();
 }
 
