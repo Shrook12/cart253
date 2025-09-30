@@ -166,7 +166,7 @@ let colorCircles = {
     location: {
         x1: 200,
         y1: 200,
-        x2: 100,
+        x2: 300,
         y2: 600,
         x3: 750,
         y3: 400
@@ -387,7 +387,7 @@ function checkInput() {
 
 function drawColor1() {
     colorCircles.sizes.s1 += colorCircles.sizeChange;
-    colorCircles.sizes.s1 = constrain(colorCircles.sizes.s1, colorCircles.sizes.s1, 300);
+    colorCircles.sizes.s1 = constrain(colorCircles.sizes.s1, 0, 700);
     push();
     fill(colorCircles.colors.color1);
     noStroke();
@@ -396,6 +396,7 @@ function drawColor1() {
 }
 function drawColor2() {
     colorCircles.sizes.s2 += colorCircles.sizeChange;
+    colorCircles.sizes.s2 = constrain(colorCircles.sizes.s2, 0, 500);
     push();
     fill(colorCircles.colors.color2);
     noStroke();
@@ -405,6 +406,7 @@ function drawColor2() {
 
 function drawColor3() {
     colorCircles.sizes.s3 += colorCircles.sizeChange;
+    colorCircles.sizes.s3 = constrain(colorCircles.sizes.s3, 0, 800);
     push();
     fill(colorCircles.colors.color3);
     noStroke();
