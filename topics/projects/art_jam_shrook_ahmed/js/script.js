@@ -159,15 +159,47 @@ function setup() {
 function draw() {
     background("#023975ff");
 
+
     drawSweater();
     drawHijab();
     drawFace();
     drawEyes();
     drawMouth();
     drawCircle();
+    drawIcecream();
     checkInput();
 
+
 }
+
+function drawIcecream() {
+    //draw ice cream ball
+    push();
+    noStroke();
+    fill("#7a5c58ff");
+    ellipse(450, 400, 100, 100);
+    pop();
+
+    //ice cream bottom part
+    push();
+    noStroke();
+    fill("#ffd966ff");
+    triangle(397, 400, 450, 600, 503, 400);
+    pop();
+    //line on ice cream
+    push();
+    strokeWeight(5);
+    stroke("#ffbd38ff");
+    line(405, 405, 485, 450);
+    line(410, 440, 477, 485);
+    line(419, 475, 469, 520);
+    line(430, 515, 460, 555);
+    line(498, 404, 410, 440);
+    line(490, 435, 422, 480);
+    line(480, 475, 434, 520);
+    pop();
+}
+
 /**
  * here is to draw the the dark grey sweater
  */
@@ -291,6 +323,7 @@ function drawMouth() {
 
 }
 
+//mouse
 function drawCircle() {
     push();
     fill("#ffdd00ff");
@@ -299,9 +332,11 @@ function drawCircle() {
     pop();
 }
 
+
 function checkInput() {
     const distance = dist(mouseX, mouseY, hijab.shape.x, hijab.shape.y);
-    const mouseIsOverlapping = (distance < hijab.shape.x / 2);
+    const mouseIsOverlapping = (distance < hijab.shape.w / 2);
+
     if (mouseIsOverlapping) {
         hijab.purple_1 = hijab.color_1;
         hijab.shadow.fills.purple_2 = hijab.shadow.fills.color_2;
