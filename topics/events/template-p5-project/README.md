@@ -1,12 +1,18 @@
-# Art Jam 
+# TITLE OF PROJECT
 
-Shrook Ahmed
+AUTHOR NAME
 
 [View this project online](URL_FOR_THE_RUNNING_PROJECT)
 
 ## Description
 
-This is portait of me. I tried to use the colors I love and somewhat put a playful and colorful background with circles that grows with time with a constrain. This is actually because I love playful and colorful art and designs. I also made the color of my hijab(head covering) change when the mouse overlap since I wear different colors of hijab and it's important for me so I show this importance by adding mouse interaction to it.
+This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+
+> *The Mayor of Clown Town* is a simulator experience that allows the user to control a small town populated entirely by clowns.
+
+> The experience is controlled via the mouse, with left click selecting a clown and bringing up a menu of options such as "slip of banana peel" or "get into impossible capacious clown-car."
+
+> The project is meant to give the user a sense of what it would be the mayor of a town of clowns, eventually getting the sense that clowns are not taking their civic duties seriously.
 
 ## Screenshot(s)
 
