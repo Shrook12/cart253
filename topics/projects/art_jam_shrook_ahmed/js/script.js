@@ -250,6 +250,8 @@ function draw() {
     pop();
 }*/
 
+
+
 /**
  * here is to draw the the dark grey sweater
  */
@@ -278,6 +280,7 @@ function drawSweater() {
     fill(sweater.fill);
     rect(sweater.sweater.x, sweater.sweater.y, sweater.sweater.w, sweater.sweater.h, sweater.sweater.corner);
     pop();
+
 
 }
 
@@ -380,6 +383,7 @@ function drawCircle() {
     push();
     fill(userRect.fill);
     noStroke();
+    rectMode(CENTER);
     rect(userRect.x, userRect.y, userRect.w, userRect.h);
     pop();
 }
@@ -401,28 +405,39 @@ function checkInput() {
     }
 }
 
+/**
+ * this part is to draw the circles behind
+ */
+//red circle
 function drawColor1() {
+    //to make the red circle change size at a certain limit
     colorCircles.sizes.s1 += colorCircles.sizeChange;
     colorCircles.sizes.s1 = constrain(colorCircles.sizes.s1, 0, 700);
+    //circle
     push();
     fill(colorCircles.colors.color1);
     noStroke();
     ellipse(colorCircles.location.x1, colorCircles.location.y1, colorCircles.sizes.s1, colorCircles.sizes.s1);
     pop();
 }
+//yellow circle
 function drawColor2() {
+    //to make the yellow circle change size at a certain limit
     colorCircles.sizes.s2 += colorCircles.sizeChange;
     colorCircles.sizes.s2 = constrain(colorCircles.sizes.s2, 0, 500);
+    //circle
     push();
     fill(colorCircles.colors.color2);
     noStroke();
     ellipse(colorCircles.location.x2, colorCircles.location.y2, colorCircles.sizes.s2, colorCircles.sizes.s2);
     pop();
 }
-
+//blue circle
 function drawColor3() {
+    //to make the blue circle change size at a certain limit
     colorCircles.sizes.s3 += colorCircles.sizeChange;
     colorCircles.sizes.s3 = constrain(colorCircles.sizes.s3, 0, 800);
+    //circle
     push();
     fill(colorCircles.colors.color3);
     noStroke();
