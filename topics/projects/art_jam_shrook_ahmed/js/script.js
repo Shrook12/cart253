@@ -178,6 +178,13 @@ let colorCircles = {
     },
     sizeChange: 0.7
 }
+let userRect = {
+    x: undefined,
+    y: undefined,
+    fill: "#ffdd00ff",
+    w: 60,
+    h: 60
+}
 /**
  * draw the background
 */
@@ -210,6 +217,7 @@ function draw() {
 
 
 }
+
 
 /**function drawIcecream() {
 
@@ -367,19 +375,27 @@ function drawMouth() {
 
 //mouse
 function drawCircle() {
+    userRect.x = mouseX;
+    userRect.y = mouseY;
     push();
-    fill("#ffdd00ff");
+    fill(userRect.fill);
     noStroke();
-    ellipse(mouseX, mouseY, 60, 60);
+    rect(userRect.x, userRect.y, userRect.w, userRect.h);
     pop();
 }
 
 
 function checkInput() {
-    const distance = dist(mouseX, mouseY, hijab.shape.x, hijab.shape.y);
-    const mouseIsOverlapping = (distance < hijab.shape.w / 2);
+    const overlap = (userRect.x + userRect.w / 2 > hijab.shape.x - hijab.shape.w / 2 &&
+        userRect.x - userRect.w / 2 < hijab.shape.x + hijab.shape.w / 2 && userRect.y + userRect.h / 2 > hijab.shape.y - hijab.shape.h / 2 && userRect.y - userRect.h / 2 < hijab.shadow.y + hijab.shadow.h / 2)
+    //const distance = dist(mouseX, mouseY, hijab.shape.x, hijab.shape.y);
+    //const mouseIsOverlapping = (distance < hijab.shape.w / 2);
 
-    if (mouseIsOverlapping) {
+    /*if (mouseIsOverlapping) {
+        hijab.purple_1 = hijab.color_1;
+        hijab.shadow.fills.purple_2 = hijab.shadow.fills.color_2;
+    }*/
+    if (overlap) {
         hijab.purple_1 = hijab.color_1;
         hijab.shadow.fills.purple_2 = hijab.shadow.fills.color_2;
     }
