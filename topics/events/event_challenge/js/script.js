@@ -1,6 +1,7 @@
 /**
  * The Only Move Is Not To Play
- * Pippin Barr
+ * Shrook Ahmed 
+ * Partner: Blaise Treverton
  *
  * A game where your score increases so long as you do nothing.
  */
