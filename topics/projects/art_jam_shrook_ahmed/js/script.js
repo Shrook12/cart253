@@ -269,8 +269,9 @@ function drawSweater() {
     push();
     noStroke();
     fill("#2b2b2bff");
-    rotate(-2);
-    rect(550, 550, 80, 400, 100);
+    translate(780, 850);
+    rotate(radians(150));
+    rect(0, 0, 80, 400, 100);
     pop();
 
 
@@ -390,8 +391,10 @@ function drawCircle() {
 
 
 function checkInput() {
-    const overlap = (userRect.x + userRect.w / 2 > hijab.shape.x - hijab.shape.w / 2 &&
-        userRect.x - userRect.w / 2 < hijab.shape.x + hijab.shape.w / 2 && userRect.y + userRect.h / 2 > hijab.shape.y - hijab.shape.h / 2 && userRect.y - userRect.h / 2 < hijab.shadow.y + hijab.shadow.h / 2)
+    const overlap = (userRect.x + userRect.w / 2 > hijab.shape.x &&
+        userRect.x - userRect.w / 2 < hijab.shape.x + hijab.shape.w &&
+        userRect.y + userRect.h / 2 > hijab.shape.y &&
+        userRect.y - userRect.h / 2 < hijab.shape.y + hijab.shape.h)
     //const distance = dist(mouseX, mouseY, hijab.shape.x, hijab.shape.y);
     //const mouseIsOverlapping = (distance < hijab.shape.w / 2);
 
