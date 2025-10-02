@@ -12,12 +12,18 @@ let score = 0;
 
 // Is the game over?
 let gameOver = false;
-
+window.addEventListener("offline", lose);
+document.addEventListener("visibilitychange", lose);
 /**
  * Create the canvas
  */
 function setup() {
     createCanvas(400, 400);
+
+    //window.addEventListener("online",);
+
+    // check if the internet is down and if yes put you lose.
+
 }
 
 /**
@@ -65,5 +71,16 @@ function lose() {
 
 }
 function keyPressed() {
+    lose(); //make the you lose appear when a key is pressed!
+}
+
+function mousePressed() {
     lose();
 }
+function mouseMoved() {
+    lose();
+}
+function mouseWheel() {
+    lose();
+}
+
