@@ -6,21 +6,23 @@ Shrook Ahmed
 
 ## Description
 
-This is portait of me. I tried to use the colors I love and somewhat put a playful and colorful background with circles that grows with time with a constrain. This is actually because I love playful and colorful art and designs. I also made the color of my hijab(head covering) change when the mouse overlap since I wear different colors of hijab and it's important for me so I show this importance by adding mouse interaction to it.
+This is a portrait of me. I used the colors I love throughout the project. I created a playful and colorful background with circles that grow over time, with specific areas. My love for playful and colorful art and designs is what inspired me. I also made the color of my hijab (head covering) change when the mouse overlaps, since I wear different colors of hijab, and to show the importance of the hijab to me by adding mouse interaction.
 
 ## Screenshot(s)
 
 This bit should have some images of the program running so that the reader has a sense of what it looks like. For example:
 
-> ![Image of a clown face](./assets/images/clown.png)
+> ![Image of a clown face](./assets/images/screenshot.png)
 
 ## Attribution
 
 This bit should attribute any code, assets or other elements used taken from other sources. For example:
 
 > - This project uses [p5.js](https://p5js.org).
-> - The clown image is a capture of the clown from the Apple emoji character set.
-> - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
+> - This project uses the Overlapping Rectangles
+by pippinbarr(https://editor.p5js.org/pippinbarr/sketches/5hnVN-_C0).
+
+
 
 ## License
 

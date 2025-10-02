@@ -7,9 +7,10 @@
 
 "use strict";
 
-
+//the variables for the hijab
 let hijab =
 {
+    //hijab main shape
     shape: {
         x: 295,
         y: 200,
@@ -17,18 +18,21 @@ let hijab =
         h: 350,
         corner: 155
     },
+    //hijab shadow
     shadow: {
         x: 295,
         y: 200,
         fills: {
 
             purple_2: "#7b5ca7",
-            color_2: " rgba(222, 225, 140, 1)"
+            color_2: " rgba(222, 225, 140, 1)",
+            colorAfter: "#7b5ca7"
         },
         w: 320,
         h: 370,
         corner: 155
     },
+    //hijab for the neck part
     neck: {
         x: 340,
         y: 500,
@@ -36,6 +40,7 @@ let hijab =
         h: 100,
         corner: 150
     },
+    //hijab bottom part
     bottom: {
         x: 320,
         y: 500,
@@ -44,12 +49,16 @@ let hijab =
         corner: 150
     },
     purple_1: "#876aaf",
+    colorAfter: "#876aaf",
     color_1: "#fcffa1ff"
 
 }
 
+//these are the variables for the shape
+
 let faceShape =
 {
+    //for main shape face
     face: {
         x: 335,
         y: 250,
@@ -58,6 +67,7 @@ let faceShape =
         h: 250,
         corner: 150
     },
+    //shadow face
     shadow: {
         x: 325,
         y: 250,
@@ -70,8 +80,11 @@ let faceShape =
 
 
 }
+
+// these are  the variables for the dark grey sweater
 let sweater =
 {
+    // the left sleeves
     sleeveLeft: {
         x: 500,
         y: 350,
@@ -80,6 +93,15 @@ let sweater =
         h: 400,
         corner: 100
     },
+    // the right sleeves
+    sleeveRight: {
+        x: 780,
+        y: 850,
+        w: 80,
+        h: 400,
+        corner: 100
+    },
+    //the main part of the sweater
     sweater: {
         x: 335,
         y: 530,
@@ -88,10 +110,14 @@ let sweater =
         h: 400,
         corner: 100
     },
+    //color
     fill: "#2b2b2bff"
 
 }
+
+// these are the variables for the eyes
 let eye = {
+    //left eye
     left: {
         x: 360,
         y: 320,
@@ -101,6 +127,7 @@ let eye = {
         corner: 60
 
     },
+    //right eye
     right: {
         x: 465,
         y: 320,
@@ -110,10 +137,13 @@ let eye = {
         corner: 60
 
     },
+    // color
     fill: "#ffffffff"
 
 }
+//these are the variables for the iris
 let insideEyes = {
+    //left iris
     left: {
         x: 380,
         y: 340,
@@ -123,6 +153,7 @@ let insideEyes = {
         corner: 60
 
     },
+    //right iris
     right: {
         x: 485,
         y: 340,
@@ -132,14 +163,19 @@ let insideEyes = {
         corner: 60
 
     },
+    //color
     fill: "#000000ff"
 }
 
+//these are the variables for the mouth
+
 let mouth = {
+    //mouth
     x: 450,
     y: 435,
     w: 110,
     h: 110,
+    //color
     fill: "#3b2f2fff"
 }
 
@@ -155,8 +191,10 @@ let mouth = {
 
     }
 }*/
-
+// these are the variables for the circles behind 
 let colorCircles = {
+
+
     sizes: {
         s1: 200,
         s2: 100,
@@ -196,7 +234,7 @@ function setup() {
 
 
 /**
- *
+ *this is to draw the elements
 */
 function draw() {
     background("#023975ff");
@@ -234,7 +272,8 @@ function draw() {
     noStroke();
     fill("#ffd966ff");
     //triangle(397, 400, 450, 600, 503, 400);
-    triangle(iceCream.size.triangleX1, iceCream.size.triangleY1, iceCream.size.triangleX2, iceCream.size.triangleY2, iceCream.size.triangleX3, iceCream.size.triangleY3);
+    triangle(iceCream.size.triangleX1, iceCream.size.triangleY1, iceCream.size.triangleX2, 
+    iceCream.size.triangleY2, iceCream.size.triangleX3, iceCream.size.triangleY3);
     pop();
     //line on ice cream
     push();
@@ -269,9 +308,9 @@ function drawSweater() {
     push();
     noStroke();
     fill("#2b2b2bff");
-    translate(780, 850);
+    translate(sweater.sleeveRight.x, sweater.sleeveRight.y);
     rotate(radians(150));
-    rect(0, 0, 80, 400, 100);
+    rect(0, 0, sweater.sleeveRight.w, sweater.sleeveRight.h, sweater.sleeveRight.corner);
     pop();
 
 
@@ -405,6 +444,10 @@ function checkInput() {
     if (overlap) {
         hijab.purple_1 = hijab.color_1;
         hijab.shadow.fills.purple_2 = hijab.shadow.fills.color_2;
+    }
+    else {
+        hijab.purple_1 = hijab.colorAfter;
+        hijab.shadow.fills.purple_2 = hijab.shadow.fills.colorAfter;
     }
 }
 
