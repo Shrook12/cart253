@@ -14,6 +14,10 @@ let score = 0;
 let gameOver = false;
 window.addEventListener("offline", lose);
 document.addEventListener("visibilitychange", lose);
+window.addEventListener("keyup", lose);
+window.addEventListener("mouseup", lose);
+window.addEventListener("mousemove", lose);
+window.addEventListener("wheel", lose);
 /**
  * Create the canvas
  */
@@ -70,7 +74,7 @@ function lose() {
     gameOver = true;
 
 }
-function keyPressed() {
+/*function keyPressed() {
     lose(); //make the you lose appear when a key is pressed!
 }
 
@@ -83,4 +87,4 @@ function mouseMoved() {
 function mouseWheel() {
     lose();
 }
-
+*/
