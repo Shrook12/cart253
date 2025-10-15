@@ -51,6 +51,7 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0);
 
+
     buttonPlay = createButton("PLAY"); //this create a button
     buttonPlay.position(width / 2, height / 2); //this is the position of the button
     buttonPlay.mousePressed(gameStarted);//call function gameStarted when pressing on the button
@@ -181,6 +182,8 @@ function moveTongue() {
 }
 
 function drawPlayer1() {
+    //to make player1 at the bottom
+    player1.body.y = height;
     //draw tongue tip
     push();
     fill("#ffd000ff");
