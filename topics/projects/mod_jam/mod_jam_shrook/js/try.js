@@ -90,9 +90,11 @@ function draw() {
         drawFly();
         movePlayer1();
         moveTongue();
+        moveTonguePlayer2();
         drawPlayer1();
         drawPlayer2();
         checkTongueFlyOverlap();
+        // checkTongueOverlapPlayer2();
     }
     else if (gameState == "end") {
         endScreen();
@@ -198,6 +200,33 @@ function moveTongue() {
         }
     }
 }
+function moveTonguePlayer2() {
+
+    //tongue matches player1's x
+    player2.tongue.x = player2.body.x;
+
+    //if tongue idle, doesn't do anything
+    if (player2.tongue.state === "idle") {
+        //nothing
+    }
+    //if thw tongue is outbound, it moves up
+    else if (player2.tongue.state === "inbound") {
+        player2.tongue.y += player2.tongue.speed;
+        // tongue bounces back if it hits the top
+        if (player2.tongue.y >= 0) {
+            player2.tongue.state = "outbound";
+        }
+    }
+    else if (player2.tongue.state === "outbound") {
+        player2.tongue.y += -player2.tongue.speed;
+
+
+        if (player2.tongue.y >= height) {
+            player2.tongue.state = "idle";
+        }
+    }
+}
+
 
 function drawPlayer1() {
     //player1.body.x = width/2;
@@ -275,6 +304,30 @@ function mousePressed() {
     }
 }
 
+/*function checkTongueOverlapPlayer2() {
+    //distance from tongue to fly
+    const d = dist(player2.tongue.x, player2.tongue.y, fly.x, fly.y);
+    //check if overlap
+    const eaten = (d < player2.tongue.size / 2 + fly.size / 2);
+    if (eaten) {
+        //reset the fly
+        resetFly();
+        //bring tongue back
+        player2.tongue.state = "outbound";
+    }
+
+}
+
+/**
+ * launch tongue on click
+ 
+
+function keyPressed(event) {
+    if (player2.tongue.state === "idle") {
+        player2.tongue.state = "inbound";
+    }
+}
+*/
 function endScreen() {
     background("#ff456aff");
 }
