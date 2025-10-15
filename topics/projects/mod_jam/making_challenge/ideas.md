@@ -32,7 +32,7 @@ Ideas for mod jam project:
 
 16-Why not make the fly a player two and let player two have control over the fly, but with certain limits? I don't know if this is a good idea. But maybe, for example, the frog will become a police officer(player one), and the fly will be a thief(player 2). The police officer will try to catch the thief. If he catches him, the police officer will lose, and if he doesn't catch him before the end of time, the thief will win. The thief can only go either up, right, left,bottom. Maybe there will be obstacles?
 
-17-Why not make the fly the one who catches the frog? Maybe the fly is a flower that is trying to catch a cup of water(frog). Player one water at the bottom will just move water right and left, so the flower doesn't get the water. If player two flower able to get water, then he wins; else player one wins. 
+17-Why not make the fly the one who catches the frog? Maybe the fly is a flower that is trying to catch a cup of water(frog). Player one water at the bottom will just move water right and left, so the flower doesn't get the water. If player two flower able to get water, then he wins, else player one wins. 
 
 18-Or making both the frog and the fly try catching each other? For example, maybe a hunter(frog) and a tiger(fly), and each time one gets touched by the other, it will affect the life span. After being touched three times, you lose.
 
