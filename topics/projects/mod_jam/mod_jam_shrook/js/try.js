@@ -14,7 +14,7 @@
  */
 
 "use strict";
-
+// this are the properties of player1
 let player1 = {
     body: {
         x: 320,
@@ -29,6 +29,23 @@ let player1 = {
         state: "idle"
     }
 };
+
+// properties of player 2
+let player2 = {
+    body: {
+        x: 320,
+        y: 0,
+        size: 250
+    },
+    tongue: {
+        x: undefined,
+        y: 480,
+        size: 20,
+        speed: 20,
+        state: "idle"
+    }
+};
+//properties of the fly
 
 let fly = {
     x: 0,
@@ -74,6 +91,7 @@ function draw() {
         movePlayer1();
         moveTongue();
         drawPlayer1();
+        drawPlayer2();
         checkTongueFlyOverlap();
     }
     else if (gameState == "end") {
@@ -182,6 +200,7 @@ function moveTongue() {
 }
 
 function drawPlayer1() {
+    //player1.body.x = width/2;
     //to make player1 at the bottom
     player1.body.y = height;
     //draw tongue tip
@@ -206,6 +225,26 @@ function drawPlayer1() {
     ellipse(player1.body.x, player1.body.y, player1.body.size);
     pop();
 
+}
+
+function drawPlayer2() {
+    push();
+    fill("#26ff00ff");
+    noStroke();
+    ellipse(player2.tongue.x, player2.tongue.y, player2.size);
+    pop();
+
+    push();
+    stroke("#26ff00ff");
+    strokeWeight(player2.tongue.size);
+    line(player2.tongue.x, player2.tongue.y, player2.body.x, player2.body.y);
+    pop();
+
+    push();
+    fill("#ff3300ff");
+    noStroke();
+    ellipse(player2.body.x, player2.body.y, player2.body.size);
+    pop();
 }
 
 /**
