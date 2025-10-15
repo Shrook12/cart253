@@ -29,6 +29,10 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0);
 
+    buttonPlay = createButton("PLAY"); //this create a button
+    buttonPlay.position(width / 2, height / 2); //this is the position of the button
+    buttonPlay.mousePressed(gameStarted);
+
 
 }
 /**
@@ -46,13 +50,13 @@ function draw() {
     }
 }
 
-function mousePressed(event) {
+/*function mousePressed(event) {
     if (gameState == "start") {
         gameState = "play";
     }
 
 
-}
+}*/
 
 function startScreen() {
     background("#a545ffff");
@@ -62,11 +66,11 @@ function startScreen() {
      button.mousePressed(gameScreen);*/
 
     //prevent button to be created over and over again
-    if (!startButtonCreated) {
+    /*if (!startButtonCreated) {
         buttonPlay = createButton("PLAY"); //this create a button
         buttonPlay.position(width / 2, height / 2); //this is the position of the button
     }
-    startButtonCreated = true;
+    startButtonCreated = true;*/
 
 
 }
@@ -78,6 +82,11 @@ function gameScreen() {
 
 function endScreen() {
     background("#ff456aff");
+}
+
+function gameStarted() {
+    gameState = "play";
+    buttonPlay.hide();
 }
 
 function windowResized() {
