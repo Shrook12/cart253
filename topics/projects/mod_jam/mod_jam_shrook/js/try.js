@@ -19,7 +19,7 @@ let player1 = {
     body: {
         x: 320,
         y: 520,
-        size: 300
+        size: 200
     },
     tongue: {
         x: undefined,
@@ -111,6 +111,126 @@ function startScreen() {
 function gameScreen() {
     background("#4577ffff");
 
+
+}
+
+function moveFly() {
+
+    //move fly
+    fly.x += fly.speed;
+    //handle the fly going off the canvas
+    if (fly.x > width) {
+        resetFly();
+    }
+}
+
+/**
+ * draw the fly
+ */
+
+function drawFly() {
+    push();
+    fill("#4c0404ff");
+    ellipse(fly.x, fly.y, fly.size);
+    pop();
+}
+
+/**
+ * Reset the fly to the left
+ */
+function resetFly() {
+    fly.x = 0;
+    fly.y = random(0, 300);
+}
+
+/**
+ * Move player1 to the mouse position on x
+ */
+function movePlayer1() {
+    player1.body.x = mouseX;
+}
+
+/**
+ * to make tongue move
+ */
+function moveTongue() {
+
+    //tongue matches player1's x
+    player1.tongue.x = player1.body.x;
+
+    //if tongue idle, doesn't do anything
+    if (player1.tongue.state === "idle") {
+        //nothing
+    }
+    //if thw tongue is outbound, it moves up
+    else if (player1.tongue.state === "outbound") {
+        player1.tongue.y += -player1.tongue.speed;
+        // tongue bounces back if it hits the top
+        if (player1.tongue.y <= 0) {
+            player1.tongue.state = "inbound";
+        }
+    }
+    else if (player1.tongue.state === "inbound") {
+        player1.tongue.y += player1.tongue.speed;
+
+
+        if (player1.tongue.y >= height) {
+            player1.tongue.state = "idle";
+        }
+    }
+}
+
+function drawPlayer1() {
+    //draw tongue tip
+    push();
+    fill("#ffd000ff");
+    noStroke();
+    ellipse(player1.tongue.x, player1.tongue.y, player1.tongue.size);
+    pop();
+
+
+    //draw rest of tongue
+    push();
+    stroke("#ffd000ff");
+    strokeWeight(player1.tongue.size);
+    line(player1.tongue.x, player1.tongue.y, player1.body.x, player1.body.y);
+    pop();
+
+    // player 1 body
+    push();
+    fill("#4400ffff");
+    noStroke();
+    ellipse(player1.body.x, player1.body.y, player1.body.size);
+    pop();
+
+}
+
+/**
+ * tongue overlapping the fly
+ */
+
+function checkTongueFlyOverlap() {
+    //distance from tongue to fly
+    const d = dist(player1.tongue.x, player1.tongue.y, fly.x, fly.y);
+    //check if overlap
+    const eaten = (d < player1.tongue.size / 2 + fly.size / 2);
+    if (eaten) {
+        //reset the fly
+        resetFly();
+        //bring tongue back
+        player1.tongue.state = "inbound";
+    }
+
+}
+
+/**
+ * launch tongue on click
+ */
+
+function mousePressed() {
+    if (player1.tongue.state === "idle") {
+        player1.tongue.state = "outbound";
+    }
 }
 
 function endScreen() {
