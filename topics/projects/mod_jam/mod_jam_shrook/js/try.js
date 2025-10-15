@@ -15,6 +15,28 @@
 
 "use strict";
 
+let player1 = {
+    body: {
+        x: 320,
+        y: 520,
+        size: 300
+    },
+    tongue: {
+        x: undefined,
+        y: 480,
+        size: 20,
+        speed: 20,
+        state: "idle"
+    }
+};
+
+let fly = {
+    x: 0,
+    y: 200,
+    size: 10,
+    speed: 3
+};
+
 let finishState = "none";
 let gameState = "start";
 let score = 0;
@@ -39,11 +61,19 @@ function setup() {
  * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
 */
 function draw() {
+
+
     if (gameState == "start") {
         startScreen();
     }
     else if (gameState == "play") {
         gameScreen();
+        moveFly();
+        drawFly();
+        movePlayer1();
+        moveTongue();
+        drawPlayer1();
+        checkTongueFlyOverlap();
     }
     else if (gameState == "end") {
         endScreen();
