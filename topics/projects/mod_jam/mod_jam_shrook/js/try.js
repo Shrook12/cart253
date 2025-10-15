@@ -19,11 +19,11 @@ let finishState = "none";
 let gameState = "start";
 let score = 0;
 let buttonPlay;
-let startButtonCreated = false;
+//let startButtonCreated = false;
 
 
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
+ * creates the canvas
 */
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -31,7 +31,7 @@ function setup() {
 
     buttonPlay = createButton("PLAY"); //this create a button
     buttonPlay.position(width / 2, height / 2); //this is the position of the button
-    buttonPlay.mousePressed(gameStarted);
+    buttonPlay.mousePressed(gameStarted);//call function gameStarted when pressing on the button
 
 
 }
@@ -50,6 +50,7 @@ function draw() {
     }
 }
 
+//this was a try of mouse pressed because the button was not working
 /*function mousePressed(event) {
     if (gameState == "start") {
         gameState = "play";
@@ -60,6 +61,8 @@ function draw() {
 
 function startScreen() {
     background("#a545ffff");
+
+    //My button was here but I didn't really feel that was a good idea
     /*let button = createButton("PLAY");
     button.position(width / 2, height / 2);
 
@@ -86,9 +89,10 @@ function endScreen() {
 
 function gameStarted() {
     gameState = "play";
-    buttonPlay.hide();
+    buttonPlay.hide();//make button hide in the play state
 }
 
+/*resize canvas with different screen*/
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
     buttonPlay.position(width / 2, height / 2);
