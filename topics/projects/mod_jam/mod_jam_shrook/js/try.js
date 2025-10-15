@@ -37,12 +37,6 @@ function setup() {
 function draw() {
     if (gameState == "start") {
         startScreen();
-        //prevent button to be created over and over again
-        if (!startButtonCreated) {
-            buttonPlay = createButton("PLAY"); //this create a button
-            buttonPlay.position(width / 2, height / 2); //this is the position of the button
-        }
-        startButtonCreated = true;
     }
     else if (gameState == "play") {
         gameScreen();
@@ -66,6 +60,13 @@ function startScreen() {
     button.position(width / 2, height / 2);
 
      button.mousePressed(gameScreen);*/
+
+    //prevent button to be created over and over again
+    if (!startButtonCreated) {
+        buttonPlay = createButton("PLAY"); //this create a button
+        buttonPlay.position(width / 2, height / 2); //this is the position of the button
+    }
+    startButtonCreated = true;
 
 
 }
