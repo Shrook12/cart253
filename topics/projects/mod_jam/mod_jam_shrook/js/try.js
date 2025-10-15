@@ -19,7 +19,7 @@ let player1 = {
     body: {
         x: 320,
         y: 520,
-        size: 200
+        size: 250
     },
     tongue: {
         x: undefined,
@@ -141,7 +141,7 @@ function drawFly() {
  */
 function resetFly() {
     fly.x = 0;
-    fly.y = random(0, 300);
+    fly.y = random(0, height / 2);
 }
 
 /**
