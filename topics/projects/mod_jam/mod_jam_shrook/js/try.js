@@ -39,7 +39,7 @@ let player2 = {
     },
     tongue: {
         x: undefined,
-        y: 480,
+        y: 100,
         size: 20,
         speed: 20,
         state: "idle"
@@ -51,7 +51,8 @@ let fly = {
     x: 0,
     y: 200,
     size: 10,
-    speed: 3
+    speed: 3,
+    acceleration: 0.003
 };
 
 let finishState = "none";
@@ -90,11 +91,12 @@ function draw() {
         drawFly();
         movePlayer1();
         moveTongue();
+        moveTonguePlayer2();
         drawPlayer1();
         drawPlayer2();
         checkTongueFlyOverlap();
         keyboard();
-        // checkTongueOverlapPlayer2();
+        checkTongueOverlapPlayer2();
     }
     else if (gameState == "end") {
         endScreen();
@@ -136,7 +138,7 @@ function gameScreen() {
 }
 
 function moveFly() {
-
+    fly.speed += fly.acceleration;
     //move fly
     fly.x += fly.speed;
     //handle the fly going off the canvas
@@ -183,7 +185,7 @@ function moveTongue() {
     if (player1.tongue.state === "idle") {
         //nothing
     }
-    //if thw tongue is outbound, it moves up
+    //if the tongue is outbound, it moves up
     else if (player1.tongue.state === "outbound") {
         player1.tongue.y += -player1.tongue.speed;
         // tongue bounces back if it hits the top
@@ -199,6 +201,30 @@ function moveTongue() {
             player1.tongue.state = "idle";
         }
     }
+}
+
+function moveTonguePlayer2() {
+
+    player2.tongue.x = player2.body.x;
+
+    if (player2.tongue.state === "idle") {
+        //do nothing
+    }
+    else if (player2.tongue.state === "outbound") {
+        player2.tongue.y += player2.tongue.speed;
+
+        if (player2.tongue.y >= windowHeight) {
+            player2.tongue.state = "inbound";
+        }
+    }
+    else if (player2.tongue.state === "inbound") {
+        player2.tongue.y += -player2.tongue.speed;
+
+        if (player2.tongue.y <= 0) {
+            player2.tongue.state = "idle";
+        }
+    }
+
 }
 
 
@@ -232,6 +258,19 @@ function drawPlayer1() {
 }
 
 function drawPlayer2() {
+    push();
+    fill("#5eff00ff");
+    noStroke();
+    ellipse(player2.tongue.x, player2.tongue.y, player2.tongue.size);
+    pop();
+
+
+    //draw rest of tongue
+    push();
+    stroke("#80ff00ff");
+    strokeWeight(player2.tongue.size);
+    line(player2.tongue.x, player2.tongue.y, player2.body.x, player2.body.y);
+    pop();
 
     push();
     fill("#ff3300ff");
@@ -258,6 +297,16 @@ function checkTongueFlyOverlap() {
 
 }
 
+function checkTongueOverlapPlayer2() {
+    const d = dist(player2.tongue.x, player2.tongue.y, fly.x, fly.y);
+
+    const eaten = (d < player2.tongue.size / 2 + fly.size / 2);
+    if (eaten) {
+        resetFly();
+        player2.tongue.state = "inbound";
+    }
+}
+
 /**
  * launch tongue on click
  */
@@ -268,13 +317,21 @@ function mousePressed() {
     }
 }
 
+function keyPressed(event) {
+    if (keyCode === DOWN_ARROW) {
+        if (player2.tongue.state === "idle") {
+            player2.tongue.state = "outbound";
+        }
+    }
+}
+
 function keyboard() {
     player2.body.x = constrain(player2.body.x, 0, windowWidth);
     if (keyIsDown(LEFT_ARROW) === true) {
-        player2.body.x += -7;
+        player2.body.x += -12;
     }
     if (keyIsDown(RIGHT_ARROW) === true) {
-        player2.body.x += 7;
+        player2.body.x += 12;
     }
 }
 
