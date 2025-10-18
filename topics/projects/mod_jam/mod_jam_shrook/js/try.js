@@ -90,10 +90,10 @@ function draw() {
         drawFly();
         movePlayer1();
         moveTongue();
-        moveTonguePlayer2();
         drawPlayer1();
         drawPlayer2();
         checkTongueFlyOverlap();
+        keyboard();
         // checkTongueOverlapPlayer2();
     }
     else if (gameState == "end") {
@@ -200,32 +200,7 @@ function moveTongue() {
         }
     }
 }
-function moveTonguePlayer2() {
 
-    //tongue matches player1's x
-    player2.tongue.x = player2.body.x;
-
-    //if tongue idle, doesn't do anything
-    if (player2.tongue.state === "idle") {
-        //nothing
-    }
-    //if thw tongue is outbound, it moves up
-    else if (player2.tongue.state === "inbound") {
-        player2.tongue.y += player2.tongue.speed;
-        // tongue bounces back if it hits the top
-        if (player2.tongue.y >= 0) {
-            player2.tongue.state = "outbound";
-        }
-    }
-    else if (player2.tongue.state === "outbound") {
-        player2.tongue.y += -player2.tongue.speed;
-
-
-        if (player2.tongue.y >= height) {
-            player2.tongue.state = "idle";
-        }
-    }
-}
 
 
 function drawPlayer1() {
@@ -257,17 +232,6 @@ function drawPlayer1() {
 }
 
 function drawPlayer2() {
-    push();
-    fill("#26ff00ff");
-    noStroke();
-    ellipse(player2.tongue.x, player2.tongue.y, player2.size);
-    pop();
-
-    push();
-    stroke("#26ff00ff");
-    strokeWeight(player2.tongue.size);
-    line(player2.tongue.x, player2.tongue.y, player2.body.x, player2.body.y);
-    pop();
 
     push();
     fill("#ff3300ff");
@@ -303,6 +267,25 @@ function mousePressed() {
         player1.tongue.state = "outbound";
     }
 }
+
+function keyboard() {
+    player2.body.x = constrain(player2.body.x, 0, windowWidth);
+    if (keyIsDown(LEFT_ARROW) === true) {
+        player2.body.x += -7;
+    }
+    if (keyIsDown(RIGHT_ARROW) === true) {
+        player2.body.x += 7;
+    }
+}
+
+/*function keyPressed(event) {
+    if (keyCode === RIGHT_ARROW) {
+        player2.body.x += 10;
+    } else if (keyCode === LEFT_ARROW) {
+        player2.body.x += -10;
+    }
+
+}*/
 
 /*function checkTongueOverlapPlayer2() {
     //distance from tongue to fly
