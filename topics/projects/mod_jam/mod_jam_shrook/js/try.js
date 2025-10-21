@@ -58,12 +58,13 @@ let fly = {
 let timer = {
     startTime: 0,
     timePassed: 0,
-    timeInterval: 10000
+    timeInterval: 100000
 }
 
 let finishState = "none";
 let gameState = "start";
-let score = 0;
+let score1 = 0;
+let score2 = 0;
 let buttonPlay;
 //let startButtonCreated = false;
 
@@ -142,6 +143,7 @@ function startScreen() {
 
 function gameScreen() {
     background("#4577ffff");
+    displayScore();
     timer.timePassed = millis() - timer.startTime;
     let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
     //this part is for me:
@@ -313,6 +315,7 @@ function checkTongueFlyOverlap() {
     if (eaten) {
         //reset the fly
         resetFly();
+        score1++;
         //bring tongue back
         player1.tongue.state = "inbound";
     }
@@ -325,8 +328,23 @@ function checkTongueOverlapPlayer2() {
     const eaten = (d < player2.tongue.size / 2 + fly.size / 2);
     if (eaten) {
         resetFly();
+        score2++;
         player2.tongue.state = "inbound";
     }
+}
+
+function displayScore() {
+    push();
+    textSize(24);
+    fill("#000000");
+    text(score1, width / 3, height - 150);
+    pop();
+
+    push();
+    textSize(24);
+    fill("#000000");
+    text(score2, width / 4, 100);
+    pop();
 }
 
 /**
