@@ -58,7 +58,7 @@ let fly = {
 let timer = {
     startTime: 0,
     timePassed: 0,
-    timeInterval: 100000
+    timeInterval: 10000
 }
 
 let finishState = "none";
@@ -154,7 +154,18 @@ function gameScreen() {
     fill("#000000");
     text(timeLeft, width / 2, 40);
     if (timer.timePassed > timer.timeInterval) {
-        gameState = "end";
+        gameState = "end"
+
+        if (score1 > score2) {
+            finishState = "Player 1 wins"
+        }
+        else if (score2 > score1) {
+            finishState = "Player 2 wins"
+
+        }
+        else if (score1 === score2) {
+            finishState = "Draw"
+        }
 
     }
 }
@@ -346,6 +357,13 @@ function displayScore() {
     text(score2, width / 4, 100);
     pop();
 }
+function displayFinishSate() {
+    push();
+    textSize(24);
+    fill("#000000");
+    text(finishState, width / 2, height / 2);
+    pop();
+}
 
 /**
  * launch tongue on click
@@ -412,6 +430,7 @@ function keyPressed(event) {
 */
 function endScreen() {
     background("#ff456aff");
+    displayFinishSate();
 }
 
 function gameStarted() {

@@ -55,9 +55,16 @@ let fly = {
     acceleration: 0.003
 };
 
+let timer = {
+    startTime: 0,
+    timePassed: 0,
+    timeInterval: 10000
+}
+
 let finishState = "none";
 let gameState = "start";
-let score = 0;
+let score1 = 0;
+let score2 = 0;
 let buttonPlay;
 //let startButtonCreated = false;
 
@@ -68,6 +75,7 @@ let buttonPlay;
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0);
+
 
 
     buttonPlay = createButton("PLAY"); //this create a button
@@ -103,6 +111,7 @@ function draw() {
     }
 }
 
+
 //this was a try of mouse pressed because the button was not working
 /*function mousePressed(event) {
     if (gameState == "start") {
@@ -114,6 +123,7 @@ function draw() {
 
 function startScreen() {
     background("#a545ffff");
+    timer.startTime = millis();
 
     //My button was here but I didn't really feel that was a good idea
     /*let button = createButton("PLAY");
@@ -133,9 +143,33 @@ function startScreen() {
 
 function gameScreen() {
     background("#4577ffff");
+    displayScore();
+    timer.timePassed = millis() - timer.startTime;
+    let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
+    //this part is for me:
+    // millis() = time since started running
+    //so millis()-timer.startTime =. the time since play began
+    //int() converts decimal number to an integer
 
+    fill("#000000");
+    text(timeLeft, width / 2, 40);
+    if (timer.timePassed > timer.timeInterval) {
+        gameState = "end"
 
+        if (score1 > score2) {
+            finishState = "Player 1 wins"
+        }
+        else if (score2 > score1) {
+            finishState = "Player 2 wins"
+
+        }
+        else if (score1 === score2) {
+            finishState = "Draw"
+        }
+
+    }
 }
+
 
 function moveFly() {
     fly.speed += fly.acceleration;
@@ -292,6 +326,7 @@ function checkTongueFlyOverlap() {
     if (eaten) {
         //reset the fly
         resetFly();
+        score1++;
         //bring tongue back
         player1.tongue.state = "inbound";
     }
@@ -304,8 +339,30 @@ function checkTongueOverlapPlayer2() {
     const eaten = (d < player2.tongue.size / 2 + fly.size / 2);
     if (eaten) {
         resetFly();
+        score2++;
         player2.tongue.state = "inbound";
     }
+}
+
+function displayScore() {
+    push();
+    textSize(24);
+    fill("#000000");
+    text(score1, width / 3, height - 150);
+    pop();
+
+    push();
+    textSize(24);
+    fill("#000000");
+    text(score2, width / 4, 100);
+    pop();
+}
+function displayFinishSate() {
+    push();
+    textSize(24);
+    fill("#000000");
+    text(finishState, width / 2, height / 2);
+    pop();
 }
 
 /**
@@ -335,6 +392,8 @@ function keyboard() {
         player2.body.x += 15;
     }
 }
+
+
 
 /*function keyPressed(event) {
     if (keyCode === RIGHT_ARROW) {
@@ -371,12 +430,14 @@ function keyPressed(event) {
 */
 function endScreen() {
     background("#ff456aff");
+    displayFinishSate();
 }
 
 function gameStarted() {
     gameState = "play";
     buttonPlay.hide();//make button hide in the play state
 }
+
 
 /*resize canvas with different screen*/
 function windowResized() {
