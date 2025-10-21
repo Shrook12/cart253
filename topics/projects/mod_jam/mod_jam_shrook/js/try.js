@@ -58,7 +58,7 @@ let fly = {
 let timer = {
     startTime: 0,
     timePassed: 0,
-    timeInterval: 130000
+    timeInterval: 10000
 }
 
 let finishState = "none";
@@ -122,6 +122,7 @@ function draw() {
 
 function startScreen() {
     background("#a545ffff");
+    timer.startTime = millis();
 
     //My button was here but I didn't really feel that was a good idea
     /*let button = createButton("PLAY");
@@ -143,9 +144,13 @@ function gameScreen() {
     background("#4577ffff");
     timer.timePassed = millis() - timer.startTime;
     let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
+    //this part is for me:
+    // millis() = time since started running
+    //so millis()-timer.startTime =. the time since play began
+    //int() converts decimal number to an integer
 
     fill("#000000");
-    text(max(timeLeft, 0), width / 2, 40);
+    text(timeLeft, width / 2, 40);
     if (timer.timePassed > timer.timeInterval) {
         gameState = "end";
 
