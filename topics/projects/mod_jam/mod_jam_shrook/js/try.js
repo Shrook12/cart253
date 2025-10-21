@@ -55,6 +55,12 @@ let fly = {
     acceleration: 0.003
 };
 
+let timer = {
+    startTime: 0,
+    timePassed: 0,
+    timeInterval: 130000
+}
+
 let finishState = "none";
 let gameState = "start";
 let score = 0;
@@ -68,6 +74,7 @@ let buttonPlay;
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0);
+
 
 
     buttonPlay = createButton("PLAY"); //this create a button
@@ -103,6 +110,7 @@ function draw() {
     }
 }
 
+
 //this was a try of mouse pressed because the button was not working
 /*function mousePressed(event) {
     if (gameState == "start") {
@@ -133,14 +141,23 @@ function startScreen() {
 
 function gameScreen() {
     background("#4577ffff");
+    timer.timePassed = millis() - timer.startTime;
+    let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
 
+    fill("#000000");
+    text(max(timeLeft, 0), width / 2, 40);
+    if (timer.timePassed > timer.timeInterval) {
+        gameState = "end";
 
+    }
 }
+
 
 function moveFly() {
     fly.speed += fly.acceleration;
     //move fly
     fly.x += fly.speed;
+
     //handle the fly going off the canvas
     if (fly.x > width) {
         resetFly();
@@ -163,7 +180,7 @@ function drawFly() {
  */
 function resetFly() {
     fly.x = 0;
-    fly.y = random(0, height / 2);
+    fly.y = random(125, height - 125);
 }
 
 /**
@@ -328,12 +345,14 @@ function keyPressed(event) {
 function keyboard() {
     player2.body.x = constrain(player2.body.x, 0, windowWidth);
     if (keyIsDown(LEFT_ARROW) === true) {
-        player2.body.x += -12;
+        player2.body.x += -15;
     }
     if (keyIsDown(RIGHT_ARROW) === true) {
-        player2.body.x += 12;
+        player2.body.x += 15;
     }
 }
+
+
 
 /*function keyPressed(event) {
     if (keyCode === RIGHT_ARROW) {
@@ -376,6 +395,7 @@ function gameStarted() {
     gameState = "play";
     buttonPlay.hide();//make button hide in the play state
 }
+
 
 /*resize canvas with different screen*/
 function windowResized() {
