@@ -69,9 +69,9 @@ let buttonPlay;
 let img = undefined
 //let startButtonCreated = false;
 
-/*function preload() {
-    img = loadImage('../assets/images/');
-}*/
+function preload() {
+    img = loadImage('../assets/images/background.png');
+}
 
 
 /**
@@ -147,7 +147,7 @@ function startScreen() {
 }
 
 function gameScreen() {
-    background("#006affff");
+    background(img);
     displayScore();
     timer.timePassed = millis() - timer.startTime;
     let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
