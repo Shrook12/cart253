@@ -58,7 +58,7 @@ let fly = {
 let timer = {
     startTime: 0,
     timePassed: 0,
-    timeInterval: 10000
+    timeInterval: 100000
 }
 
 let finishState = "none";
@@ -66,11 +66,13 @@ let gameState = "start";
 let score1 = 0;
 let score2 = 0;
 let buttonPlay;
-let img = undefined
+let img = undefined;
+let playerImg;
 //let startButtonCreated = false;
 
 function preload() {
     img = loadImage('../assets/images/background.png');
+    playerImg = loadImage('../assets/images/player_1.png');
 }
 
 
@@ -156,7 +158,7 @@ function gameScreen() {
     //so millis()-timer.startTime =. the time since play began
     //int() converts decimal number to an integer
 
-    fill("#000000");
+    fill("#ffff00ff");
     text(timeLeft, width / 2, 40);
     if (timer.timePassed > timer.timeInterval) {
         gameState = "end"
@@ -193,7 +195,7 @@ function moveFly() {
 
 function drawFly() {
     push();
-    fill("#4c0404ff");
+    fill("#fff70eff");
     ellipse(fly.x, fly.y, fly.size);
     pop();
 }
@@ -352,20 +354,20 @@ function checkTongueOverlapPlayer2() {
 function displayScore() {
     push();
     textSize(24);
-    fill("#000000");
+    fill("#ffcc00ff");
     text(score1, width / 3, height - 150);
     pop();
 
     push();
     textSize(24);
-    fill("#000000");
+    fill("#d0ff00ff");
     text(score2, width / 4, 100);
     pop();
 }
 function displayFinishSate() {
     push();
     textSize(24);
-    fill("#000000");
+    fill("#fff700ff");
     text(finishState, width / 2, height / 2);
     pop();
 }
