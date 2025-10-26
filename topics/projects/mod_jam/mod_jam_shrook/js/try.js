@@ -19,7 +19,7 @@ let player1 = {
     body: {
         x: 320,
         y: 520,
-        size: 250
+
     },
     tongue: {
         x: undefined,
@@ -274,7 +274,7 @@ function moveTonguePlayer2() {
 function drawPlayer1() {
     //player1.body.x = width/2;
     //to make player1 at the bottom
-    player1.body.y = height;
+    player1.body.y = height - 50;
     //draw tongue tip
     push();
     fill("#ffd000ff");
@@ -292,9 +292,8 @@ function drawPlayer1() {
 
     // player 1 body
     push();
-    fill("#4400ffff");
-    noStroke();
-    ellipse(player1.body.x, player1.body.y, player1.body.size);
+    imageMode(CENTER);
+    image(playerImg, player1.body.x, player1.body.y);
     pop();
 
 }
