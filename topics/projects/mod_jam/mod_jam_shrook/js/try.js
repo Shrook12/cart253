@@ -71,6 +71,7 @@ let playerImg;
 let playerImg2;
 let human;
 let soundOnClick;
+let soundOverlap;
 //let startButtonCreated = false;
 
 function preload() {
@@ -78,7 +79,8 @@ function preload() {
     playerImg = loadImage('../assets/images/player_1.png');
     playerImg2 = loadImage('../assets/images/player_2.png');
     human = loadImage('../assets/images/human1.png');
-    soundOnClick = loadSound('../assets/sounds/sound_click.wav');
+    soundOnClick = loadSound('../assets/sounds/sound_click2.wav');
+    soundOverlap = loadSound('../assets/sounds/screaming.wav');
 }
 
 
@@ -345,6 +347,7 @@ function checkTongueFlyOverlap() {
         score1++;
         //bring tongue back
         player1.tongue.state = "inbound";
+        soundOverlap.play();
     }
 
 }
@@ -357,6 +360,7 @@ function checkTongueOverlapPlayer2() {
         resetFly();
         score2++;
         player2.tongue.state = "inbound";
+        soundOverlap.play();
     }
 }
 
