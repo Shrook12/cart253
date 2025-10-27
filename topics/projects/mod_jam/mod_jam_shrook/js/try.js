@@ -70,6 +70,7 @@ let img;
 let playerImg;
 let playerImg2;
 let human;
+let soundOnClick;
 //let startButtonCreated = false;
 
 function preload() {
@@ -77,6 +78,7 @@ function preload() {
     playerImg = loadImage('../assets/images/player_1.png');
     playerImg2 = loadImage('../assets/images/player_2.png');
     human = loadImage('../assets/images/human1.png');
+    soundOnClick = loadSound('../assets/sounds/sound_click.wav');
 }
 
 
@@ -139,6 +141,7 @@ function draw() {
 function startScreen() {
     background("#a545ffff");
     timer.startTime = millis();
+
 
     //My button was here but I didn't really feel that was a good idea
     /*let button = createButton("PLAY");
@@ -383,12 +386,21 @@ function displayFinishSate() {
  */
 
 function mousePressed() {
+    if (gameState === "play") {
+        soundOnClick.play();
+    }
     if (player1.tongue.state === "idle") {
         player1.tongue.state = "outbound";
     }
+
 }
 
+
+
 function keyPressed(event) {
+    if (gameState === "play" && keyCode === DOWN_ARROW) {
+        soundOnClick.play();
+    }
     if (keyCode === DOWN_ARROW) {
         if (player2.tongue.state === "idle") {
             player2.tongue.state = "outbound";
