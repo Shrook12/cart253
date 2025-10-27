@@ -34,7 +34,7 @@ let player1 = {
 let player2 = {
     body: {
         x: 320,
-        y: 0,
+        y: 50,
         size: 250
     },
     tongue: {
@@ -50,7 +50,7 @@ let player2 = {
 let fly = {
     x: 0,
     y: 200,
-    size: 10,
+    size: 50,
     speed: 3,
     acceleration: 0.003
 };
@@ -66,13 +66,17 @@ let gameState = "start";
 let score1 = 0;
 let score2 = 0;
 let buttonPlay;
-let img = undefined;
+let img;
 let playerImg;
+let playerImg2;
+let human;
 //let startButtonCreated = false;
 
 function preload() {
     img = loadImage('../assets/images/background.png');
     playerImg = loadImage('../assets/images/player_1.png');
+    playerImg2 = loadImage('../assets/images/player_2.png');
+    human = loadImage('../assets/images/human1.png');
 }
 
 
@@ -101,7 +105,9 @@ function draw() {
         startScreen();
     }
     else if (gameState == "play") {
+
         gameScreen();
+
         moveFly();
         drawFly();
         movePlayer1();
@@ -112,6 +118,8 @@ function draw() {
         checkTongueFlyOverlap();
         keyboard();
         checkTongueOverlapPlayer2();
+
+
     }
     else if (gameState == "end") {
         endScreen();
@@ -195,8 +203,8 @@ function moveFly() {
 
 function drawFly() {
     push();
-    fill("#fff70eff");
-    ellipse(fly.x, fly.y, fly.size);
+    imageMode(CENTER);
+    image(human, fly.x, fly.y);
     pop();
 }
 
@@ -314,9 +322,8 @@ function drawPlayer2() {
     pop();
 
     push();
-    fill("#ff3300ff");
-    noStroke();
-    ellipse(player2.body.x, player2.body.y, player2.body.size);
+    imageMode(CENTER);
+    image(playerImg2, player2.body.x, player2.body.y);
     pop();
 }
 
