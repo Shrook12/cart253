@@ -72,15 +72,17 @@ let playerImg2;
 let human;
 let soundOnClick;
 let soundOverlap;
+let planet;
 //let startButtonCreated = false;
 
 function preload() {
-    img = loadImage('../assets/images/background.png');
+    img = loadImage('../assets/images/space.png');
     playerImg = loadImage('../assets/images/player_1.png');
     playerImg2 = loadImage('../assets/images/player_2.png');
     human = loadImage('../assets/images/human1.png');
     soundOnClick = loadSound('../assets/sounds/sound_click2.wav');
     soundOverlap = loadSound('../assets/sounds/screaming.wav');
+    planet = loadImage('../assets/images/planet.png');
 }
 
 
@@ -94,8 +96,15 @@ function setup() {
 
 
     buttonPlay = createButton("PLAY"); //this create a button
-    buttonPlay.position(width / 2, height / 2); //this is the position of the button
+    buttonPlay.position(width / 1.5, height / 2); //this is the position of the button
     buttonPlay.mousePressed(gameStarted);//call function gameStarted when pressing on the button
+    buttonPlay.size(300, 90);
+    buttonPlay.style("background-color", "#000000");
+    buttonPlay.style("font-size", "30px");
+    buttonPlay.style("border-radius", "10px");
+    buttonPlay.style("color", "white");
+    buttonPlay.style("font-weight", "bold");
+    buttonPlay.style("border", "8px solid white");
 
 
 }
@@ -107,6 +116,8 @@ function draw() {
 
     if (gameState == "start") {
         startScreen();
+        planetStart();
+
     }
     else if (gameState == "play") {
 
@@ -122,6 +133,7 @@ function draw() {
         checkTongueFlyOverlap();
         keyboard();
         checkTongueOverlapPlayer2();
+        displayScore();
 
 
     }
@@ -141,8 +153,9 @@ function draw() {
 }*/
 
 function startScreen() {
-    background("#a545ffff");
+    background(img);
     timer.startTime = millis();
+
 
 
     //My button was here but I didn't really feel that was a good idea
@@ -161,9 +174,16 @@ function startScreen() {
 
 }
 
+function planetStart() {
+    push();
+    imageMode(CENTER);
+    image(planet, width - 100, height - 100);
+    pop();
+}
+
+
 function gameScreen() {
     background(img);
-    displayScore();
     timer.timePassed = millis() - timer.startTime;
     let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
     //this part is for me:
@@ -367,14 +387,14 @@ function checkTongueOverlapPlayer2() {
 function displayScore() {
     push();
     textSize(24);
-    fill("#ffcc00ff");
-    text(score1, width / 3, height - 150);
+    fill("#000000ff");
+    text(score1, player1.body.x - 10, height - 15);
     pop();
 
     push();
     textSize(24);
-    fill("#d0ff00ff");
-    text(score2, width / 4, 100);
+    fill("#000000ff");
+    text(score2, player2.body.x - 2, 40);
     pop();
 }
 function displayFinishSate() {
@@ -471,7 +491,7 @@ function gameStarted() {
 /*resize canvas with different screen*/
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
-    buttonPlay.position(width / 2, height / 2);
+    buttonPlay.position(width / 1.5, height / 2);
 
 }
 
