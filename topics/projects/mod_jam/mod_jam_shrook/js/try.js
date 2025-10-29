@@ -72,17 +72,21 @@ let playerImg2;
 let human;
 let soundOnClick;
 let soundOverlap;
-let planet;
+let startPage;
+let myFont;
+
 //let startButtonCreated = false;
 
 function preload() {
     img = loadImage('../assets/images/space.png');
-    playerImg = loadImage('../assets/images/player_1.png');
-    playerImg2 = loadImage('../assets/images/player_2.png');
+    playerImg = loadImage('../assets/images/player1.png');
+    playerImg2 = loadImage('../assets/images/player2.png');
     human = loadImage('../assets/images/human1.png');
     soundOnClick = loadSound('../assets/sounds/sound_click2.wav');
-    soundOverlap = loadSound('../assets/sounds/screaming.wav');
-    planet = loadImage('../assets/images/planet.png');
+    soundOverlap = loadSound('../assets/sounds/sound1.wav');
+    startPage = loadImage('../assets/images/start_page.png');
+
+
 }
 
 
@@ -96,11 +100,12 @@ function setup() {
 
 
     buttonPlay = createButton("PLAY"); //this create a button
-    buttonPlay.position(width / 1.5, height / 2); //this is the position of the button
+    buttonPlay.position(100, height / 1.7); //this is the position of the button
     buttonPlay.mousePressed(gameStarted);//call function gameStarted when pressing on the button
-    buttonPlay.size(300, 90);
+    buttonPlay.size(400, 150);
     buttonPlay.style("background-color", "#000000");
-    buttonPlay.style("font-size", "30px");
+    buttonPlay.style("font-size", "72px");
+    buttonPlay.style("font-family", "Arial");
     buttonPlay.style("border-radius", "10px");
     buttonPlay.style("color", "white");
     buttonPlay.style("font-weight", "bold");
@@ -116,7 +121,7 @@ function draw() {
 
     if (gameState == "start") {
         startScreen();
-        planetStart();
+
 
     }
     else if (gameState == "play") {
@@ -153,7 +158,7 @@ function draw() {
 }*/
 
 function startScreen() {
-    background(img);
+    background(startPage);
     timer.startTime = millis();
 
 
@@ -174,12 +179,14 @@ function startScreen() {
 
 }
 
-function planetStart() {
+/*function planetStart() {
     push();
-    imageMode(CENTER);
-    image(planet, width - 100, height - 100);
+    image(startPage, 0, 0);
     pop();
-}
+
+
+
+}*/
 
 
 function gameScreen() {
