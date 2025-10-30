@@ -6,6 +6,10 @@
  */
 
 let ball1 = undefined; // Will create it with createBall()
+let ball2 = undefined;
+let balls = [];
+let cMouseX = 0;
+let cMouseY = 0;
 
 /**
  * Create the canvas and the ball
@@ -13,8 +17,11 @@ let ball1 = undefined; // Will create it with createBall()
 function setup() {
     // Create the canvas
     createCanvas(400, 400);
+
     // Create the ball
     ball1 = createBall();
+    ball2 = createBall();
+    frameRate(30);
 }
 
 /**
@@ -22,17 +29,27 @@ function setup() {
  */
 function createBall() {
     // Create a ball object with appropriate properties
+
+
+    let x = mouseX - pmouseX
+
+
+    let y = mouseY - pmouseY
+    console.log(y)
+
+
+
     const newBall = {
         // Position and dimensions
-        x: 200,
-        y: 200,
+        x: mouseX,
+        y: mouseY,
         size: 20,
         // Colour
         fill: "#000000",
         // Movement
         velocity: {
-            x: random(-5, 5),
-            y: random(-5, 5)
+            x: x,
+            y: y
         }
     };
     return newBall;
@@ -44,45 +61,69 @@ function createBall() {
 function draw() {
     background("#87ceeb");
 
-    moveBall();
-    bounceBall();
-    drawBall();
+
+
+    for (let ball of balls) {
+        moveBall(ball);
+        bounceBall(ball);
+        drawBall(ball);
+    }
+
+
+
+    console.log(mouseX)
+    console.log(pmouseX)
+    line(pmouseX, pmouseY, mouseX, mouseY);
+
 }
 
 /**
  * Moves the ball according to its velocity
  */
-function moveBall() {
-    ball1.x += ball1.velocity.x;
-    ball1.y += ball1.velocity.y;
+function moveBall(ball) {
+    ball.x += ball.velocity.x;
+    ball.y += ball.velocity.y;
 }
 
 /**
  * Bounces the ball off the walls
  */
-function bounceBall() {
+function bounceBall(ball) {
+
+
+
     // Check if the ball has reached the left or right
-    const bounceX = (ball1.x > width || ball1.x < 0);
+    const bounceX = (ball.x > width || ball.x < 0);
     // Check if the ball has reached the top or bottom
-    const bounceY = (ball1.y > height || ball1.y < 0);
+    const bounceY = (ball.y > height || ball.y < 0);
 
     // Handle bouncing horizontally
     if (bounceX) {
-        ball1.velocity.x *= -1;
+        ball.velocity.x *= -1;
     }
     // Handle bouncing vertically
     if (bounceY) {
-        ball1.velocity.y *= -1;
+        ball.velocity.y *= -1;
     }
 }
 
 /**
  * Draw the ball on the canvas
  */
-function drawBall() {
+function drawBall(ball) {
+
+
     push();
     noStroke();
-    fill(ball1.fill);
-    ellipse(ball1.x, ball1.y, ball1.size);
+    fill(ball.fill);
+    ellipse(ball.x, ball.y, ball.size);
     pop();
+
+}
+
+function mousePressed() {
+    let newBall = createBall();
+    balls.push(newBall);
+    console.log(balls);
+
 }
