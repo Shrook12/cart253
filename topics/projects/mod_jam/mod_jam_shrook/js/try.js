@@ -58,7 +58,8 @@ let fly = {
 let timer = {
     startTime: 0,
     timePassed: 0,
-    timeInterval: 100000
+    timeInterval: 60000,
+    speed: 1
 }
 
 let finishState = "none";
@@ -74,6 +75,7 @@ let soundOnClick;
 let soundOverlap;
 let startPage;
 let myFont;
+let music;
 
 //let startButtonCreated = false;
 
@@ -85,6 +87,7 @@ function preload() {
     soundOnClick = loadSound('../assets/sounds/sound_click2.wav');
     soundOverlap = loadSound('../assets/sounds/sound1.wav');
     startPage = loadImage('../assets/images/start_page.png');
+    music = loadSound('../assets/sounds/music_game2.mp3');
 
 
 }
@@ -96,6 +99,10 @@ function preload() {
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0);
+
+    //music.play();
+    // music.loop();
+    //music.setVolume(0.2);
 
 
 
@@ -139,6 +146,7 @@ function draw() {
         keyboard();
         checkTongueOverlapPlayer2();
         displayScore();
+        displayTime();
 
 
     }
@@ -158,7 +166,8 @@ function draw() {
 }*/
 
 function startScreen() {
-    background(startPage);
+    background(255);
+    image(startPage, 0, 0, width, height, 0, 0, startPage.width, startPage.height, COVER);
     timer.startTime = millis();
 
 
@@ -190,16 +199,29 @@ function startScreen() {
 
 
 function gameScreen() {
-    background(img);
-    timer.timePassed = millis() - timer.startTime;
-    let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
+    background(255);
+
+    image(img, 0, 0, width, height, 0, 0, img.width, img.height, COVER);
+
     //this part is for me:
     // millis() = time since started running
     //so millis()-timer.startTime =. the time since play began
     //int() converts decimal number to an integer
 
+
+}
+function displayTime() {
+    timer.timePassed = millis() - timer.startTime;
+
+
+    let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
+
+    if (timer.timePassed > 30000) {
+        timer.timePassed = 30000 * 3;
+    }
     fill("#ffff00ff");
-    text(timeLeft, width / 2, 40);
+    textSize(60);
+    text("0:" + timeLeft, width / 2, 40);
     if (timer.timePassed > timer.timeInterval) {
         gameState = "end"
 
@@ -393,15 +415,15 @@ function checkTongueOverlapPlayer2() {
 
 function displayScore() {
     push();
-    textSize(24);
-    fill("#000000ff");
-    text(score1, player1.body.x - 10, height - 15);
+    textSize(45);
+    fill("#2c2c6cff");
+    text(score1, player1.body.x - 15, height - 5);
     pop();
 
     push();
-    textSize(24);
-    fill("#000000ff");
-    text(score2, player2.body.x - 2, 40);
+    textSize(45);
+    fill("#2c2c6cff");
+    text(score2, player2.body.x - 10, 40);
     pop();
 }
 function displayFinishSate() {
@@ -498,7 +520,7 @@ function gameStarted() {
 /*resize canvas with different screen*/
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
-    buttonPlay.position(width / 1.5, height / 2);
+    buttonPlay.position(100, height / 1.7);
 
 }
 
