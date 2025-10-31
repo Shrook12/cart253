@@ -211,17 +211,23 @@ function gameScreen() {
 
 }
 function displayTime() {
-    timer.timePassed = millis() - timer.startTime;
 
+    //to make timer start when entering the game state
+    timer.timePassed = millis() - timer.startTime;
+    // this is to make timer go faster after 30 seconds
+    if (timer.timePassed > 30000) {
+        //after 30 seconds has passed 
+        let after = timer.timePassed - 30000;
+        //make timer go faster
+        timer.timePassed = 30000 + after * 3;
+    }
 
     let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
 
-    if (timer.timePassed > 30000) {
-        timer.timePassed = 30000 * 3;
-    }
+
     fill("#ffff00ff");
     textSize(60);
-    text("0:" + timeLeft, width / 2, 40);
+    text(timeLeft, width / 2, 40);
     if (timer.timePassed > timer.timeInterval) {
         gameState = "end"
 
@@ -508,7 +514,9 @@ function keyPressed(event) {
 */
 function endScreen() {
     background("#ff456aff");
+    image(img, 0, 0, width, height, 0, 0, img.width, img.height, COVER);
     displayFinishSate();
+
 }
 
 function gameStarted() {
