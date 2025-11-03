@@ -25,7 +25,7 @@ let player1 = {
         x: undefined,
         y: 480,
         size: 20,
-        speed: 20,
+        speed: 60,
         state: "idle"
     }
 };
@@ -41,7 +41,7 @@ let player2 = {
         x: undefined,
         y: 100,
         size: 20,
-        speed: 20,
+        speed: 60,
         state: "idle"
     }
 };
@@ -52,13 +52,13 @@ let fly = {
     y: 200,
     size: 50,
     speed: 3,
-    acceleration: 0.003
+    acceleration: 0.01
 };
 
 let timer = {
     startTime: 0,
     timePassed: 0,
-    timeInterval: 60000,
+    timeInterval: 90000,
     speed: 1
 }
 
@@ -214,12 +214,12 @@ function displayTime() {
 
     //to make timer start when entering the game state
     timer.timePassed = millis() - timer.startTime;
-    // this is to make timer go faster after 30 seconds
-    if (timer.timePassed > 30000) {
-        //after 30 seconds has passed 
-        let after = timer.timePassed - 30000;
+    // this is to make timer go faster after 60 seconds
+    if (timer.timePassed > 60000) {
+        //after 60 seconds has passed 
+        let after = timer.timePassed - 60000;
         //make timer go faster
-        timer.timePassed = 30000 + after * 3;
+        timer.timePassed = 60000 + after * 3;
     }
 
     let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
@@ -280,7 +280,8 @@ function resetFly() {
  * Move player1 to the mouse position on x
  */
 function movePlayer1() {
-    player1.body.x = mouseX;
+    let mouseReverse = width - mouseX
+    player1.body.x = mouseReverse;
 }
 
 /**
@@ -457,10 +458,10 @@ function mousePressed() {
 
 
 function keyPressed(event) {
-    if (gameState === "play" && keyCode === DOWN_ARROW) {
+    if (gameState === "play" && keyCode === UP_ARROW) {
         soundOnClick.play();
     }
-    if (keyCode === DOWN_ARROW) {
+    if (keyCode === UP_ARROW) {
         if (player2.tongue.state === "idle") {
             player2.tongue.state = "outbound";
         }
@@ -469,10 +470,10 @@ function keyPressed(event) {
 
 function keyboard() {
     player2.body.x = constrain(player2.body.x, 0, windowWidth);
-    if (keyIsDown(LEFT_ARROW) === true) {
+    if (keyIsDown(RIGHT_ARROW) === true) {
         player2.body.x += -15;
     }
-    if (keyIsDown(RIGHT_ARROW) === true) {
+    if (keyIsDown(LEFT_ARROW) === true) {
         player2.body.x += 15;
     }
 }
