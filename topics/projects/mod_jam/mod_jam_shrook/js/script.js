@@ -19,13 +19,13 @@ let player1 = {
     body: {
         x: 320,
         y: 520,
-        size: 250
+
     },
     tongue: {
         x: undefined,
         y: 480,
         size: 20,
-        speed: 20,
+        speed: 60,
         state: "idle"
     }
 };
@@ -34,14 +34,14 @@ let player1 = {
 let player2 = {
     body: {
         x: 320,
-        y: 0,
+        y: 50,
         size: 250
     },
     tongue: {
         x: undefined,
         y: 100,
         size: 20,
-        speed: 20,
+        speed: 60,
         state: "idle"
     }
 };
@@ -50,15 +50,16 @@ let player2 = {
 let fly = {
     x: 0,
     y: 200,
-    size: 10,
+    size: 50,
     speed: 3,
-    acceleration: 0.003
+    acceleration: 0.005
 };
 
 let timer = {
     startTime: 0,
     timePassed: 0,
-    timeInterval: 10000
+    timeInterval: 90000,
+    speed: 1
 }
 
 let finishState = "none";
@@ -66,7 +67,38 @@ let gameState = "start";
 let score1 = 0;
 let score2 = 0;
 let buttonPlay;
+let img;
+let playerImg;
+let playerImg2;
+let human;
+let soundOnClick;
+let soundOverlap;
+let startPage;
+let myFont;
+let music;
+
+let instruction = [];
+let step = 0;
+let images = [];
+
 //let startButtonCreated = false;
+
+function preload() {
+    img = loadImage('../assets/images/space.png');
+    playerImg = loadImage('../assets/images/player1.png');
+    playerImg2 = loadImage('../assets/images/player2.png');
+    human = loadImage('../assets/images/human1.png');
+    soundOnClick = loadSound('../assets/sounds/sound_click2.wav');
+    soundOverlap = loadSound('../assets/sounds/sound1.wav');
+    startPage = loadImage('../assets/images/start_page.png');
+    music = loadSound('../assets/sounds/music_game2.mp3');
+
+    images[0] = loadImage('../assets/images/start_page.png');
+    images[1] = loadImage('../assets/images/start_page.png');
+    images[2] = loadImage('../assets/images/start_page.png');
+
+
+}
 
 
 /**
@@ -76,11 +108,43 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0);
 
+    /* instruction = [
+         [
+             "Welcome to Reversed Space, a game where nothing makes sense. Humans float in space, hoping to be abducted by aliens. Aliens compete to abduct as many humans as possible. Every abduction the human laughs because, again, this game makes no sense!",
+             image[0]
+         ],
+         [
+             "For the top player: Use the arrow keys. The controls are reversed! Left goes right and right goes left. Press up to extend your alien hand and abduct humans.",
+             image[1]
+ 
+         ],
+         [
+             "For the bottom player: Use the mouse or trackpad. The controls are also reversed. Move left to go right and right to go left . Click to abduct humans.",
+             "Whoever abducts the most humans wins. Watch out for the timer, it might get weird!",
+             image[2]
+         ]
+ 
+ 
+ 
+     ]*/
+
+    //music.play();
+    // music.loop();
+    //music.setVolume(0.2);
+
 
 
     buttonPlay = createButton("PLAY"); //this create a button
-    buttonPlay.position(width / 2, height / 2); //this is the position of the button
+    buttonPlay.position(100, height / 1.7); //this is the position of the button
     buttonPlay.mousePressed(gameStarted);//call function gameStarted when pressing on the button
+    buttonPlay.size(400, 150);
+    buttonPlay.style("background-color", "#000000");
+    buttonPlay.style("font-size", "72px");
+    buttonPlay.style("font-family", "Arial");
+    buttonPlay.style("border-radius", "10px");
+    buttonPlay.style("color", "white");
+    buttonPlay.style("font-weight", "bold");
+    buttonPlay.style("border", "8px solid white");
 
 
 }
@@ -92,9 +156,13 @@ function draw() {
 
     if (gameState == "start") {
         startScreen();
+
+
     }
     else if (gameState == "play") {
+
         gameScreen();
+
         moveFly();
         drawFly();
         movePlayer1();
@@ -105,6 +173,10 @@ function draw() {
         checkTongueFlyOverlap();
         keyboard();
         checkTongueOverlapPlayer2();
+        displayScore();
+        displayTime();
+
+
     }
     else if (gameState == "end") {
         endScreen();
@@ -122,8 +194,11 @@ function draw() {
 }*/
 
 function startScreen() {
-    background("#a545ffff");
+    background(255);
+    image(startPage, 0, 0, width, height, 0, 0, startPage.width, startPage.height, COVER);
     timer.startTime = millis();
+
+
 
     //My button was here but I didn't really feel that was a good idea
     /*let button = createButton("PLAY");
@@ -141,17 +216,45 @@ function startScreen() {
 
 }
 
+/*function planetStart() {
+    push();
+    image(startPage, 0, 0);
+    pop();
+
+
+
+}*/
+
+
 function gameScreen() {
-    background("#4577ffff");
-    displayScore();
-    timer.timePassed = millis() - timer.startTime;
-    let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
+    background(255);
+
+    image(img, 0, 0, width, height, 0, 0, img.width, img.height, COVER);
+
     //this part is for me:
     // millis() = time since started running
     //so millis()-timer.startTime =. the time since play began
     //int() converts decimal number to an integer
 
-    fill("#000000");
+
+}
+function displayTime() {
+
+    //to make timer start when entering the game state
+    timer.timePassed = millis() - timer.startTime;
+    // this is to make timer go faster after 60 seconds
+    if (timer.timePassed > 60000) {
+        //after 60 seconds has passed 
+        let after = timer.timePassed - 60000;
+        //make timer go faster
+        timer.timePassed = 60000 + after * 3;
+    }
+
+    let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
+
+
+    fill("#ffff00ff");
+    textSize(60);
     text(timeLeft, width / 2, 40);
     if (timer.timePassed > timer.timeInterval) {
         gameState = "end"
@@ -188,8 +291,8 @@ function moveFly() {
 
 function drawFly() {
     push();
-    fill("#4c0404ff");
-    ellipse(fly.x, fly.y, fly.size);
+    imageMode(CENTER);
+    image(human, fly.x, fly.y);
     pop();
 }
 
@@ -205,7 +308,8 @@ function resetFly() {
  * Move player1 to the mouse position on x
  */
 function movePlayer1() {
-    player1.body.x = mouseX;
+    let mouseReverse = width - mouseX
+    player1.body.x = mouseReverse;
 }
 
 /**
@@ -267,7 +371,7 @@ function moveTonguePlayer2() {
 function drawPlayer1() {
     //player1.body.x = width/2;
     //to make player1 at the bottom
-    player1.body.y = height;
+    player1.body.y = height - 50;
     //draw tongue tip
     push();
     fill("#ffd000ff");
@@ -285,9 +389,8 @@ function drawPlayer1() {
 
     // player 1 body
     push();
-    fill("#4400ffff");
-    noStroke();
-    ellipse(player1.body.x, player1.body.y, player1.body.size);
+    imageMode(CENTER);
+    image(playerImg, player1.body.x, player1.body.y);
     pop();
 
 }
@@ -308,9 +411,8 @@ function drawPlayer2() {
     pop();
 
     push();
-    fill("#ff3300ff");
-    noStroke();
-    ellipse(player2.body.x, player2.body.y, player2.body.size);
+    imageMode(CENTER);
+    image(playerImg2, player2.body.x, player2.body.y);
     pop();
 }
 
@@ -329,6 +431,7 @@ function checkTongueFlyOverlap() {
         score1++;
         //bring tongue back
         player1.tongue.state = "inbound";
+        soundOverlap.play();
     }
 
 }
@@ -341,26 +444,27 @@ function checkTongueOverlapPlayer2() {
         resetFly();
         score2++;
         player2.tongue.state = "inbound";
+        soundOverlap.play();
     }
 }
 
 function displayScore() {
     push();
-    textSize(24);
-    fill("#000000");
-    text(score1, width / 3, height - 150);
+    textSize(45);
+    fill("#2c2c6cff");
+    text(score1, player1.body.x - 15, height - 5);
     pop();
 
     push();
-    textSize(24);
-    fill("#000000");
-    text(score2, width / 4, 100);
+    textSize(45);
+    fill("#2c2c6cff");
+    text(score2, player2.body.x - 10, 40);
     pop();
 }
 function displayFinishSate() {
     push();
     textSize(24);
-    fill("#000000");
+    fill("#fff700ff");
     text(finishState, width / 2, height / 2);
     pop();
 }
@@ -370,13 +474,22 @@ function displayFinishSate() {
  */
 
 function mousePressed() {
+    if (gameState === "play") {
+        soundOnClick.play();
+    }
     if (player1.tongue.state === "idle") {
         player1.tongue.state = "outbound";
     }
+
 }
 
+
+
 function keyPressed(event) {
-    if (keyCode === DOWN_ARROW) {
+    if (gameState === "play" && keyCode === UP_ARROW) {
+        soundOnClick.play();
+    }
+    if (keyCode === UP_ARROW) {
         if (player2.tongue.state === "idle") {
             player2.tongue.state = "outbound";
         }
@@ -385,10 +498,10 @@ function keyPressed(event) {
 
 function keyboard() {
     player2.body.x = constrain(player2.body.x, 0, windowWidth);
-    if (keyIsDown(LEFT_ARROW) === true) {
+    if (keyIsDown(RIGHT_ARROW) === true) {
         player2.body.x += -15;
     }
-    if (keyIsDown(RIGHT_ARROW) === true) {
+    if (keyIsDown(LEFT_ARROW) === true) {
         player2.body.x += 15;
     }
 }
@@ -430,7 +543,9 @@ function keyPressed(event) {
 */
 function endScreen() {
     background("#ff456aff");
+    image(img, 0, 0, width, height, 0, 0, img.width, img.height, COVER);
     displayFinishSate();
+
 }
 
 function gameStarted() {
@@ -442,6 +557,6 @@ function gameStarted() {
 /*resize canvas with different screen*/
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
-    buttonPlay.position(width / 2, height / 2);
+    buttonPlay.position(100, height / 1.7);
 
 }
