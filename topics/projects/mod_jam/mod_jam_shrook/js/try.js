@@ -61,6 +61,14 @@ let timer = {
     timeInterval: 90000,
     speed: 1
 }
+let speechBox = {
+    x: 125,
+    y: 50,
+    w: 1200,
+    h: 700,
+    padding: 20
+
+}
 
 let finishState = "none";
 let gameState = "start";
@@ -78,8 +86,11 @@ let myFont;
 let music;
 
 let instruction = [];
-let step = 0;
+let instructionIndex = 0;
 let images = [];
+let imagesIndex = 0;
+let visiblity = true;
+let timeOpacity = 0;
 
 //let startButtonCreated = false;
 
@@ -93,9 +104,9 @@ function preload() {
     startPage = loadImage('../assets/images/start_page.png');
     music = loadSound('../assets/sounds/music_game2.mp3');
 
-    images[0] = loadImage('../assets/images/start_page.png');
-    images[1] = loadImage('../assets/images/start_page.png');
-    images[2] = loadImage('../assets/images/start_page.png');
+    images[0] = loadImage('../assets/images/image1.png');
+    images[1] = loadImage('../assets/images/image2.png');
+    images[2] = loadImage('../assets/images/image3.png');
 
 
 }
@@ -108,25 +119,25 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0);
 
-    /* instruction = [
-         [
-             "Welcome to Reversed Space, a game where nothing makes sense. Humans float in space, hoping to be abducted by aliens. Aliens compete to abduct as many humans as possible. Every abduction the human laughs because, again, this game makes no sense!",
-             image[0]
-         ],
-         [
-             "For the top player: Use the arrow keys. The controls are reversed! Left goes right and right goes left. Press up to extend your alien hand and abduct humans.",
-             image[1]
- 
-         ],
-         [
-             "For the bottom player: Use the mouse or trackpad. The controls are also reversed. Move left to go right and right to go left . Click to abduct humans.",
-             "Whoever abducts the most humans wins. Watch out for the timer, it might get weird!",
-             image[2]
-         ]
- 
- 
- 
-     ]*/
+    instruction = [
+        [
+            "Welcome to Reversed Space, a game where nothing makes sense. Humans float in space, hoping to be abducted by aliens. Aliens compete to abduct as many humans as possible. Every abduction the human laughs because, again, this game makes no sense!",
+
+        ],
+        [
+            "For the top player: Use the arrow keys. The controls are reversed! Left goes right and right goes left. Press up to extend your alien hand and abduct humans.",
+
+
+        ],
+        [
+            "For the bottom player: Use the mouse or trackpad. The controls are also reversed. Move left to go right and right to go left . Click to abduct humans.",
+            "Whoever abducts the most humans wins. Watch out for the timer, it might get weird!",
+
+        ]
+
+
+
+    ]
 
     //music.play();
     // music.loop();
@@ -175,6 +186,7 @@ function draw() {
         checkTongueOverlapPlayer2();
         displayScore();
         displayTime();
+        displayInstruction();
 
 
     }
@@ -196,7 +208,7 @@ function draw() {
 function startScreen() {
     background(255);
     image(startPage, 0, 0, width, height, 0, 0, startPage.width, startPage.height, COVER);
-    timer.startTime = millis();
+
 
 
 
@@ -253,7 +265,7 @@ function displayTime() {
     let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
 
 
-    fill("#ffff00ff");
+    fill(255, 255, 0, timeOpacity);
     textSize(60);
     text(timeLeft, width / 2, 40);
     if (timer.timePassed > timer.timeInterval) {
@@ -274,14 +286,17 @@ function displayTime() {
 }
 
 
-function moveFly() {
-    fly.speed += fly.acceleration;
-    //move fly
-    fly.x += fly.speed;
 
-    //handle the fly going off the canvas
-    if (fly.x > width) {
-        resetFly();
+function moveFly() {
+    if (visiblity === false) {
+        fly.speed += fly.acceleration;
+        //move fly
+        fly.x += fly.speed;
+
+        //handle the fly going off the canvas
+        if (fly.x > width) {
+            resetFly();
+        }
     }
 }
 
@@ -504,6 +519,49 @@ function keyboard() {
     if (keyIsDown(LEFT_ARROW) === true) {
         player2.body.x += 15;
     }
+}
+
+function displayInstruction() {
+
+    if (visiblity) {
+        push();
+        noStroke();
+        fill("white");
+        rect(speechBox.x, speechBox.y, speechBox.w, speechBox.h, 50);
+        pop();
+
+        push();
+        image(images[imagesIndex], speechBox.w / 5, speechBox.h / 3);
+        textAlign(LEFT);
+        textSize(24);
+        fill("black");
+        text(instruction[instructionIndex], speechBox.w / 1.7, speechBox.h / 3, 400);
+        pop();
+
+        push();
+        textSize(18);
+        textAlign(CENTER);
+        fill("black");
+        text("Press space key to continue", speechBox.w / 2.2, speechBox.h - 20, 400);
+
+
+    }
+
+
+}
+
+function keyPressed(event) {
+    if (keyCode === 32) {
+
+        imagesIndex++;
+        instructionIndex++;
+    }
+    if (instructionIndex >= instruction.length) {
+        visiblity = false;
+        timer.startTime = millis();
+        timeOpacity = 255;
+    }
+
 }
 
 

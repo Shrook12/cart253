@@ -84,7 +84,7 @@ let images = [];
 //let startButtonCreated = false;
 
 function preload() {
-    img = loadImage('space.png');
+    img = loadImage('../assets/images/space.png');
     playerImg = loadImage('../assets/images/player1.png');
     playerImg2 = loadImage('../assets/images/player2.png');
     human = loadImage('../assets/images/human1.png');
