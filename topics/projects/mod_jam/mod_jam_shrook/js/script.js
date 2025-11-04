@@ -93,10 +93,10 @@ function preload() {
     startPage = loadImage('../assets/images/start_page.png');
     music = loadSound('../assets/sounds/music_game2.mp3');
 
-    images[0] = loadImage('../assets/images/start_page.png');
-    images[1] = loadImage('../assets/images/start_page.png');
-    images[2] = loadImage('../assets/images/start_page.png');
-
+    /* images[0] = loadImage('../assets/images/start_page.png');
+     images[1] = loadImage('../assets/images/start_page.png');
+     images[2] = loadImage('../assets/images/start_page.png');
+ */
 
 }
 
