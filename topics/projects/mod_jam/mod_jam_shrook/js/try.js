@@ -52,7 +52,7 @@ let fly = {
     y: 200,
     size: 50,
     speed: 3,
-    acceleration: 0.01
+    acceleration: 0.005
 };
 
 let timer = {
@@ -77,6 +77,10 @@ let startPage;
 let myFont;
 let music;
 
+let instruction = [];
+let step = 0;
+let images = [];
+
 //let startButtonCreated = false;
 
 function preload() {
@@ -89,6 +93,10 @@ function preload() {
     startPage = loadImage('../assets/images/start_page.png');
     music = loadSound('../assets/sounds/music_game2.mp3');
 
+    images[0] = loadImage('../assets/images/start_page.png');
+    images[1] = loadImage('../assets/images/start_page.png');
+    images[2] = loadImage('../assets/images/start_page.png');
+
 
 }
 
@@ -99,6 +107,26 @@ function preload() {
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0);
+
+    /* instruction = [
+         [
+             "Welcome to Reversed Space, a game where nothing makes sense. Humans float in space, hoping to be abducted by aliens. Aliens compete to abduct as many humans as possible. Every abduction the human laughs because, again, this game makes no sense!",
+             image[0]
+         ],
+         [
+             "For the top player: Use the arrow keys. The controls are reversed! Left goes right and right goes left. Press up to extend your alien hand and abduct humans.",
+             image[1]
+ 
+         ],
+         [
+             "For the bottom player: Use the mouse or trackpad. The controls are also reversed. Move left to go right and right to go left . Click to abduct humans.",
+             "Whoever abducts the most humans wins. Watch out for the timer, it might get weird!",
+             image[2]
+         ]
+ 
+ 
+ 
+     ]*/
 
     //music.play();
     // music.loop();
