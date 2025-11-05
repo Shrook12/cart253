@@ -1,18 +1,22 @@
 # TITLE OF PROJECT
 
-AUTHOR NAME
+Shrook Ahmed
 
 [View this project online](URL_FOR_THE_RUNNING_PROJECT)
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
 
-> *The Mayor of Clown Town* is a simulator experience that allows the user to control a small town populated entirely by clowns.
+Reversed Space is a game where nothing makes sense. Humans float in space, hoping to be abducted by aliens. Aliens compete eachother to abduct as many humans as possible. Humans are happy when they get abducted.
 
-> The experience is controlled via the mouse, with left click selecting a clown and bringing up a menu of options such as "slip of banana peel" or "get into impossible capacious clown-car."
+There are two players(aliens):
+One at the top : Use the arrow keys. The controls are reversed! Left goes right and right goes left. Press the up arrow key to extend your alien hand and abduct humans.
 
-> The project is meant to give the user a sense of what it would be the mayor of a town of clowns, eventually getting the sense that clowns are not taking their civic duties seriously.
+For the bottom player: Use the mouse or trackpad. The controls are also reversed. Move left to go right and right to go left . Click extend your alien hand to abduct a humans.
+
+Whoever abducts the most humans wins. 
+
+BE CAREFUL!The timer might act weird at a certain time!
 
 ## Screenshot(s)
 

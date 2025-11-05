@@ -2,18 +2,21 @@
 
 
 
+
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
-*/
-/**
- * Title of Project
- * Author Name
+ * Mod_Jam
+ * Reversed Space
+ * Shrook Ahmed
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * This is the Reversed Space game. A game where nothing makes sense.
+ * Humans float in space, hoping to be abducted by aliens. Aliens compete
+ * to abduct as many humans as possible. Whoever abducts the most humans wins. 
+ * 
+ * 
  */
 
 "use strict";
+
 // this are the properties of player1
 let player1 = {
     body: {
@@ -50,12 +53,19 @@ let player2 = {
 
 //properties of human
 
-let human = {
-    x: 0, // x position of the human
-    y: 300,//y position of the human
+let human_1 = {
+    x: 0, // x position of human1
+    y: 300,//y position of human1
     size: 50, //size for the overlap
-    speed: 3, // speed of the human
-    acceleration: 0.005 //to make the human go faster
+    speed: 3, // speed of human1
+    acceleration: 0.005 //to make human1 go faster
+};
+let human_2 = {
+    x: 0, // x position of human2
+    y: 500,//y position of human2
+    size: 70, //size for the overlap
+    speed: 5, // speed of human2
+    acceleration: 0.007 //to make human2 
 };
 
 let timer = {
@@ -91,7 +101,8 @@ let timeOpacity = 0;//to make the timer not visible during instruction
 let img;//background image for game and end state
 let playerImg;//img for player1
 let playerImg2;//img for player2
-let humanImg;//human img
+let humanImg;//human1 img
+let humanImg2;//human2 img
 let soundOnClick;//for the sound on click
 let soundOverlap;//for the sound when hand and human overlap
 let startPage;//bacground image for start state
@@ -117,23 +128,24 @@ let visiblity = true;//to make instruction disappear
 
 // to load images,sounds and fonts
 function preload() {
-    img = loadImage('../assets/images/space.png');
-    playerImg = loadImage('../assets/images/player1.png');
-    playerImg2 = loadImage('../assets/images/player2.png');
-    humanImg = loadImage('../assets/images/human1.png');
-    soundOnClick = loadSound('../assets/sounds/sound_click2.wav');
-    soundOverlap = loadSound('../assets/sounds/sound1.wav');
-    startPage = loadImage('../assets/images/start_page.png');
-    spaceship1 = loadImage('../assets/images/spaceship1.png');
-    spaceship2 = loadImage('../assets/images/spaceship2.png');
-    music = loadSound('../assets/sounds/music_game2.mp3');
-    myFont = loadFont('../assets/fonts/bitcountgrid.ttf');
-    planetImg = loadImage('../assets/images/planet.png');
+    img = loadImage('./assets/images/space.png');
+    playerImg = loadImage('./assets/images/player1.png');
+    playerImg2 = loadImage('./assets/images/player2.png');
+    humanImg = loadImage('./assets/images/human1.png');
+    humanImg2 = loadImage('./assets/images/human2.png');
+    soundOnClick = loadSound('./assets/sounds/sound_click2.wav');
+    soundOverlap = loadSound('./assets/sounds/sound1.wav');
+    startPage = loadImage('./assets/images/start_page.png');
+    spaceship1 = loadImage('./assets/images/spaceship1.png');
+    spaceship2 = loadImage('./assets/images/spaceship2.png');
+    music = loadSound('./assets/sounds/music_game2.mp3');
+    myFont = loadFont('./assets/fonts/bitcountgrid.ttf');
+    planetImg = loadImage('./assets/images/planet.png');
 
     //array images part for instruction
-    images[0] = loadImage('../assets/images/image1.png');
-    images[1] = loadImage('../assets/images/image2.png');
-    images[2] = loadImage('../assets/images/image3.png');
+    images[0] = loadImage('./assets/images/image1.png');
+    images[1] = loadImage('./assets/images/image2.png');
+    images[2] = loadImage('./assets/images/image3.png');
 
 
 }
@@ -209,15 +221,20 @@ function draw() {
 
         screen(img)
 
-        moveHuman();
-        drawHuman();
+        moveHuman(human_1);
+        moveHuman(human_2);
+        drawHuman(humanImg, human_1);
+        drawHuman(humanImg2, human_2);
         movePlayer1();
         moveHand();
         moveHandPlayer2();
         drawPlayer(player1, playerImg);
         drawPlayer(player2, playerImg2);
-        score1 = checkHandOverlap(player1, score1);
-        score2 = checkHandOverlap(player2, score2);
+        score1 = checkHandOverlap(player1, score1, human_1);
+        score1 = checkHandOverlap(player1, score1, human_2);
+        score2 = checkHandOverlap(player1, score2, human_1);
+        score2 = checkHandOverlap(player1, score2, human_2);
+
         keyboard();
 
         displayScore(score1, player1, height - 5);
@@ -283,38 +300,40 @@ function displayTime() {
 
 
 //to make the human move on the x position
-function moveHuman() {
+function moveHuman(obj) {
 
     //if instruction is not visible make human move
     if (visiblity === false) {
-        human.speed += human.acceleration;
+        obj.speed += obj.acceleration;
         //move human
-        human.x += human.speed;
+        obj.x += obj.speed;
 
         //handle the human going off the canvas
-        if (human.x > width) {
-            resetHuman();
+        if (obj.x > width) {
+            resetHuman(obj);
+
         }
     }
+
 }
 
 /**
  * draw the human
  */
 
-function drawHuman() {
+function drawHuman(img_human, obj) {
     push();
     imageMode(CENTER);//uses the ((x,y) coordinates as the image center point. 
-    image(humanImg, human.x, human.y);
+    image(img_human, obj.x, obj.y);
     pop();
 }
 
 /**
  * Reset human to the left
  */
-function resetHuman() {
-    human.x = 0;// reset human at 0
-    human.y = random(250, height - 250);// to make it at different y position
+function resetHuman(obj) {
+    obj.x = 0;// reset human at 0
+    obj.y = random(250, height - 250);// to make it at different y position
 }
 
 /**
@@ -428,14 +447,14 @@ function drawPlayer(obj, temp_img) {
  * hand overlapping the human
  */
 
-function checkHandOverlap(obj, scoreNumber) {
+function checkHandOverlap(obj, scoreNumber, human) {
     //distance from hand to human
     const d = dist(obj.hand.x, obj.hand.y, human.x, human.y);
     //check if overlap
     const eaten = (d < obj.hand.size / 2 + human.size / 2);
     if (eaten) {
         //reset the human
-        resetHuman();
+        resetHuman(human);
         scoreNumber++;
         //bring hand back
         obj.hand.state = "inbound";
