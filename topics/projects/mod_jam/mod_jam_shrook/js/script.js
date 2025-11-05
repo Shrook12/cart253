@@ -280,11 +280,11 @@ function displayTime() {
     //to make timer start when entering the game state
     timer.timePassed = millis() - timer.startTime;
     // this is to make timer go faster after 60 seconds
-    if (timer.timePassed > 50000) {
+    if (timer.timePassed > 60000) {
         //after 60 seconds has passed 
-        let after = timer.timePassed - 50000;
+        let after = timer.timePassed - 60000;
         //make timer go faster
-        timer.timePassed = 50000 + after * 4;
+        timer.timePassed = 60000 + after * 4;
     }
     // to change the values from milliseconds to seconds
     let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
@@ -529,6 +529,34 @@ function keyPressed(event) {
         timer.startTime = millis();// make time start at this point
         timeOpacity = 255;// change opacity for timer so it become visible
     }
+}
+function player2Hand() {
+    // if state is play and the up arrow is pressed make the sound play
+    if (gameState === "play" && keyCode === UP_ARROW) {
+        soundOnClick.play();
+    }
+    //make hand outbound when up arrow is pressed
+    if (keyCode === UP_ARROW) {
+        if (player2.hand.state === "idle") {
+            player2.hand.state = "outbound";
+        }
+    }
+}
+
+function goToNextInstruction() {
+    //when space key pressed it goes to the next instruction
+    if (keyCode === 32) {
+
+        imagesIndex++;//go to next image
+        instructionIndex++;// go to next instruction
+    }
+    //if instrcutions are finished make it not visible
+    if (instructionIndex >= instruction.length) {
+        visiblity = false;
+        timer.startTime = millis();// make time start at this point
+        timeOpacity = 255;// change opacity for timer so it become visible
+    }
+
 }
 
 /**
