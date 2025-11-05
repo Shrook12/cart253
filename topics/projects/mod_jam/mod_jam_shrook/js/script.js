@@ -31,7 +31,8 @@ let player1 = {
         speed: 60, //speed of hand of player 1 when it goes out
         state: "idle", //current state of hand player 1
         fill: "#83b12b" // color of hand
-    }
+    },
+    score: 0
 };
 
 // properties of player 2
@@ -48,7 +49,8 @@ let player2 = {
         speed: 60,//speed of hand of player 2 when it goes out
         state: "idle",//current state of hand player 2
         fill: "#a938bf"// color of hand
-    }
+    },
+    score: 0
 };
 
 //properties of human
@@ -230,19 +232,16 @@ function draw() {
         moveHandPlayer2();
         drawPlayer(player1, playerImg);
         drawPlayer(player2, playerImg2);
-        score1 = checkHandOverlap(player1, score1, human_1);
-        score1 = checkHandOverlap(player1, score1, human_2);
-        score2 = checkHandOverlap(player1, score2, human_1);
-        score2 = checkHandOverlap(player1, score2, human_2);
-        score1 = checkHandOverlap(player2, score1, human_1);
-        score1 = checkHandOverlap(player2, score1, human_2);
-        score2 = checkHandOverlap(player2, score2, human_1);
-        score2 = checkHandOverlap(player2, score2, human_2);
+        checkHandOverlap(player1, human_1);
+        checkHandOverlap(player1, human_2);
+        checkHandOverlap(player2, human_1);
+        checkHandOverlap(player2, human_2);
+
 
         keyboard();
 
-        displayScore(score1, player1, height - 5);
-        displayScore(score2, player2, 40);
+        displayScore(player1, height - 5);
+        displayScore(player2, 40);
         displayTime();
         displayInstruction();
         movePlanet();
@@ -281,11 +280,11 @@ function displayTime() {
     //to make timer start when entering the game state
     timer.timePassed = millis() - timer.startTime;
     // this is to make timer go faster after 60 seconds
-    if (timer.timePassed > 60000) {
+    if (timer.timePassed > 50000) {
         //after 60 seconds has passed 
-        let after = timer.timePassed - 60000;
+        let after = timer.timePassed - 50000;
         //make timer go faster
-        timer.timePassed = 60000 + after * 3;
+        timer.timePassed = 50000 + after * 4;
     }
     // to change the values from milliseconds to seconds
     let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
@@ -451,7 +450,7 @@ function drawPlayer(obj, temp_img) {
  * hand overlapping the human
  */
 
-function checkHandOverlap(obj, scoreNumber, human) {
+function checkHandOverlap(obj, human) {
     //distance from hand to human
     const d = dist(obj.hand.x, obj.hand.y, human.x, human.y);
     //check if overlap
@@ -459,12 +458,12 @@ function checkHandOverlap(obj, scoreNumber, human) {
     if (eaten) {
         //reset the human
         resetHuman(human);
-        scoreNumber++;
+        obj.score++;
         //bring hand back
         obj.hand.state = "inbound";
         soundOverlap.play();
     }
-    return scoreNumber;
+
 
 }
 
@@ -472,11 +471,11 @@ function checkHandOverlap(obj, scoreNumber, human) {
  * to display the score of each player
 */
 
-function displayScore(scoreNumber, temp_x, temp_y) {
+function displayScore(obj, temp_y) {
     push();
     textSize(45);
     fill("#2c2c6cff");
-    text(scoreNumber, temp_x.body.x, temp_y);
+    text(obj.score, obj.body.x, temp_y);
     pop();
 }
 function displayFinishSate() {
@@ -591,18 +590,18 @@ function displayInstruction() {
 function displayFinishSate() {
 
     //if player1 wins
-    if (score1 > score2) {
+    if (player1.score > player2.score) {
         finishState = "Player 1 wins";
         image(spaceship1, width / 4, 0);
     }
     //if player 2 wins
-    else if (score2 > score1) {
+    else if (player2.score > player1.score) {
         finishState = "Player 2 wins";
         image(spaceship2, width / 4, 0);
 
     }
     //if no one win
-    else if (score1 === score2) {
+    else if (player1.score === player2.score) {
         finishState = "Draw";
     }
 
