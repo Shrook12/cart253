@@ -22,7 +22,9 @@ BE CAREFUL!The timer might act weird at a certain time!
 
 This bit should have some images of the program running so that the reader has a sense of what it looks like. For example:
 
-> ![Image of a clown face](./assets/images/clown.png)
+> ![The start state](./assets/images/screenshot%20_start.png)
+> ![This is the game](./assets/images/screenshot_play.png)
+> ![This is the end of the game](./assets/images/screenshot_end.png)
 
 ## Attribution
 

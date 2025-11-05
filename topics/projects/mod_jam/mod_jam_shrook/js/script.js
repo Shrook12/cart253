@@ -234,6 +234,10 @@ function draw() {
         score1 = checkHandOverlap(player1, score1, human_2);
         score2 = checkHandOverlap(player1, score2, human_1);
         score2 = checkHandOverlap(player1, score2, human_2);
+        score1 = checkHandOverlap(player2, score1, human_1);
+        score1 = checkHandOverlap(player2, score1, human_2);
+        score2 = checkHandOverlap(player2, score2, human_1);
+        score2 = checkHandOverlap(player2, score2, human_2);
 
         keyboard();
 
