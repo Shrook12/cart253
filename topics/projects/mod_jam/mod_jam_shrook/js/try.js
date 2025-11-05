@@ -19,6 +19,7 @@ let player1 = {
     body: {
         x: 320,
         y: 520,
+        w: 260
 
     },
     tongue: {
@@ -49,7 +50,7 @@ let player2 = {
 
 let fly = {
     x: 0,
-    y: 200,
+    y: 300,
     size: 50,
     speed: 3,
     acceleration: 0.005
@@ -59,7 +60,10 @@ let timer = {
     startTime: 0,
     timePassed: 0,
     timeInterval: 90000,
-    speed: 1
+    speed: 1,
+    size: 90,
+    x: undefined,
+    y: 90
 }
 let speechBox = {
     x: 125,
@@ -68,6 +72,12 @@ let speechBox = {
     h: 700,
     padding: 20
 
+}
+
+let planet = {
+    x: -1500,
+    y: -200,
+    speed: 50
 }
 
 let finishState = "none";
@@ -84,6 +94,11 @@ let soundOverlap;
 let startPage;
 let myFont;
 let music;
+let spaceship1;
+let spaceship2;
+let planetImg;
+
+
 
 let instruction = [];
 let instructionIndex = 0;
@@ -91,6 +106,10 @@ let images = [];
 let imagesIndex = 0;
 let visiblity = true;
 let timeOpacity = 0;
+
+
+
+
 
 //let startButtonCreated = false;
 
@@ -102,7 +121,12 @@ function preload() {
     soundOnClick = loadSound('../assets/sounds/sound_click2.wav');
     soundOverlap = loadSound('../assets/sounds/sound1.wav');
     startPage = loadImage('../assets/images/start_page.png');
+    spaceship1 = loadImage('../assets/images/spaceship1.png');
+    spaceship2 = loadImage('../assets/images/spaceship2.png');
     music = loadSound('../assets/sounds/music_game2.mp3');
+    myFont = loadFont('../assets/fonts/bitcountgrid.ttf');
+    planetImg = loadImage('../assets/images/planet.png');
+
 
     images[0] = loadImage('../assets/images/image1.png');
     images[1] = loadImage('../assets/images/image2.png');
@@ -118,6 +142,11 @@ function preload() {
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0);
+    textFont(myFont);
+
+    cursor('../assets/images/mouse.png');
+
+
 
     instruction = [
         [
@@ -151,7 +180,7 @@ function setup() {
     buttonPlay.size(400, 150);
     buttonPlay.style("background-color", "#000000");
     buttonPlay.style("font-size", "72px");
-    buttonPlay.style("font-family", "Arial");
+
     buttonPlay.style("border-radius", "10px");
     buttonPlay.style("color", "white");
     buttonPlay.style("font-weight", "bold");
@@ -187,11 +216,17 @@ function draw() {
         displayScore();
         displayTime();
         displayInstruction();
+        movePlanet();
+        drawPlanet();
+
+
 
 
     }
     else if (gameState == "end") {
         endScreen();
+
+
     }
 }
 
@@ -266,21 +301,10 @@ function displayTime() {
 
 
     fill(255, 255, 0, timeOpacity);
-    textSize(60);
-    text(timeLeft, width / 2, 40);
+    textSize(timer.size);
+    text(timeLeft, width / 2, timer.y);
     if (timer.timePassed > timer.timeInterval) {
-        gameState = "end"
-
-        if (score1 > score2) {
-            finishState = "Player 1 wins"
-        }
-        else if (score2 > score1) {
-            finishState = "Player 2 wins"
-
-        }
-        else if (score1 === score2) {
-            finishState = "Draw"
-        }
+        gameState = "end";
 
     }
 }
@@ -316,7 +340,7 @@ function drawFly() {
  */
 function resetFly() {
     fly.x = 0;
-    fly.y = random(125, height - 125);
+    fly.y = random(250, height - 250);
 }
 
 /**
@@ -381,6 +405,20 @@ function moveTonguePlayer2() {
 
 }
 
+function movePlanet() {
+    if (visiblity === false && timer.timePassed > 30000) {
+        planet.x += planet.speed;
+    }
+
+
+
+}
+
+
+function drawPlanet() {
+    image(planetImg, planet.x, planet.y);
+}
+
 
 
 function drawPlayer1() {
@@ -389,7 +427,7 @@ function drawPlayer1() {
     player1.body.y = height - 50;
     //draw tongue tip
     push();
-    fill("#ffd000ff");
+    fill("#83b12b");
     noStroke();
     ellipse(player1.tongue.x, player1.tongue.y, player1.tongue.size);
     pop();
@@ -397,7 +435,7 @@ function drawPlayer1() {
 
     //draw rest of tongue
     push();
-    stroke("#ffd000ff");
+    stroke("#83b12b");
     strokeWeight(player1.tongue.size);
     line(player1.tongue.x, player1.tongue.y, player1.body.x, player1.body.y);
     pop();
@@ -412,7 +450,7 @@ function drawPlayer1() {
 
 function drawPlayer2() {
     push();
-    fill("#5eff00ff");
+    fill("#a938bf");
     noStroke();
     ellipse(player2.tongue.x, player2.tongue.y, player2.tongue.size);
     pop();
@@ -420,7 +458,7 @@ function drawPlayer2() {
 
     //draw rest of tongue
     push();
-    stroke("#80ff00ff");
+    stroke("#a938bf");
     strokeWeight(player2.tongue.size);
     line(player2.tongue.x, player2.tongue.y, player2.body.x, player2.body.y);
     pop();
@@ -467,13 +505,13 @@ function displayScore() {
     push();
     textSize(45);
     fill("#2c2c6cff");
-    text(score1, player1.body.x - 15, height - 5);
+    text(score1, player1.body.x, height - 5);
     pop();
 
     push();
     textSize(45);
     fill("#2c2c6cff");
-    text(score2, player2.body.x - 10, 40);
+    text(score2, player2.body.x, 40);
     pop();
 }
 function displayFinishSate() {
@@ -509,6 +547,17 @@ function keyPressed(event) {
             player2.tongue.state = "outbound";
         }
     }
+
+    if (keyCode === 32) {
+
+        imagesIndex++;
+        instructionIndex++;
+    }
+    if (instructionIndex >= instruction.length) {
+        visiblity = false;
+        timer.startTime = millis();
+        timeOpacity = 255;
+    }
 }
 
 function keyboard() {
@@ -533,13 +582,13 @@ function displayInstruction() {
         push();
         image(images[imagesIndex], speechBox.w / 5, speechBox.h / 3);
         textAlign(LEFT);
-        textSize(24);
+        textSize(28);
         fill("black");
-        text(instruction[instructionIndex], speechBox.w / 1.7, speechBox.h / 3, 400);
+        text(instruction[instructionIndex], speechBox.w / 1.7, speechBox.h / 3, 500);
         pop();
 
         push();
-        textSize(18);
+        textSize(24);
         textAlign(CENTER);
         fill("black");
         text("Press space key to continue", speechBox.w / 2.2, speechBox.h - 20, 400);
@@ -550,19 +599,9 @@ function displayInstruction() {
 
 }
 
-function keyPressed(event) {
-    if (keyCode === 32) {
 
-        imagesIndex++;
-        instructionIndex++;
-    }
-    if (instructionIndex >= instruction.length) {
-        visiblity = false;
-        timer.startTime = millis();
-        timeOpacity = 255;
-    }
 
-}
+
 
 
 
@@ -602,9 +641,27 @@ function keyPressed(event) {
 function endScreen() {
     background("#ff456aff");
     image(img, 0, 0, width, height, 0, 0, img.width, img.height, COVER);
-    displayFinishSate();
+
+
+    if (score1 > score2) {
+        finishState = "Player 1 wins";
+        image(spaceship1, width / 4, 0);
+    }
+    else if (score2 > score1) {
+        finishState = "Player 2 wins";
+        image(spaceship2, width / 4, 0);
+
+    }
+    else if (score1 === score2) {
+        finishState = "Draw";
+    }
+
+    textSize(80);
+    text(finishState, width / 2, height / 2)
+
 
 }
+
 
 function gameStarted() {
     gameState = "play";
