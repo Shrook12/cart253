@@ -17,17 +17,17 @@
 // this are the properties of player1
 let player1 = {
     body: {
-        x: 320,
-        y: 520,
-        w: 260
+        x: 320, // x position of player1
+        y: 520,// y position of player1
 
     },
-    tongue: {
-        x: undefined,
-        y: 480,
-        size: 20,
+    hand: {
+        x: undefined, // x position of the hand of player1
+        y: 480,// Y position of the hand of player1
+        size: 22,
         speed: 60,
-        state: "idle"
+        state: "idle",
+        fill: "#83b12b"
     }
 };
 
@@ -38,12 +38,13 @@ let player2 = {
         y: 50,
         size: 250
     },
-    tongue: {
+    hand: {
         x: undefined,
         y: 100,
-        size: 20,
+        size: 22,
         speed: 60,
-        state: "idle"
+        state: "idle",
+        fill: "#a938bf"
     }
 };
 //properties of the fly
@@ -206,14 +207,16 @@ function draw() {
         moveFly();
         drawFly();
         movePlayer1();
-        moveTongue();
-        moveTonguePlayer2();
-        drawPlayer1();
-        drawPlayer2();
-        checkTongueFlyOverlap();
+        moveHand();
+        moveHandPlayer2();
+        drawPlayer(player1, playerImg);
+        drawPlayer(player2, playerImg2);
+        score1 = checkHandFlyOverlap(player1, score1);
+        score2 = checkHandFlyOverlap(player2, score2);
         keyboard();
-        checkTongueOverlapPlayer2();
-        displayScore();
+
+        displayScore(score1, player1, height - 5);
+        displayScore(score2, player2, 40);
         displayTime();
         displayInstruction();
         movePlanet();
@@ -231,46 +234,14 @@ function draw() {
 }
 
 
-//this was a try of mouse pressed because the button was not working
-/*function mousePressed(event) {
-    if (gameState == "start") {
-        gameState = "play";
-    }
-
-
-}*/
 
 function startScreen() {
     background(255);
     image(startPage, 0, 0, width, height, 0, 0, startPage.width, startPage.height, COVER);
 
 
-
-
-    //My button was here but I didn't really feel that was a good idea
-    /*let button = createButton("PLAY");
-    button.position(width / 2, height / 2);
-
-     button.mousePressed(gameScreen);*/
-
-    //prevent button to be created over and over again
-    /*if (!startButtonCreated) {
-        buttonPlay = createButton("PLAY"); //this create a button
-        buttonPlay.position(width / 2, height / 2); //this is the position of the button
-    }
-    startButtonCreated = true;*/
-
-
 }
 
-/*function planetStart() {
-    push();
-    image(startPage, 0, 0);
-    pop();
-
-
-
-}*/
 
 
 function gameScreen() {
@@ -354,52 +325,52 @@ function movePlayer1() {
 /**
  * to make tongue move
  */
-function moveTongue() {
+function moveHand() {
 
     //tongue matches player1's x
-    player1.tongue.x = player1.body.x;
+    player1.hand.x = player1.body.x;
 
     //if tongue idle, doesn't do anything
-    if (player1.tongue.state === "idle") {
+    if (player1.hand.state === "idle") {
         //nothing
     }
     //if the tongue is outbound, it moves up
-    else if (player1.tongue.state === "outbound") {
-        player1.tongue.y += -player1.tongue.speed;
+    else if (player1.hand.state === "outbound") {
+        player1.hand.y += -player1.hand.speed;
         // tongue bounces back if it hits the top
-        if (player1.tongue.y <= 0) {
-            player1.tongue.state = "inbound";
+        if (player1.hand.y <= 0) {
+            player1.hand.state = "inbound";
         }
     }
-    else if (player1.tongue.state === "inbound") {
-        player1.tongue.y += player1.tongue.speed;
+    else if (player1.hand.state === "inbound") {
+        player1.hand.y += player1.hand.speed;
 
 
-        if (player1.tongue.y >= height) {
-            player1.tongue.state = "idle";
+        if (player1.hand.y >= height) {
+            player1.hand.state = "idle";
         }
     }
 }
 
-function moveTonguePlayer2() {
+function moveHandPlayer2() {
 
-    player2.tongue.x = player2.body.x;
+    player2.hand.x = player2.body.x;
 
-    if (player2.tongue.state === "idle") {
+    if (player2.hand.state === "idle") {
         //do nothing
     }
-    else if (player2.tongue.state === "outbound") {
-        player2.tongue.y += player2.tongue.speed;
+    else if (player2.hand.state === "outbound") {
+        player2.hand.y += player2.hand.speed;
 
-        if (player2.tongue.y >= windowHeight) {
-            player2.tongue.state = "inbound";
+        if (player2.hand.y >= windowHeight) {
+            player2.hand.state = "inbound";
         }
     }
-    else if (player2.tongue.state === "inbound") {
-        player2.tongue.y += -player2.tongue.speed;
+    else if (player2.hand.state === "inbound") {
+        player2.hand.y += -player2.hand.speed;
 
-        if (player2.tongue.y <= 0) {
-            player2.tongue.state = "idle";
+        if (player2.hand.y <= 0) {
+            player2.hand.state = "idle";
         }
     }
 
@@ -421,97 +392,60 @@ function drawPlanet() {
 
 
 
-function drawPlayer1() {
+function drawPlayer(obj, temp_img) {
     //player1.body.x = width/2;
     //to make player1 at the bottom
     player1.body.y = height - 50;
     //draw tongue tip
     push();
-    fill("#83b12b");
+    fill(obj.hand.fill);
     noStroke();
-    ellipse(player1.tongue.x, player1.tongue.y, player1.tongue.size);
+    ellipse(obj.hand.x, obj.hand.y, obj.hand.size);
     pop();
 
 
     //draw rest of tongue
     push();
-    stroke("#83b12b");
-    strokeWeight(player1.tongue.size);
-    line(player1.tongue.x, player1.tongue.y, player1.body.x, player1.body.y);
+    stroke(obj.hand.fill);
+    strokeWeight(player1.hand.size);
+    line(obj.hand.x, obj.hand.y, obj.body.x, obj.body.y);
     pop();
 
     // player 1 body
     push();
     imageMode(CENTER);
-    image(playerImg, player1.body.x, player1.body.y);
+    image(temp_img, obj.body.x, obj.body.y);
     pop();
 
-}
-
-function drawPlayer2() {
-    push();
-    fill("#a938bf");
-    noStroke();
-    ellipse(player2.tongue.x, player2.tongue.y, player2.tongue.size);
-    pop();
-
-
-    //draw rest of tongue
-    push();
-    stroke("#a938bf");
-    strokeWeight(player2.tongue.size);
-    line(player2.tongue.x, player2.tongue.y, player2.body.x, player2.body.y);
-    pop();
-
-    push();
-    imageMode(CENTER);
-    image(playerImg2, player2.body.x, player2.body.y);
-    pop();
 }
 
 /**
  * tongue overlapping the fly
  */
 
-function checkTongueFlyOverlap() {
+function checkHandFlyOverlap(obj, scoreNumber) {
     //distance from tongue to fly
-    const d = dist(player1.tongue.x, player1.tongue.y, fly.x, fly.y);
+    const d = dist(obj.hand.x, obj.hand.y, fly.x, fly.y);
     //check if overlap
-    const eaten = (d < player1.tongue.size / 2 + fly.size / 2);
+    const eaten = (d < obj.hand.size / 2 + fly.size / 2);
     if (eaten) {
         //reset the fly
         resetFly();
-        score1++;
+        scoreNumber++;
         //bring tongue back
-        player1.tongue.state = "inbound";
+        obj.hand.state = "inbound";
         soundOverlap.play();
     }
+    return scoreNumber;
 
 }
 
-function checkTongueOverlapPlayer2() {
-    const d = dist(player2.tongue.x, player2.tongue.y, fly.x, fly.y);
 
-    const eaten = (d < player2.tongue.size / 2 + fly.size / 2);
-    if (eaten) {
-        resetFly();
-        score2++;
-        player2.tongue.state = "inbound";
-        soundOverlap.play();
-    }
-}
-
-function displayScore() {
+function displayScore(scoreNumber, temp_x, temp_y) {
     push();
     textSize(45);
     fill("#2c2c6cff");
-    text(score1, player1.body.x, height - 5);
-    pop();
-
-    push();
-    textSize(45);
-    fill("#2c2c6cff");
-    text(score2, player2.body.x, 40);
+    text(scoreNumber, temp_x.body.x, temp_y);
     pop();
 }
 function displayFinishSate() {
@@ -530,8 +464,8 @@ function mousePressed() {
     if (gameState === "play") {
         soundOnClick.play();
     }
-    if (player1.tongue.state === "idle") {
-        player1.tongue.state = "outbound";
+    if (player1.hand.state === "idle") {
+        player1.hand.state = "outbound";
     }
 
 }
@@ -543,8 +477,8 @@ function keyPressed(event) {
         soundOnClick.play();
     }
     if (keyCode === UP_ARROW) {
-        if (player2.tongue.state === "idle") {
-            player2.tongue.state = "outbound";
+        if (player2.hand.state === "idle") {
+            player2.hand.state = "outbound";
         }
     }
 
@@ -563,10 +497,10 @@ function keyPressed(event) {
 function keyboard() {
     player2.body.x = constrain(player2.body.x, 0, windowWidth);
     if (keyIsDown(RIGHT_ARROW) === true) {
-        player2.body.x += -15;
+        player2.body.x += -25;
     }
     if (keyIsDown(LEFT_ARROW) === true) {
-        player2.body.x += 15;
+        player2.body.x += 25;
     }
 }
 
@@ -599,45 +533,6 @@ function displayInstruction() {
 
 }
 
-
-
-
-
-
-
-/*function keyPressed(event) {
-    if (keyCode === RIGHT_ARROW) {
-        player2.body.x += 10;
-    } else if (keyCode === LEFT_ARROW) {
-        player2.body.x += -10;
-    }
-
-}*/
-
-/*function checkTongueOverlapPlayer2() {
-    //distance from tongue to fly
-    const d = dist(player2.tongue.x, player2.tongue.y, fly.x, fly.y);
-    //check if overlap
-    const eaten = (d < player2.tongue.size / 2 + fly.size / 2);
-    if (eaten) {
-        //reset the fly
-        resetFly();
-        //bring tongue back
-        player2.tongue.state = "outbound";
-    }
-
-}
-
-/**
- * launch tongue on click
- 
-
-function keyPressed(event) {
-    if (player2.tongue.state === "idle") {
-        player2.tongue.state = "inbound";
-    }
-}
-*/
 function endScreen() {
     background("#ff456aff");
     image(img, 0, 0, width, height, 0, 0, img.width, img.height, COVER);
