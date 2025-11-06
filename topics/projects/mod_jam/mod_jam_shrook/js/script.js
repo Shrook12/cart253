@@ -163,7 +163,7 @@ function setup() {
     // font of my game
     textFont(myFont);
     //an image for the cursor
-    cursor('../assets/images/mouse.png');
+    cursor('./assets/images/mouse.png');
 
 
     //array text part for the instructions
