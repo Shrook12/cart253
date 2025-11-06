@@ -23,8 +23,7 @@ function draw() {
 
     let startColor = color(48, 25, 52);//0%
     let endColor = color(191, 64, 191);//100%
-    let numberOfLines = 100;
-    let linesHeight = height / numberOfLines;
+
 
 
 
