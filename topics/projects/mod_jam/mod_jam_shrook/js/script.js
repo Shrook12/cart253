@@ -508,15 +508,7 @@ function mousePressed() {
 
 function keyPressed(event) {
     // if state is play and the up arrow is pressed make the sound play
-    if (gameState === "play" && keyCode === UP_ARROW) {
-        soundOnClick.play();
-    }
-    //make hand outbound when up arrow is pressed
-    if (keyCode === UP_ARROW) {
-        if (player2.hand.state === "idle") {
-            player2.hand.state = "outbound";
-        }
-    }
+    player2Hand();
     //when space key pressed it goes to the next instruction
     if (keyCode === 32) {
 
@@ -612,23 +604,31 @@ function displayInstruction() {
 
 //display text and image for finish state depending on the situation(who won or draw)
 function displayFinishSate() {
-
+    player1.body.x = width / 2;
+    player2.body.x = width / 2;
     //if player1 wins
     if (player1.score > player2.score) {
         finishState = "Player 1 wins";
-        image(spaceship1, width / 4, 0);
+        push();
+        imageMode(CENTER);
+        image(playerImg, player1.body.x, player1.body.y);
+        pop();
     }
     //if player 2 wins
     else if (player2.score > player1.score) {
+
         finishState = "Player 2 wins";
-        image(spaceship2, width / 4, 0);
+        push();
+        imageMode(CENTER);
+        image(playerImg2, player2.body.x, player2.body.y);
+        pop();
 
     }
     //if no one win
     else if (player1.score === player2.score) {
         finishState = "Draw";
     }
-
+    fill(255, 255, 0);
     textSize(80);
     text(finishState, width / 2, height / 2)
 }

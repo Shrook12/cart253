@@ -31,7 +31,14 @@ This bit should have some images of the program running so that the reader has a
 This bit should attribute any code, assets or other elements used taken from other sources. For example:
 
 > - This project uses [p5.js](https://p5js.org).
-> - The sounds effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
+> - This project uses the frog frog frog by pippinbarr: https://pippinbarr.com/cart253-examples/topics/making/frogfrogfrog/
+> - The sounds effect are from : https://mixkit.co/free-sound-effects/
+> - This project uses(https://editor.p5js.org/remistan/sketches/UCjkAcqsx)
+> - This project uses image responsive by remistan(https://editor.p5js.org/remistan/sketches/UCjkAcqsx)
+> - This project uses some of the 2D mouse from:https://processing.org/examples/mouse2d.html
+> - This project uses some if the Button style change by elinsterz: https://editor.p5js.org/elinsterz/sketches/NvK3RRihj
+> - This project uses some of Friends, Romans, Countrymen by pippinbarr: https://editor.p5js.org/pippinbarr/sketches/wfDOLrIm13
+> - This project uses font from Google Fonts: https://fonts.google.com/
 
 ## License
 
