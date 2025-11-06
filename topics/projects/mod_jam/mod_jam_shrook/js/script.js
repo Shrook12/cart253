@@ -520,15 +520,11 @@ function keyPressed(event) {
     //when space key pressed it goes to the next instruction
     if (keyCode === 32) {
 
+        goToNextInstruction();
         imagesIndex++;//go to next image
         instructionIndex++;// go to next instruction
     }
-    //if instrcutions are finished make it not visible
-    if (instructionIndex >= instruction.length) {
-        visiblity = false;
-        timer.startTime = millis();// make time start at this point
-        timeOpacity = 255;// change opacity for timer so it become visible
-    }
+
 }
 function player2Hand() {
     // if state is play and the up arrow is pressed make the sound play
