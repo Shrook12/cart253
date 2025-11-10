@@ -28,7 +28,7 @@ let player1 = {
         x: undefined, // x position of the hand of player1
         y: 480,// Y position of the hand of player1
         size: 22,// size hand player1
-        speed: 60, //speed of hand of player 1 when it goes out
+        speed: 70, //speed of hand of player 1 when it goes out
         state: "idle", //current state of hand player 1
         fill: "#83b12b" // color of hand
     },
@@ -46,7 +46,7 @@ let player2 = {
         x: undefined,// x position of the hand of player2
         y: 100,// Y position of the hand of player2
         size: 22,// size hand player2
-        speed: 60,//speed of hand of player 2 when it goes out
+        speed: 70,//speed of hand of player 2 when it goes out
         state: "idle",//current state of hand player 2
         fill: "#a938bf"// color of hand
     },
@@ -99,7 +99,7 @@ let gameState = "start"; //the current game state
 let score1 = 0; //score for player 1 start at 0
 let score2 = 0;//score for player 2 start at 0
 let buttonPlay; // button at the start
-let timeOpacity = 0;//to make the timer not visible during instruction
+
 let img;//background image for game and end state
 let playerImg;//img for player1
 let playerImg2;//img for player2
@@ -109,10 +109,12 @@ let soundOnClick;//for the sound on click
 let soundOverlap;//for the sound when hand and human overlap
 let startPage;//bacground image for start state
 let myFont; //for the font
-let music; //
+
 let spaceship1;//for spaceship img player1 for end state
 let spaceship2;//for spaceship  img player2 for end state
 let planetImg;//img for planet
+
+
 
 
 //for the instruction section using arrays
@@ -136,13 +138,16 @@ function preload() {
     humanImg = loadImage('./assets/images/human1.png');
     humanImg2 = loadImage('./assets/images/human2.png');
     soundOnClick = loadSound('./assets/sounds/sound_click2.wav');
-    soundOverlap = loadSound('./assets/sounds/sound1.wav');
+    soundOverlap = loadSound('./assets/sounds/overlap.wav');
+
     startPage = loadImage('./assets/images/start_page.png');
     spaceship1 = loadImage('./assets/images/spaceship1.png');
     spaceship2 = loadImage('./assets/images/spaceship2.png');
-    music = loadSound('./assets/sounds/music_game2.mp3');
+
+
     myFont = loadFont('./assets/fonts/bitcountgrid.ttf');
     planetImg = loadImage('./assets/images/planet.png');
+
 
     //array images part for instruction
     images[0] = loadImage('./assets/images/image1.png');
@@ -169,7 +174,7 @@ function setup() {
     //array text part for the instructions
     instruction = [
         [
-            "Welcome to Reversed Space, a game where nothing makes sense. Humans float in space, hoping to be abducted by aliens. Aliens compete to abduct as many humans as possible. Every abduction the human laughs because, again, this game makes no sense!",
+            "Welcome to Reversed Space, a game where nothing makes sense. Humans float in space, hoping to be abducted by aliens. Aliens compete to abduct as many humans as possible. Every abduction the human are happy because, again, this game makes no sense!",
 
         ],
         [
@@ -277,28 +282,38 @@ function screen(obj) {
 
 function displayTime() {
 
-    //to make timer start when entering the game state
-    timer.timePassed = millis() - timer.startTime;
-    // this is to make timer go faster after 60 seconds
-    if (timer.timePassed > 60000) {
-        //after 60 seconds has passed 
-        let after = timer.timePassed - 60000;
-        //make timer go faster
-        timer.timePassed = 60000 + after * 4;
+
+    if (instructionIndex >= instruction.length) { // make sure that the time only start after the instructions are finished
+        //to make timer start when entering the game state
+        timer.timePassed = millis() - timer.startTime;
+        // this is to make timer go faster after 60 seconds
+        if (timer.timePassed > 60000) {
+            //after 60 seconds has passed 
+            let after = timer.timePassed - 60000;
+            //make timer go faster
+            timer.timePassed = 60000 + after * 4;
+
+        }
+
+
+        // to change the values from milliseconds to seconds
+        let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
+
+
+        fill(255, 255, 0);// color and to make opacity not visible at the beginning
+        textSize(timer.size);//size of the text
+        text(timeLeft, width / 2, timer.y);//text and placement
+
+        // if time is finished go to end state
+        if
+            (timer.timePassed > timer.timeInterval) {
+            gameState = "end";
+
+
+        }
     }
-    // to change the values from milliseconds to seconds
-    let timeLeft = int((timer.timeInterval - timer.timePassed) / 1000);
 
 
-    fill(255, 255, 0, timeOpacity);// color and to make opacity not visible at the beginning
-    textSize(timer.size);//size of the text
-    text(timeLeft, width / 2, timer.y);//text and placement
-
-    // if time is finished go to end state
-    if (timer.timePassed > timer.timeInterval) {
-        gameState = "end";
-
-    }
 }
 
 
@@ -407,6 +422,7 @@ function moveHandPlayer2() {
 function movePlanet() {
     if (visiblity === false && timer.timePassed > 30000) {
         planet.x += planet.speed;
+
     }
 
 
@@ -513,8 +529,7 @@ function keyPressed(event) {
     if (keyCode === 32) {
 
         goToNextInstruction();
-        imagesIndex++;//go to next image
-        instructionIndex++;// go to next instruction
+
     }
 
 }
@@ -542,8 +557,9 @@ function goToNextInstruction() {
     if (instructionIndex >= instruction.length) {
         visiblity = false;
         timer.startTime = millis();// make time start at this point
-        timeOpacity = 255;// change opacity for timer so it become visible
+
     }
+
 
 }
 
