@@ -1,0 +1,11 @@
+{
+    "description": "All the texts in English and in French",
+    "title": {
+        "en": "Life: A Metaphor",
+        "fr": "J'aime aller à la piscine"
+    },
+    "ending": {
+        "en": "Ah, mortality",
+        "fr": "L'eau me refraîche"
+    }
+}
