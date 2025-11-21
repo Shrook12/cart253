@@ -10,23 +10,14 @@
 "use strict";
 
 let state = "menu";
-let buttonVersion1;
-let buttonVersion2;
-let buttonVersion3;
+
+
 
 /**
  * Create the canvas
 */
 function setup() {
-    createCanvas(500, 500);
-
-    buttonVersion1 = createButton("var1"); //this create a button
-    buttonVersion1.mousePressed(redSetup);//call function gameStarted when pressing on the button
-    buttonVersion2 = createButton("var2"); //this create a button
-    buttonVersion2.mousePressed(blueSetup);//call function gameStarted when pressing on the button
-    buttonVersion3 = createButton("var3"); //this create a button
-    buttonVersion3.mousePressed(greenSetup);//call function gameStarted when pressing on the button
-
+    createCanvas(windowWidth, windowHeight);
 }
 
 
@@ -37,7 +28,7 @@ function setup() {
 function draw() {
     switch (state) {
         case "menu":
-            menuSetup();
+            menuDraw();
             break;
         case "red-variation":
             redDraw();
@@ -91,4 +82,8 @@ function keyPressed(event) {
             blueKeyPressed(event);
             break;
     }
+}
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+
 }
