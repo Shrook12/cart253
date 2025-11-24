@@ -10,7 +10,7 @@ let buttons = [
         h: 75,
         x: 300,
         y: 500,
-        fill: "#08ffe2ff",
+        fill: "#000000ff",
         text: "var1"
     },
     {
@@ -18,7 +18,7 @@ let buttons = [
         h: 75,
         x: 300,
         y: 600,
-        fill: "#fb00ffff",
+        fill: "#000000ff",
         text: "var2"
     },
     {
@@ -26,16 +26,11 @@ let buttons = [
         h: 75,
         x: 300,
         y: 700,
-        fill: "#3700ffff",
+        fill: "#000000ff",
         text: "var3"
     }
 ];
-let startPage;//bacground image for start state
 
-
-function preload() {
-    startPage = loadImage('./assets/images/start_page.png');
-}
 
 /**
  * Display the main menu

@@ -11,7 +11,18 @@
 
 let state = "menu";
 
+let startPage;//bacground image for start state
+let space;
+let playerImg;//img for player1
+let humanImg;
 
+
+function preload() {
+    startPage = loadImage('./assets/images/start_page.png');
+    space = loadImage('./assets/images/space.png');
+    playerImg = loadImage('../assets/images/player1.png');
+    humanImg = loadImage('./assets/images/human2.png');
+}
 
 /**
  * Create the canvas
