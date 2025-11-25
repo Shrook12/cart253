@@ -11,24 +11,19 @@ let player1 = {
     body: {
         x: 320, // x position of player1
         y: 520,// y position of player1
-
-    },
-    hand: {
-        x: undefined, // x position of the hand of player1
-        y: 480,// Y position of the hand of player1
-        size: 22,// size hand player1
-        speed: 70, //speed of hand of player 1 when it goes out
-        state: "idle", //current state of hand player 1
-        fill: "#83b12b" // color of hand
+        size: 100
     },
     score: 0
 };
 let human_1 = {
-    x: 0, // x position of human1
+    x: 300, // x position of human1
     y: 300,//y position of human1
+
     size: 50, //size for the overlap
     speed: 3, // speed of human1
-    acceleration: 0.005 //to make human1 go faster
+    acceleration: 0.005, //to make human1 go faster
+    size: 80
+
 };
 
 
@@ -46,27 +41,35 @@ function redDraw() {
     drawHuman(humanImg, human_1);
     drawPlayer(player1, playerImg);
     keyboardPlayer();
-    keyboradHuman();
+    playerGotHuman(player1, human_1);
+    displayScore(player1);
+
 
 }
+function playerGotHuman(obj, human) {
+    const d = dist(obj.body.x, obj.body.y, human.x, human.y);
 
+    const eaten = (d < obj.body.size / 2 + human.size / 2);
+    if (eaten) {
+        resetHuman(human);
+        obj.score++;
+    }
+}
+function displayScore(obj) {
+    push();
+    textSize(45);
+    fill("#2c2c6cff");
+    text(obj.score, obj.body.x - 15, obj.body.y + 75);
+    pop();
+}
+
+function resetHuman() {
+    human_1.x = random(10, width - 10);
+    human_1.y = random(10, height - 10);
+}
 //to draw the players
 function drawPlayer(obj, temp_img) {
-    // to make player one height at height - 50
-    //draw hand tip
-    push();
-    fill(obj.hand.fill);
-    noStroke();
-    ellipse(obj.hand.x, obj.hand.y, obj.hand.size);
-    pop();
 
-
-    //draw rest of the hand
-    push();
-    stroke(obj.hand.fill);
-    strokeWeight(player1.hand.size);
-    line(obj.hand.x, obj.hand.y, obj.body.x, obj.body.y);
-    pop();
 
     // player body
     push();
@@ -111,26 +114,7 @@ function drawHuman(img_human, obj) {
     image(img_human, obj.x, obj.y);
     pop();
 }
-function keyboradHuman() {
-    //contrain player 2 to the canvas size
-    human_1.x = constrain(human_1.x, 0, windowWidth);
-    human_1.y = constrain(human_1.y, 0, windowHeight);
-    //if key right is being pressed move player to the left
-    if (keyIsDown(RIGHT_ARROW) === true) {
-        human_1.x += -10;
-    }
-    //if key left is being pressed move player to the right
-    if (keyIsDown(LEFT_ARROW) === true) {
-        human_1.x += 10;
-    }
-    if (keyIsDown(DOWN_ARROW) === true) {
-        human_1.y += -10;
-    }
-    //if key left is being pressed move player to the right
-    if (keyIsDown(UP_ARROW) === true) {
-        human_1.y += 10;
-    }
-}
+
 /**
  * This will be called whenever the mouse is pressed while the red variation is active
  */
