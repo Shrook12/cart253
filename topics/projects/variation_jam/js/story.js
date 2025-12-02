@@ -113,6 +113,9 @@ function keyPressed() {
         story = storyData.speech[index];
         index++;
 
-
+        if (index >= storyData.speech.length) {
+            state = "menu";
+            menuSetup();
+        }
     }
 }
