@@ -19,6 +19,9 @@ let button = {
     fill: "#000000ff",
     text: "START"
 }
+let story = "";
+let storyData;
+let index = 0;
 
 let startPage;//bacground image for start state
 let space;
@@ -31,6 +34,9 @@ function preload() {
     space = loadImage('./assets/images/space.png');
     playerImg = loadImage('../assets/images/player1.png');
     humanImg = loadImage('./assets/images/human2.png');
+
+
+    storyData = loadJSON("assets/data/start_story.json")
 }
 
 /**
@@ -48,7 +54,8 @@ function draw() {
         drawStartButton();
     }
     else if (state === "story") {
-        screen(space)
+        screen(space);
+        drawSpeech();
     }
 }
 
@@ -89,6 +96,23 @@ function mousePressed() {
 
     }
 
-
 }
 
+function drawSpeech() {
+
+    push();
+    fill("pink");
+
+    textSize(32);
+    text(story, 50, height - 200, 1000);
+    pop();
+}
+
+function keyPressed() {
+    if (keyCode === ENTER) {
+        story = storyData.speech[index];
+        index++;
+
+
+    }
+}
