@@ -20,6 +20,7 @@ let robotImg;
 let robotBack;
 let speechRobotImg;
 let fridgeImg;
+let speechImg;
 
 
 
@@ -33,6 +34,7 @@ function preload() {
     robotBack = loadImage('./assets/images/back_robot.png');
     speechRobotImg = loadImage('./assets/images/robot_speech.png');
     fridgeImg = loadImage('./assets/images/backstart.png');
+    speechImg = loadImage('./assets/images/speechstory.png');
     ghostData = loadJSON("./assets/data/ghost.json");
     robotData = loadJSON("./assets/data/robot.json");
     storyData = loadJSON("./assets/data/start_story.json")
@@ -120,6 +122,8 @@ function keyPressed(event) {
             blueKeyPressed(event);
             break;
     }
+
+
 }
 
 

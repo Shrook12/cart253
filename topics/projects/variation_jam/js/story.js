@@ -14,8 +14,12 @@
 
 let story = "Yesterday, a crime happened!";
 let storyData;
+let index = 0;
 
-
+let speech = {
+    x: 450,
+    y: 640
+}
 
 
 /**
@@ -30,7 +34,10 @@ function storySetup() {
 function storyDraw() {
 
     screen(fridgeImg);
-    drawSpeech()
+
+    drawObjects(speech, speechImg);
+    drawSpeech();
+
 
 
 
@@ -53,7 +60,7 @@ function drawSpeech() {
     fill("pink");
 
     textSize(32);
-    text(story, 50, height - 200, 1000);
+    text(story, 50, height - 200, 800);
     pop();
 }
 

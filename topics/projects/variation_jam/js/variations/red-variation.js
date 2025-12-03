@@ -5,6 +5,7 @@
  */
 let robotTalk = "Eh?, Someone ate the ice cream?";
 let robotData;
+let indexRobot = 0;
 
 
 let robot = {
@@ -14,6 +15,15 @@ let robot = {
 let speechRobot = {
     x: 450,
     y: 640
+}
+let continueButton = {
+    w: 200,
+    h: 75,
+    x: 500,
+    y: 700,
+    fill: "#000000ff",
+    text: "Continue",
+    visibily: false
 }
 let size = 40;
 let x;
@@ -40,7 +50,9 @@ function redDraw() {
     drawObjects(robot, robotImg);
     drawObjects(speechRobot, speechRobotImg);
     drawRobotText();
+    drawContinueButton();
     scaleDraw();
+
 }
 
 function scaleDraw() {
@@ -68,12 +80,11 @@ function drawRobotText() {
 
 function redKeyPressed(event) {
     if (keyCode === ENTER) {
-        robotTalk = robotData.robot[index];
-        index++;
+        robotTalk = robotData.robot[indexRobot];
+        indexRobot++;
 
-        if (index >= robotData.robot.length) {
-            state = "green-variation";
-            greenDraw();
+        if (indexRobot >= robotData.robot.length) {
+            continueButton.visibily = true;
         }
     }
 }
@@ -83,11 +94,37 @@ function drawObjects(obj, img) {
     image(img, obj.x, obj.y);
     pop();
 }
+function drawContinueButton() {
+    if (continueButton.visibily == true) {
+        push();
+        stroke("white");
+        strokeWeight(4);
+        fill(continueButton.fill);
+        rectMode(CENTER);
+        rect(continueButton.x, continueButton.y, continueButton.w, continueButton.h, 30);
+        pop();
 
+
+        push();
+        fill("#ffffffff");
+        textSize(32);
+        textAlign(CENTER, CENTER);
+        text(continueButton.text, continueButton.x, continueButton.y);
+        pop();
+    }
+}
 
 /**
  * This will be called whenever the mouse is pressed while the red variation is active
  */
 function redMousePressed() {
+    if (mouseX > continueButton.x - continueButton.w / 2 && mouseX < continueButton.x + continueButton.w / 2 && mouseY > continueButton.y - continueButton.h / 2 && mouseY < continueButton.y + continueButton.h / 2
+
+    ) {
+
+        state = "green-variation";
+        greenDraw();
+
+    }
 
 }

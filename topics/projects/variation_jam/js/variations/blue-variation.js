@@ -5,7 +5,7 @@
  */
 let ghostTalk = "What! Seriously?!";
 let ghostData;
-let index = 0;
+let indexGhost = 0;
 
 let ghost = {
     x: 1000,
@@ -25,6 +25,17 @@ let paper = {
 let speechGhost = {
     x: 550,
     y: 600
+}
+let secretCard = {
+    w: 150,
+    h: 200,
+    x: 200,
+    y: 100,
+    cardOpen: false
+
+
+
+
 }
 let paintLayer;
 
@@ -53,11 +64,12 @@ function blueDraw() {
     drawObjects(ghost, ghostImg);
 
 
-
+    secretRect();
     drawObjects(speechGhost, speechGhostImg);
     drawGhostText();
 
     image(brainImg, brain.x, brain.y);
+    secretRectOpen();
 
     if (mouseIsPressed) {
         paintLayer.line(pmouseX, pmouseY, mouseX, mouseY);
@@ -92,16 +104,16 @@ function drawGhostText() {
     fill("pink");
 
     textSize(32);
-    text(ghostTalk, 100, height - 200);
+    text(ghostTalk, 200, height - 200);
     pop();
 }
 
 function blueKeyPressed(event) {
     if (keyCode === ENTER) {
-        ghostTalk = ghostData.ghost[index];
-        index++;
+        ghostTalk = ghostData.ghost[indexGhost];
+        indexGhost++;
 
-        if (index >= ghostData.ghost.length) {
+        if (indexGhost >= ghostData.ghost.length) {
 
 
         }
@@ -115,11 +127,48 @@ function drawObjects(obj, img) {
     pop();
 }
 
+function secretRect() {
+    if (secretCard.cardOpen === false) {
+
+        push();
+        fill("white");
+        noStroke();
+        rect(secretCard.x, secretCard.y, secretCard.w, secretCard.h, 20);
+        pop();
+
+        push();
+        fill(0, 80);
+        textSize(16);
+        textAlign(CENTER, CENTER);
+        text("Click to Open", secretCard.x, secretCard.y, secretCard.w, secretCard.h);
+    }
+}
+function secretRectOpen() {
+    if (secretCard.cardOpen === true) {
+        push();
+        fill("white");
+        rectMode(CENTER);
+        noStroke();
+        rect(width / 2, height / 2, secretCard.w + 300, secretCard.h + 400, 20);
+        pop();
+
+        push();
+        fill(0);
+        rectMode(CENTER);
+        textSize(16);
+        textAlign(CENTER, CENTER);
+        text("random text", width / 2, height / 2, secretCard.w, secretCard.h);
+    }
+}
 
 /**
  * This will be called whenever the mouse is pressed while the blue variation is active
  */
 function blueMousePressed() {
-
+    if (mouseX > secretCard.x && mouseX < secretCard.x + secretCard.w &&
+        mouseY > secretCard.y && mouseY < secretCard.y + secretCard.h
+    ) {
+        secretCard.cardOpen = true;
+    }
 }
 
