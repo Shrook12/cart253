@@ -18,13 +18,15 @@ let ghostImg;//img for player1
 let speechGhostImg;
 
 
+
 function preload() {
     startPage = loadImage('./assets/images/start_page.png');
     brainImg = loadImage('./assets/images/brain.png');
     paperImg = loadImage('./assets/images/paper.png');
     ghostImg = loadImage('../assets/images/ghost.png');
     speechGhostImg = loadImage('./assets/images/speechghost.png');
-    ghostData = loadJSON("./assets/data/ghost.json")
+    ghostData = loadJSON("./assets/data/ghost.json");
+    robotData = loadJSON("./assets/data/robot.json")
 }
 
 /**
@@ -87,8 +89,3 @@ function windowResized() {
 
 }
 
-function mouseDragged() {
-    if (state === "blue-variation") {
-        paintColor();
-    }
-}

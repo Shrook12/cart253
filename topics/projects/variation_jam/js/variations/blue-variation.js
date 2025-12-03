@@ -3,7 +3,7 @@
  * Note how it has its own draw, blueDraw(), and its own keyPressed, blueKeyPressed().
  * This keeps the stuff the menu needs to do *separate* from the rest of the program.
  */
-let ghostTalk = "";
+let ghostTalk = "What! Seriously?!";
 let ghostData;
 let index = 0;
 
@@ -13,27 +13,31 @@ let ghost = {
 }
 
 let brain = {
-    x: 400,
-    y: 300,
-    w: 300,
-    h: 300
+    x: 200,
+    y: 100,
+
 
 }
 let paper = {
-    x: 400,
-    y: 295
+    x: 100,
+    y: 10
 }
 let speechGhost = {
     x: 550,
     y: 600
 }
-
+let paintLayer;
 
 /**
  * This will be called just before the blue variation starts
  */
 function blueSetup() {
     paintLayer = createGraphics(width, height);
+    paintLayer.image(paperImg, paper.x, paper.y, paper.w, paper.h);
+    paintLayer.imageMode(CENTER);
+
+    paintLayer.strokeWeight(40);
+    paintLayer.blendMode(REMOVE);
 }
 
 /**
@@ -46,12 +50,18 @@ function blueDraw() {
     gradient();
 
     drawObjects(ghost, ghostImg);
-    drawObjects(paper, paperImg);
-    image(paintLayer, 0, 0, width, height);
+
+
 
     drawObjects(speechGhost, speechGhostImg);
     drawGhostText();
 
+    image(brainImg, brain.x, brain.y);
+
+    if (mouseIsPressed) {
+        paintLayer.line(pmouseX, pmouseY, mouseX, mouseY);
+    }
+    image(paintLayer, 0, 0);
 
 
 }
@@ -92,7 +102,7 @@ function keyPressed() {
 
         if (index >= ghostData.ghost.length) {
             state = "menu";
-            menuSetup();
+            menuDraw();
         }
     }
 }
@@ -107,26 +117,10 @@ function drawObjects(obj, img) {
 
 
 
-function paintColor() {
-
-    if (mouseX > paper.x - paperImg.width / 2 &&
-        mouseX < paper.x + paperImg.width / 2 &&
-        mouseY > paper.y - paperImg.height / 2 &&
-        mouseY < paper.y + paperImg.height) {
-
-        let brushSize = 40;
-
-        paintLayer.copy(brainImg,
-            mouseX - brushSize / 2, mouseY - brushSize / 2, brushSize, brushSize,
-            mouseX - brushSize / 2, mouseY - brushSize / 2, brushSize, brushSize,
-
-        )
-    }
-}
 /**
  * This will be called whenever the mouse is pressed while the blue variation is active
  */
 function blueMousePressed() {
-    paintColor();
+
 }
 
