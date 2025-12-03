@@ -28,6 +28,7 @@ let speechGhost = {
 }
 let paintLayer;
 
+
 /**
  * This will be called just before the blue variation starts
  */
@@ -91,18 +92,18 @@ function drawGhostText() {
     fill("pink");
 
     textSize(32);
-    text(ghostTalk, 100, height - 200, 1000);
+    text(ghostTalk, 100, height - 200);
     pop();
 }
 
-function keyPressed() {
+function blueKeyPressed(event) {
     if (keyCode === ENTER) {
         ghostTalk = ghostData.ghost[index];
         index++;
 
         if (index >= ghostData.ghost.length) {
-            state = "menu";
-            menuDraw();
+
+
         }
     }
 }
@@ -113,8 +114,6 @@ function drawObjects(obj, img) {
     image(img, obj.x, obj.y);
     pop();
 }
-
-
 
 
 /**

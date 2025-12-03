@@ -9,54 +9,31 @@
 
 "use strict";
 
-let state = "start";
 
-let button = {
-    w: 300,
-    h: 75,
-    x: 300,
-    y: 500,
-    fill: "#000000ff",
-    text: "START"
-}
-let story = "";
+
+
+let story = "Yesterday, a crime happened!";
 let storyData;
-let index = 0;
-
-let startPage;//bacground image for start state
-let space;
-let playerImg;//img for player1
-let humanImg;
 
 
-function preload() {
-    startPage = loadImage('./assets/images/start_page.png');
-    space = loadImage('./assets/images/space.png');
-    playerImg = loadImage('../assets/images/player1.png');
-    humanImg = loadImage('./assets/images/human2.png');
 
-
-    storyData = loadJSON("assets/data/start_story.json")
-}
 
 /**
  * Create the canvas
 */
-function setup() {
+function storySetup() {
 
 }
 
 
 
-function draw() {
-    if (state === "start") {
-        screen(space);
-        drawStartButton();
-    }
-    else if (state === "story") {
-        screen(space);
-        drawSpeech();
-    }
+function storyDraw() {
+
+    screen(fridgeImg);
+    drawSpeech()
+
+
+
 }
 
 //for the background images for all the states
@@ -68,35 +45,7 @@ function screen(obj) {
 
 
 }
-function drawStartButton() {
-    push();
-    stroke("white");
-    strokeWeight(4);
-    fill(button.fill);
-    rectMode(CENTER);
-    rect(button.x, button.y, button.w, button.h, 30);
-    pop();
 
-
-    push();
-    fill("#ffffffff");
-    textSize(32);
-    textAlign(CENTER, CENTER);
-    text(button.text, button.x, button.y);
-    pop();
-
-}
-
-function mousePressed() {
-    if (mouseX > button.x - button.w / 2 && mouseX < button.x + button.w / 2 && mouseY > button.y - button.h / 2 && mouseY < button.y + button.h / 2
-
-    ) {
-
-        state = "story";
-
-    }
-
-}
 
 function drawSpeech() {
 
@@ -108,14 +57,14 @@ function drawSpeech() {
     pop();
 }
 
-function keyPressed() {
-    if (keyCode === ENTER) {
+function storyKeyPressed(event) {
+    if (keyCode === ENTER && state == "story") {
         story = storyData.speech[index];
         index++;
 
         if (index >= storyData.speech.length) {
             state = "menu";
-            menuSetup();
+            menuDraw();
         }
     }
 }

@@ -38,7 +38,7 @@ let buttons = [
 function menuDraw() {
     background(0);
 
-    image(startPage, 0, 0, width, height, 0, 0, startPage.width, startPage.height, COVER);
+    image(fridgeImg, 0, 0, width, height, 0, 0, fridgeImg.width, fridgeImg.height, COVER);
 
     let startColor = color(48, 25, 52);//0%
     let endColor = color(191, 64, 191);//100%

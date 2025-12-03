@@ -9,13 +9,17 @@
 
 "use strict";
 
-let state = "menu";
+let state = "start";
 
 let startPage;//bacground image for start state
 let brainImg
 let paperImg;
 let ghostImg;//img for player1
 let speechGhostImg;
+let robotImg;
+let robotBack;
+let speechRobotImg;
+let fridgeImg;
 
 
 
@@ -25,8 +29,13 @@ function preload() {
     paperImg = loadImage('./assets/images/paper.png');
     ghostImg = loadImage('../assets/images/ghost.png');
     speechGhostImg = loadImage('./assets/images/speechghost.png');
+    robotImg = loadImage('./assets/images/robot.png');
+    robotBack = loadImage('./assets/images/back_robot.png');
+    speechRobotImg = loadImage('./assets/images/robot_speech.png');
+    fridgeImg = loadImage('./assets/images/backstart.png');
     ghostData = loadJSON("./assets/data/ghost.json");
-    robotData = loadJSON("./assets/data/robot.json")
+    robotData = loadJSON("./assets/data/robot.json");
+    storyData = loadJSON("./assets/data/start_story.json")
 }
 
 /**
@@ -43,9 +52,12 @@ function setup() {
 */
 function draw() {
     switch (state) {
-        /* case "story":
-             storyDraw()();
-             break;*/
+        case "start":
+            startDraw();
+            break;
+        case "story":
+            storyDraw();
+            break;
         case "menu":
             menuDraw();
             break;
@@ -67,6 +79,9 @@ function draw() {
  */
 function mousePressed() {
     switch (state) {
+        case "start":
+            startMousePressed();
+            break;
         case "menu":
             menuMousePressed();
             break;
@@ -78,6 +93,31 @@ function mousePressed() {
             break;
         case "blue-variation":
             blueMousePressed();
+            break;
+    }
+}
+
+
+/**
+ * Listen for keypressed and call the function for it in the
+ * current state
+ */
+function keyPressed(event) {
+    switch (state) {
+        case "story":
+            storyKeyPressed(event);
+            break;
+        case "menu":
+            menuKeyPressed(event);
+            break;
+        case "red-variation":
+            redKeyPressed(event);
+            break
+        case "green-variation":
+            greenKeyPressed(event);
+            break;
+        case "blue-variation":
+            blueKeyPressed(event);
             break;
     }
 }
