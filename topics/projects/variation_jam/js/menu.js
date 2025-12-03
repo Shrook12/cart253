@@ -85,29 +85,6 @@ function menuDraw() {
 }
 
 
-
-/**
- * Listen to the keyboard
- */
-function menuKeyPressed(event) {
-    switch (event.keyCode) {
-        case 82:
-            state = "red-variation";
-            redSetup();
-            break;
-
-        case 71:
-            state = "green-variation";
-            greenSetup();
-            break;
-
-        case 66:
-            state = "blue-variation";
-            blueSetup();
-            break;
-    }
-}
-
 /**
  * This will be called whenever the mouse is pressed while the menu is active
  */

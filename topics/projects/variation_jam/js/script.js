@@ -12,16 +12,19 @@
 let state = "menu";
 
 let startPage;//bacground image for start state
-let space;
-let playerImg;//img for player1
-let humanImg;
+let brainImg
+let paperImg;
+let ghostImg;//img for player1
+let speechGhostImg;
 
 
 function preload() {
     startPage = loadImage('./assets/images/start_page.png');
-    space = loadImage('./assets/images/space.png');
-    playerImg = loadImage('../assets/images/player1.png');
-    humanImg = loadImage('./assets/images/human2.png');
+    brainImg = loadImage('./assets/images/brain.png');
+    paperImg = loadImage('./assets/images/paper.png');
+    ghostImg = loadImage('../assets/images/ghost.png');
+    speechGhostImg = loadImage('./assets/images/speechghost.png');
+    ghostData = loadJSON("./assets/data/ghost.json")
 }
 
 /**
@@ -38,6 +41,9 @@ function setup() {
 */
 function draw() {
     switch (state) {
+        /* case "story":
+             storyDraw()();
+             break;*/
         case "menu":
             menuDraw();
             break;
@@ -74,27 +80,15 @@ function mousePressed() {
     }
 }
 
-/**
- * Listen for keypressed and call the function for it in the
- * current state
- */
-function keyPressed(event) {
-    switch (state) {
-        case "menu":
-            menuKeyPressed(event);
-            break;
-        case "red-variation":
-            redKeyPressed(event);
-            break
-        case "green-variation":
-            greenKeyPressed(event);
-            break;
-        case "blue-variation":
-            blueKeyPressed(event);
-            break;
-    }
-}
+
+
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 
+}
+
+function mouseDragged() {
+    if (state === "blue-variation") {
+        paintColor();
+    }
 }
