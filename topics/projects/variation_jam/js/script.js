@@ -11,7 +11,7 @@
 
 let state = "start";
 
-let startPage;//bacground image for start state
+
 let brainImg
 let paperImg;
 let ghostImg;//img for player1
@@ -21,11 +21,16 @@ let robotBack;
 let speechRobotImg;
 let fridgeImg;
 let speechImg;
+let hamsterImg;
+let speechHamsterImg;
+
+
+
 
 
 
 function preload() {
-    startPage = loadImage('./assets/images/start_page.png');
+
     brainImg = loadImage('./assets/images/brain.png');
     paperImg = loadImage('./assets/images/paper.png');
     ghostImg = loadImage('../assets/images/ghost.png');
@@ -35,9 +40,13 @@ function preload() {
     speechRobotImg = loadImage('./assets/images/robot_speech.png');
     fridgeImg = loadImage('./assets/images/backstart.png');
     speechImg = loadImage('./assets/images/speechstory.png');
+    hamsterImg = loadImage('./assets/images/hamster.png');
+    speechHamsterImg = loadImage('./assets/images/hamster_speech.png');
     ghostData = loadJSON("./assets/data/ghost.json");
     robotData = loadJSON("./assets/data/robot.json");
-    storyData = loadJSON("./assets/data/start_story.json")
+    storyData = loadJSON("./assets/data/start_story.json");
+    clueData = loadJSON("./assets/data/random_clues.json");
+    hamsterData = loadJSON("./assets/data/hamster.json");
 }
 
 /**
@@ -72,6 +81,7 @@ function draw() {
         case "blue-variation":
             blueDraw();
             break;
+
     }
 }
 

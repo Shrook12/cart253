@@ -74,4 +74,5 @@ function storyKeyPressed(event) {
             menuDraw();
         }
     }
+
 }

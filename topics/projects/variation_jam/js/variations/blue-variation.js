@@ -7,6 +7,10 @@ let ghostTalk = "What! Seriously?!";
 let ghostData;
 let indexGhost = 0;
 
+let randomClues = "";
+let clueData;
+let indexClues = 0;
+
 let ghost = {
     x: 1000,
     y: 400
@@ -36,6 +40,15 @@ let secretCard = {
 
 
 
+}
+let continueButtonBlue = {
+    w: 200,
+    h: 75,
+    x: 500,
+    y: 700,
+    fill: "#000000ff",
+    text: "Continue",
+    visibily: false
 }
 let paintLayer;
 
@@ -70,6 +83,7 @@ function blueDraw() {
 
     image(brainImg, brain.x, brain.y);
     secretRectOpen();
+
 
     if (mouseIsPressed) {
         paintLayer.line(pmouseX, pmouseY, mouseX, mouseY);
@@ -144,6 +158,7 @@ function secretRect() {
     }
 }
 function secretRectOpen() {
+    randomClues = random(clueData.clues);
     if (secretCard.cardOpen === true) {
         push();
         fill("white");
@@ -155,9 +170,25 @@ function secretRectOpen() {
         push();
         fill(0);
         rectMode(CENTER);
-        textSize(16);
+        textSize(20);
         textAlign(CENTER, CENTER);
-        text("random text", width / 2, height / 2, secretCard.w, secretCard.h);
+        text(randomClues, width / 2, height / 2, secretCard.w, secretCard.h);
+
+        push();
+        stroke("white");
+        strokeWeight(4);
+        fill(continueButton.fill);
+        rectMode(CENTER);
+        rect(width / 2, height / 2 + 200, continueButtonBlue.w, continueButtonBlue.h, 30);
+        pop();
+
+
+        push();
+        fill("#ffffffff");
+        textSize(32);
+        textAlign(CENTER, CENTER);
+        text(continueButtonBlue.text, width / 2, height / 2 + 200);
+        pop();
     }
 }
 
@@ -170,5 +201,20 @@ function blueMousePressed() {
     ) {
         secretCard.cardOpen = true;
     }
+    else
+
+        if (mouseX > continueButtonBlue.x - continueButtonBlue.w / 2 && mouseX < continueButtonBlue.x + continueButtonBlue
+            .w / 2 && mouseY > continueButtonBlue.y - continueButtonBlue.h / 2 && mouseY < continueButtonBlue.y + continueButtonBlue.h / 2
+
+        ) {
+
+            state = "green-variation";
+            greenDraw();
+
+        }
 }
+
+
+
+
 
