@@ -11,7 +11,7 @@
 
 
 
-let button = {
+let buttonStart = {
     w: 300,
     h: 75,
     x: 300,
@@ -54,9 +54,9 @@ function drawStartButton() {
     push();
     stroke("white");
     strokeWeight(4);
-    fill(button.fill);
+    fill(buttonStart.fill);
     rectMode(CENTER);
-    rect(button.x, button.y, button.w, button.h, 30);
+    rect(buttonStart.x, buttonStart.y, buttonStart.w, buttonStart.h, 30);
     pop();
 
 
@@ -64,13 +64,13 @@ function drawStartButton() {
     fill("#ffffffff");
     textSize(32);
     textAlign(CENTER, CENTER);
-    text(button.text, button.x, button.y);
+    text(buttonStart.text, buttonStart.x, buttonStart.y);
     pop();
 
 }
 
 function startMousePressed() {
-    if (mouseX > button.x - button.w / 2 && mouseX < button.x + button.w / 2 && mouseY > button.y - button.h / 2 && mouseY < button.y + button.h / 2
+    if (mouseX > buttonStart.x - buttonStart.w / 2 && mouseX < buttonStart.x + buttonStart.w / 2 && mouseY > buttonStart.y - buttonStart.h / 2 && mouseY < buttonStart.y + buttonStart.h / 2
 
     ) {
 

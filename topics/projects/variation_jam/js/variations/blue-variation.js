@@ -3,7 +3,7 @@
  * Note how it has its own draw, blueDraw(), and its own keyPressed, blueKeyPressed().
  * This keeps the stuff the menu needs to do *separate* from the rest of the program.
  */
-let ghostTalk = "What! Seriously?!";
+let ghostTalk;
 let ghostData;
 let indexGhost = 0;
 
@@ -48,7 +48,7 @@ let continueButtonBlue = {
     y: 700,
     fill: "#000000ff",
     text: "Continue",
-    visibily: false
+
 }
 let paintLayer;
 
@@ -85,11 +85,12 @@ function blueDraw() {
     secretRectOpen();
 
 
+
     if (mouseIsPressed) {
         paintLayer.line(pmouseX, pmouseY, mouseX, mouseY);
     }
     image(paintLayer, 0, 0);
-
+    drawButtonContinueEnd();
 
 }
 function gradient() {
@@ -113,7 +114,7 @@ function gradient() {
     }
 }
 function drawGhostText() {
-
+    ghostTalk = ghostData.ghost[indexGhost];
     push();
     fill("pink");
 
@@ -124,12 +125,10 @@ function drawGhostText() {
 
 function blueKeyPressed(event) {
     if (keyCode === ENTER) {
-        ghostTalk = ghostData.ghost[indexGhost];
-        indexGhost++;
 
-        if (indexGhost >= ghostData.ghost.length) {
+        if (indexGhost < ghostData.ghost.length - 1) {
 
-
+            indexGhost++;
         }
     }
 }
@@ -173,11 +172,15 @@ function secretRectOpen() {
         textSize(20);
         textAlign(CENTER, CENTER);
         text(randomClues, width / 2, height / 2, secretCard.w, secretCard.h);
+    }
+}
+function drawButtonContinueEnd() {
+    if (secretCard.cardOpen === true) {
 
         push();
         stroke("white");
         strokeWeight(4);
-        fill(continueButton.fill);
+        fill(continueButtonBlue.fill);
         rectMode(CENTER);
         rect(width / 2, height / 2 + 200, continueButtonBlue.w, continueButtonBlue.h, 30);
         pop();
@@ -190,6 +193,7 @@ function secretRectOpen() {
         text(continueButtonBlue.text, width / 2, height / 2 + 200);
         pop();
     }
+
 }
 
 /**

@@ -11,7 +11,7 @@ let buttons = [
         x: 300,
         y: 500,
         fill: "#000000ff",
-        text: "var1"
+        text: "The Robot"
     },
     {
         w: 300,
@@ -19,7 +19,7 @@ let buttons = [
         x: 300,
         y: 600,
         fill: "#000000ff",
-        text: "var2"
+        text: "The Hamster"
     },
     {
         w: 300,
@@ -27,9 +27,10 @@ let buttons = [
         x: 300,
         y: 700,
         fill: "#000000ff",
-        text: "var3"
+        text: "The Ghost"
     }
 ];
+
 
 
 /**

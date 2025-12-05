@@ -3,7 +3,7 @@
  * Note how it has its own draw, redDraw(), and its own keyPressed, redKeyPressed().
  * This keeps the stuff the menu needs to do *separate* from the rest of the program.
  */
-let robotTalk = "Eh?, Someone ate the ice cream?";
+let robotTalk;
 let robotData;
 let indexRobot = 0;
 
@@ -69,25 +69,31 @@ function scaleDraw() {
 
 }
 function drawRobotText() {
-
+    robotTalk = robotData.robot[indexRobot];
     push();
     fill("white");
 
     textSize(32);
-    text(robotTalk, 100, height - 200, 600);
+    text(robotData.robot[indexRobot], 100, height - 200, 600);
     pop();
 }
 
 function redKeyPressed(event) {
-    if (keyCode === ENTER) {
-        robotTalk = robotData.robot[indexRobot];
-        indexRobot++;
 
-        if (indexRobot >= robotData.robot.length) {
-            continueButton.visibily = true;
-        }
+    if (keyCode === ENTER) {
+        if (indexRobot < robotData.robot.length - 1)
+            indexRobot++;
+    }
+
+
+    if (indexRobot === robotData.robot.length - 1) {
+        continueButton.visibily = true;
+
     }
 }
+
+
+
 function drawObjects(obj, img) {
     push();
     imageMode(CENTER);
@@ -95,7 +101,7 @@ function drawObjects(obj, img) {
     pop();
 }
 function drawContinueButton() {
-    if (continueButton.visibily == true) {
+    if (continueButton.visibily === true) {
         push();
         stroke("white");
         strokeWeight(4);
@@ -112,6 +118,7 @@ function drawContinueButton() {
         text(continueButton.text, continueButton.x, continueButton.y);
         pop();
     }
+
 }
 
 /**

@@ -12,7 +12,7 @@
 
 
 
-let story = "Yesterday, a crime happened!";
+let story;
 let storyData;
 let index = 0;
 
@@ -55,6 +55,7 @@ function screen(obj) {
 
 
 function drawSpeech() {
+    story = storyData.speech[index];
 
     push();
     fill("pink");
@@ -65,8 +66,10 @@ function drawSpeech() {
 }
 
 function storyKeyPressed(event) {
+
     if (keyCode === ENTER && state == "story") {
-        story = storyData.speech[index];
+
+
         index++;
 
         if (index >= storyData.speech.length) {

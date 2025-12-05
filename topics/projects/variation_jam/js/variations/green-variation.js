@@ -3,7 +3,7 @@
  * Note how it has its own draw, greenDraw(), and its own keyPressed, greenKeyPressed().
  * This keeps the stuff the menu needs to do *separate* from the rest of the program.
  */
-let hamsterTalk = "Whatt? All of this for ice cream?";
+let hamsterTalk;
 let hamsterData;
 let indexHamster = 0;
 
@@ -35,11 +35,11 @@ function greenDraw() {
     image(hamsterImg, 0, 0, width, height, 0, 0, hamsterImg.width, hamsterImg.height, COVER);
     drawObjects(speechHamster, speechHamsterImg);
     drawHamsterText();
-    drawContinueButton();
+    drawContinueButtonHamster();
 
 }
 function drawHamsterText() {
-
+    hamsterTalk = hamsterData.hamster[indexHamster];
     push();
     fill("black");
 
@@ -48,7 +48,7 @@ function drawHamsterText() {
     pop();
 }
 
-function drawContinueButton() {
+function drawContinueButtonHamster() {
     if (continueButtonHamster.visibily == true) {
         push();
         stroke("white");
@@ -72,13 +72,14 @@ function drawContinueButton() {
  */
 function greenKeyPressed(event) {
     if (keyCode === ENTER) {
-        hamsterTalk = hamsterData.hamster[indexHamster];
-        indexHamster++;
-
-        if (indexHamster >= hamsterData.hamster.length) {
-            continueButtonHamster.visibily = true;
+        if (indexHamster < hamsterData.hamster.length - 1) {
+            indexHamster++;
         }
     }
+    if (indexHamster === hamsterData.hamster.length - 1) {
+        continueButtonHamster.visibily = true;
+    }
+
 }
 
 function drawObjects(obj, img) {
@@ -97,7 +98,7 @@ function greenMousePressed() {
     ) {
 
         state = "blue-variation";
-        blueDraw();
+        blueSetup();
 
     }
 
