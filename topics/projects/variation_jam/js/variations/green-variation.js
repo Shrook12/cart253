@@ -12,13 +12,20 @@ let speechHamster = {
     y: 640
 }
 let continueButtonHamster = {
-    w: 200,
-    h: 75,
-    x: 550,
-    y: 700,
+    w: 150,
+    h: 50,
+    x: 835,
+    y: 668,
     fill: "#000000ff",
     text: "Continue",
     visibily: false
+}
+picture = {
+    x: 100,
+    y: 100,
+    width: 500,
+    height: 405,
+    pictureOpen: false
 }
 /**
  * This will be called just before the green variation starts
@@ -34,7 +41,12 @@ function greenDraw() {
     background("green");
     image(hamsterImg, 0, 0, width, height, 0, 0, hamsterImg.width, hamsterImg.height, COVER);
     drawObjects(speechHamster, speechHamsterImg);
+
+    drawPictureSmaller();
+
     drawHamsterText();
+
+    drawPictureBigger();
     drawContinueButtonHamster();
 
 }
@@ -61,9 +73,26 @@ function drawContinueButtonHamster() {
 
         push();
         fill("#ffffffff");
-        textSize(32);
+        textSize(28);
         textAlign(CENTER, CENTER);
         text(continueButtonHamster.text, continueButtonHamster.x, continueButtonHamster.y);
+        pop();
+    }
+}
+function drawPictureSmaller() {
+    if (picture.pictureOpen === false) {
+
+        push();
+        image(pictureImg, picture.x, picture.y, picture.width, picture.height);
+        pop();
+    }
+}
+function drawPictureBigger() {
+    if (picture.pictureOpen === true) {
+        push();
+
+        imageMode(CENTER);
+        image(pictureImg, width / 2, height / 2, pictureImg.width * 1.5, pictureImg.height * 1.5);
         pop();
     }
 }
@@ -76,9 +105,7 @@ function greenKeyPressed(event) {
             indexHamster++;
         }
     }
-    if (indexHamster === hamsterData.hamster.length - 1) {
-        continueButtonHamster.visibily = true;
-    }
+
 
 }
 
@@ -93,6 +120,16 @@ function drawObjects(obj, img) {
  * This will be called whenever the mouse is pressed while the green variation is active
  */
 function greenMousePressed() {
+
+    if (mouseX > picture.x && mouseX < picture.x + pictureImg.width &&
+        mouseY > picture.y && mouseY < picture.y + pictureImg.height
+    ) {
+        picture.pictureOpen = true;
+        continueButtonHamster.visibily = true;
+    }
+
+
+
     if (mouseX > continueButtonHamster.x - continueButtonHamster.w / 2 && mouseX < continueButtonHamster.x + continueButtonHamster.w / 2 && mouseY > continueButtonHamster.y - continueButtonHamster.h / 2 && mouseY < continueButtonHamster.y + continueButtonHamster.h / 2
 
     ) {
@@ -101,5 +138,4 @@ function greenMousePressed() {
         blueSetup();
 
     }
-
 }

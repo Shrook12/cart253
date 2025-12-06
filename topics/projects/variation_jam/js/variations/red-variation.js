@@ -25,6 +25,10 @@ let continueButton = {
     text: "Continue",
     visibily: false
 }
+let screw = {
+    x: 400,
+    y: 300
+}
 let size = 40;
 let x;
 let y;
@@ -46,7 +50,7 @@ function redDraw() {
     background("red");
     image(robotBack, 0, 0, width, height, 0, 0, robotBack.width, robot.height, COVER);
 
-    drawRobotText();
+    drawObjects(screw, screwImg);
     drawObjects(robot, robotImg);
     drawObjects(speechRobot, speechRobotImg);
     drawRobotText();
@@ -74,7 +78,7 @@ function drawRobotText() {
     fill("white");
 
     textSize(32);
-    text(robotData.robot[indexRobot], 100, height - 200, 600);
+    text(robotData.robot[indexRobot], 100, height - 250, 600);
     pop();
 }
 

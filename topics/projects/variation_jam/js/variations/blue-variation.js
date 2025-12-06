@@ -41,13 +41,14 @@ let secretCard = {
 
 
 }
-let continueButtonBlue = {
+let continueButtonGhost = {
     w: 200,
     h: 75,
     x: 500,
     y: 700,
     fill: "#000000ff",
     text: "Continue",
+    visibily: false
 
 }
 let paintLayer;
@@ -82,7 +83,7 @@ function blueDraw() {
     drawGhostText();
 
     image(brainImg, brain.x, brain.y);
-    secretRectOpen();
+
 
 
 
@@ -90,6 +91,7 @@ function blueDraw() {
         paintLayer.line(pmouseX, pmouseY, mouseX, mouseY);
     }
     image(paintLayer, 0, 0);
+    secretRectOpen();
     drawButtonContinueEnd();
 
 }
@@ -175,14 +177,14 @@ function secretRectOpen() {
     }
 }
 function drawButtonContinueEnd() {
-    if (secretCard.cardOpen === true) {
+    if (continueButtonGhost.visibily == true) {
 
         push();
         stroke("white");
         strokeWeight(4);
-        fill(continueButtonBlue.fill);
+        fill(continueButtonGhost.fill);
         rectMode(CENTER);
-        rect(width / 2, height / 2 + 200, continueButtonBlue.w, continueButtonBlue.h, 30);
+        rect(width / 2, height / 2 + 200, continueButtonGhost.w, continueButtonGhost.h, 30);
         pop();
 
 
@@ -190,7 +192,7 @@ function drawButtonContinueEnd() {
         fill("#ffffffff");
         textSize(32);
         textAlign(CENTER, CENTER);
-        text(continueButtonBlue.text, width / 2, height / 2 + 200);
+        text(continueButtonGhost.text, width / 2, height / 2 + 200);
         pop();
     }
 
@@ -204,16 +206,16 @@ function blueMousePressed() {
         mouseY > secretCard.y && mouseY < secretCard.y + secretCard.h
     ) {
         secretCard.cardOpen = true;
+        continueButtonGhost.visibily = true;
     }
     else
 
-        if (mouseX > continueButtonBlue.x - continueButtonBlue.w / 2 && mouseX < continueButtonBlue.x + continueButtonBlue
-            .w / 2 && mouseY > continueButtonBlue.y - continueButtonBlue.h / 2 && mouseY < continueButtonBlue.y + continueButtonBlue.h / 2
+        if (mouseX > continueButtonGhost.x - continueButtonGhost.w / 2 && mouseX < continueButtonGhost.x + continueButtonGhost.w / 2 && mouseY > continueButtonGhost.y - continueButtonGhost.h / 2 && mouseY < continueButtonGhost.y + continueButtonGhost.h / 2
 
         ) {
 
-            state = "green-variation";
-            greenDraw();
+            state = "menu";
+            menuDraw();
 
         }
 }

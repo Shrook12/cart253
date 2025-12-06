@@ -23,6 +23,9 @@ let fridgeImg;
 let speechImg;
 let hamsterImg;
 let speechHamsterImg;
+let logoImg;
+let screwImg;
+let pictureImg;
 
 
 
@@ -32,7 +35,7 @@ let speechHamsterImg;
 function preload() {
 
     brainImg = loadImage('./assets/images/brain.png');
-    paperImg = loadImage('./assets/images/paper.png');
+    paperImg = loadImage('./assets/images/paper2.png');
     ghostImg = loadImage('../assets/images/ghost.png');
     speechGhostImg = loadImage('./assets/images/speechghost.png');
     robotImg = loadImage('./assets/images/robot.png');
@@ -42,6 +45,10 @@ function preload() {
     speechImg = loadImage('./assets/images/speechstory.png');
     hamsterImg = loadImage('./assets/images/hamster.png');
     speechHamsterImg = loadImage('./assets/images/hamster_speech.png');
+    logoImg = loadImage('./assets/images/logo.png');
+    screwImg = loadImage('./assets/images/screw.png');
+    pictureImg = loadImage('./assets/images/picturehamster.png');
+
     ghostData = loadJSON("./assets/data/ghost.json");
     robotData = loadJSON("./assets/data/robot.json");
     storyData = loadJSON("./assets/data/start_story.json");

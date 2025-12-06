@@ -41,6 +41,8 @@ function menuDraw() {
 
     image(fridgeImg, 0, 0, width, height, 0, 0, fridgeImg.width, fridgeImg.height, COVER);
 
+    drawObjects(logo, logoImg);
+
     let startColor = color(48, 25, 52);//0%
     let endColor = color(191, 64, 191);//100%
     let x = 0;

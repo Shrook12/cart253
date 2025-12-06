@@ -15,9 +15,14 @@ let buttonStart = {
     w: 300,
     h: 75,
     x: 300,
-    y: 500,
+    y: 550,
     fill: "#000000ff",
     text: "START"
+}
+
+let logo = {
+    x: 300,
+    y: 250
 }
 
 
@@ -37,6 +42,7 @@ function startDraw() {
 
     screen(fridgeImg);
     drawStartButton();
+    drawObjects(logo, logoImg);
 
 
 }
