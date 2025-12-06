@@ -208,16 +208,16 @@ function blueMousePressed() {
         secretCard.cardOpen = true;
         continueButtonGhost.visibily = true;
     }
-    else
 
-        if (mouseX > continueButtonGhost.x - continueButtonGhost.w / 2 && mouseX < continueButtonGhost.x + continueButtonGhost.w / 2 && mouseY > continueButtonGhost.y - continueButtonGhost.h / 2 && mouseY < continueButtonGhost.y + continueButtonGhost.h / 2
 
-        ) {
+    if (mouseX > continueButtonGhost.x - continueButtonGhost.w / 2 && mouseX < continueButtonGhost.x + continueButtonGhost.w / 2 && mouseY > continueButtonGhost.y - continueButtonGhost.h / 2 && mouseY < continueButtonGhost.y + continueButtonGhost.h / 2
 
-            state = "menu";
-            menuDraw();
+    ) {
 
-        }
+        state = "menu";
+        menuDraw();
+
+    }
 }
 
 
