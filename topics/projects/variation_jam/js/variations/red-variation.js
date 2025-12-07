@@ -133,8 +133,8 @@ function redMousePressed() {
 
     ) {
 
-        state = "green-variation";
-        greenDraw();
+        state = "before-end"
+        beforeEndSetup();
 
     }
 

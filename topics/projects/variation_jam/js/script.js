@@ -26,6 +26,7 @@ let speechHamsterImg;
 let logoImg;
 let screwImg;
 let pictureImg;
+let cardImages = [];
 
 
 
@@ -54,6 +55,11 @@ function preload() {
     storyData = loadJSON("./assets/data/start_story.json");
     clueData = loadJSON("./assets/data/random_clues.json");
     hamsterData = loadJSON("./assets/data/hamster.json");
+
+
+    cardImages[0] = loadImage('./assets/images/beforeendrobot.jpg');
+    cardImages[1] = loadImage('./assets/images/beforeendhamster.jpg');
+    cardImages[2] = loadImage('./assets/images/beforendghost.jpg');
 }
 
 /**
@@ -88,6 +94,9 @@ function draw() {
         case "blue-variation":
             blueDraw();
             break;
+        case "before-end":
+            beforeEndDraw();
+            break;
 
     }
 }
@@ -113,6 +122,9 @@ function mousePressed() {
         case "blue-variation":
             blueMousePressed();
             break;
+        case "before-end":
+            endMousePressed();
+            break;
     }
 }
 
@@ -125,9 +137,6 @@ function keyPressed(event) {
     switch (state) {
         case "story":
             storyKeyPressed(event);
-            break;
-        case "menu":
-            menuKeyPressed(event);
             break;
         case "red-variation":
             redKeyPressed(event);
