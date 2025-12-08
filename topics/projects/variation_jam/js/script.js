@@ -63,7 +63,7 @@ function preload() {
     //images for the ghost section
     brainImg = loadImage('./assets/images/brain.png');
     paperImg = loadImage('./assets/images/paper2.png');
-    ghostImg = loadImage('../assets/images/ghost.png');
+    ghostImg = loadImage('./assets/images/ghost.png');
     speechGhostImg = loadImage('./assets/images/speechghost.png');
 
     //images for the robot section
