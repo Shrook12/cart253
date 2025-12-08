@@ -87,9 +87,11 @@ function blueDraw() {
 
 
     secretRect();
+    speechGhost.x = width / 2.5;
+    speechGhost.y = height / 1.3;
     drawObjects(speechGhost, speechGhostImg);
-    drawGhostText();
-
+    //drawGhostText();
+    drawSpeech(ghostTalk, width / 10, height / 1.29, 600, "pink")
     image(brainImg, brain.x, brain.y);
     drawText(brainIndication, 250);
 
@@ -100,12 +102,17 @@ function blueDraw() {
         paintLayer.line(pmouseX, pmouseY, mouseX, mouseY);
     }
     image(paintLayer, 0, 0);
-    secretRectOpen();
-    drawButtonContinueEnd();
-
     if (indication.visibily === true) {
+        indication.x = width / 2.9;
         drawText(indication, height - 90);
     }
+    secretRectOpen();
+    //drawButtonContinueEnd();
+    continueButtonGhost.x = width / 2;
+    continueButtonGhost.y = height / 2 + 200;
+    drawContinueButton(continueButtonGhost);
+
+
 
 }
 function gradient() {
@@ -128,7 +135,7 @@ function gradient() {
 
     }
 }
-function drawGhostText() {
+/*function drawGhostText() {
     ghostTalk = ghostData.ghost[indexGhost];
     push();
     fill("pink");
@@ -136,7 +143,7 @@ function drawGhostText() {
     textSize(32);
     text(ghostTalk, 200, height - 200);
     pop();
-}
+}*/
 
 function blueKeyPressed(event) {
     if (keyCode === ENTER) {
@@ -152,12 +159,12 @@ function blueKeyPressed(event) {
     }
 }
 
-function drawObjects(obj, img) {
+/*function drawObjects(obj, img) {
     push();
     imageMode(CENTER);
     image(img, obj.x, obj.y);
     pop();
-}
+}*/
 
 function secretRect() {
     if (secretCard.cardOpen === false) {
@@ -193,7 +200,7 @@ function secretRectOpen() {
         text(randomClues, width / 2, height / 2, secretCard.w, secretCard.h);
     }
 }
-function drawButtonContinueEnd() {
+/*function drawButtonContinueEnd() {
     if (continueButtonGhost.visibily == true) {
 
         push();
@@ -213,7 +220,7 @@ function drawButtonContinueEnd() {
         pop();
     }
 
-}
+}*/
 
 /**
  * This will be called whenever the mouse is pressed while the blue variation is active
@@ -231,8 +238,8 @@ function blueMousePressed() {
 
     ) {
 
-        state = "menu";
-        menuDraw();
+        state = "before-end";
+        beforeEndDraw();
 
     }
 }

@@ -14,7 +14,7 @@ let robot = {
 }
 let speechRobot = {
     x: 450,
-    y: 640
+    y: 650
 }
 let continueButton = {
     w: 200,
@@ -52,9 +52,13 @@ function redDraw() {
 
     drawObjects(screw, screwImg);
     drawObjects(robot, robotImg);
+    speechRobot.y = height / 1.2;
+    speechRobot.x = width / 3;
     drawObjects(speechRobot, speechRobotImg);
-    drawRobotText();
-    drawContinueButton();
+    drawSpeech(robotTalk, width / 10, height / 1.4, 600, "white");
+    //drawRobotText();
+    // drawContinueButton();
+    drawContinueButton(continueButton);
     if (indication.visibily === true) {
         drawText(indication, height - 90);
     }
@@ -64,6 +68,12 @@ function redDraw() {
 function scaleDraw() {
     x = mouseX;
     y = mouseY;
+    push();
+    textSize(15);
+    fill("black");
+    text("Use this to find clues", x, y - 5);
+    pop();
+    push();
     copy(x, y,
         size, size,
         x, y,
@@ -72,9 +82,9 @@ function scaleDraw() {
     noFill();
     strokeWeight(3);
     rect(x, y, size * 3, size * 3);
-
+    pop();
 }
-function drawRobotText() {
+/*function drawRobotText() {
     robotTalk = robotData.robot[indexRobot];
     push();
     fill("white");
@@ -82,7 +92,7 @@ function drawRobotText() {
     textSize(32);
     text(robotData.robot[indexRobot], 100, height - 250, 600);
     pop();
-}
+}*/
 
 function redKeyPressed(event) {
 
@@ -101,13 +111,14 @@ function redKeyPressed(event) {
 
 
 
-function drawObjects(obj, img) {
+/*function drawObjects(obj, img) {
+
     push();
     imageMode(CENTER);
     image(img, obj.x, obj.y);
     pop();
-}
-function drawContinueButton() {
+}*/
+/*function drawContinueButton() {
     if (continueButton.visibily === true) {
         push();
         stroke("white");
@@ -126,7 +137,7 @@ function drawContinueButton() {
         pop();
     }
 
-}
+}*/
 
 
 /**
@@ -137,8 +148,8 @@ function redMousePressed() {
 
     ) {
 
-        state = "before-end"
-        beforeEndSetup();
+        state = "green-variation";
+        greenDraw();
 
     }
 

@@ -17,7 +17,7 @@ let storyData;
 let index = 0;
 
 let speech = {
-    x: 450,
+    x: 500,
     y: 640
 }
 
@@ -42,10 +42,12 @@ function storySetup() {
 function storyDraw() {
 
     screen(fridgeImg);
-
+    speech.y = height / 1.2;
+    speech.x = width / 2.7;
     drawObjects(speech, speechImg);
-    drawSpeech();
-    drawText(indication, height - 90);
+    //drawSpeech();
+    drawSpeech(story, width / 11, height / 1.4, 700, "pink");
+    drawText(indication, height - 70);
 
 
 
@@ -63,7 +65,7 @@ function screen(obj) {
 }
 
 
-function drawSpeech() {
+/*function drawSpeech() {
     story = storyData.speech[index];
 
     push();
@@ -72,7 +74,7 @@ function drawSpeech() {
     textSize(32);
     text(story, 50, height - 250, 800);
     pop();
-}
+}*/
 
 function storyKeyPressed(event) {
 

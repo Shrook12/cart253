@@ -30,6 +30,8 @@ let cardImages = [];
 let hamsterSadImg;
 let prisonImg;
 let frame1, frame2, frame3, frame4, frame5, frame6, frame7;
+let fontIndication;
+
 
 
 
@@ -69,6 +71,8 @@ function preload() {
     clueData = loadJSON("./assets/data/random_clues.json");
     hamsterData = loadJSON("./assets/data/hamster.json");
 
+
+    fontIndication = loadFont('./assets/fonts/bitcountgrid.ttf');
 
     cardImages[0] = loadImage('./assets/images/beforeendrobot.jpg');
     cardImages[1] = loadImage('./assets/images/beforeendhamster.jpg');
@@ -182,13 +186,71 @@ function drawText(obj, y) {
 
     push();
     fill(obj.fill);
-
-    textSize(24);
+    textFont(fontIndication);
+    textSize(obj.size);
     text(obj.instruction, obj.x, y);
     pop();
 }
 
+function drawButton(obj) {
+    push();
+    stroke("white");
+    strokeWeight(4);
+    fill(obj.fill);
+    rectMode(CENTER);
+    rect(obj.x, obj.y, obj.w, obj.h, 30);
+    pop();
 
+
+    push();
+    fill("#ffffffff");
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text(obj.text, obj.x, obj.y);
+    pop();
+
+}
+
+function drawSpeech(obj, x, y, b, color) {
+    story = storyData.speech[index];
+    robotTalk = robotData.robot[indexRobot];
+    hamsterTalk = hamsterData.hamster[indexHamster];
+    ghostTalk = ghostData.ghost[indexGhost];
+
+    push();
+    fill(color);
+    textAlign(LEFT);
+    textSize(32);
+    text(obj, x, y, b);
+    pop();
+}
+function drawContinueButton(obj) {
+    if (obj.visibily === true) {
+        push();
+        stroke("white");
+        strokeWeight(4);
+        fill(obj.fill);
+        rectMode(CENTER);
+        rect(obj.x, obj.y, obj.w, obj.h, 30);
+        pop();
+
+
+        push();
+        fill("#ffffffff");
+        textSize(32);
+        textAlign(CENTER, CENTER);
+        text(obj.text, obj.x, obj.y);
+        pop();
+    }
+
+}
+function drawObjects(obj, img) {
+
+    push();
+    imageMode(CENTER);
+    image(img, obj.x, obj.y);
+    pop();
+}
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 

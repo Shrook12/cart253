@@ -41,7 +41,8 @@ function startSetup() {
 function startDraw() {
 
     screen(fridgeImg);
-    drawStartButton();
+    drawButton(buttonStart);
+    //drawStartButton();
     drawObjects(logo, logoImg);
 
 
@@ -56,7 +57,7 @@ function screen(obj) {
 
 
 }
-function drawStartButton() {
+/*function drawStartButton() {
     push();
     stroke("white");
     strokeWeight(4);
@@ -73,7 +74,7 @@ function drawStartButton() {
     text(buttonStart.text, buttonStart.x, buttonStart.y);
     pop();
 
-}
+}*/
 
 function startMousePressed() {
     if (mouseX > buttonStart.x - buttonStart.w / 2 && mouseX < buttonStart.x + buttonStart.w / 2 && mouseY > buttonStart.y - buttonStart.h / 2 && mouseY < buttonStart.y + buttonStart.h / 2

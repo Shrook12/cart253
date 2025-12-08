@@ -31,8 +31,16 @@ picture = {
 let indication2 = {
     x: 200,
     instruction: "Press <ENTER> to Continue Reading",
+    size: 24,
     fill: "black",
     visibily: true
+}
+let indication3 = {
+    x: 200,
+    instruction: "Now click on the picture",
+    size: 24,
+    fill: "black",
+    visibily: false
 }
 /**
  * This will be called just before the green variation starts
@@ -47,23 +55,33 @@ function greenSetup() {
 function greenDraw() {
     background("green");
     image(hamsterImg, 0, 0, width, height, 0, 0, hamsterImg.width, hamsterImg.height, COVER);
+    speechHamster.y = height / 1.2;
+    speechHamster.x = width / 2.6;
     drawObjects(speechHamster, speechHamsterImg);
 
     drawPictureSmaller();
+    //drawHamsterText();
+    drawSpeech(hamsterTalk, width / 10, height / 1.4, 600, "black");
 
-    drawHamsterText();
-
-    drawPictureBigger();
-    drawContinueButtonHamster();
-
-    if (indication.visibily === true) {
+    if (indication3.visibily === true) {
+        drawText(indication3, height - 90);
+    }
+    if (indication2.visibily === true) {
         drawText(indication2, height - 90);
     }
+
+    drawPictureBigger();
+    //drawContinueButtonHamster();
+    continueButtonHamster.x = width / 1.5;
+    continueButtonHamster.y = height / 1.2;
+    drawContinueButton(continueButtonHamster);
+
+
 
 
 
 }
-function drawHamsterText() {
+/*function drawHamsterText() {
     hamsterTalk = hamsterData.hamster[indexHamster];
     push();
     fill("black");
@@ -72,8 +90,8 @@ function drawHamsterText() {
     text(hamsterTalk, 100, height - 200, 600);
     pop();
 }
-
-function drawContinueButtonHamster() {
+*/
+/*function drawContinueButtonHamster() {
     if (continueButtonHamster.visibily == true) {
         push();
         stroke("white");
@@ -91,7 +109,7 @@ function drawContinueButtonHamster() {
         text(continueButtonHamster.text, continueButtonHamster.x, continueButtonHamster.y);
         pop();
     }
-}
+}*/
 function drawPictureSmaller() {
     if (picture.pictureOpen === false) {
 
@@ -118,20 +136,21 @@ function greenKeyPressed(event) {
             indexHamster++;
         }
         if (indexHamster === hamsterData.hamster.length - 1) {
-            indication.visibily = false;
+            indication2.visibily = false;
+            indication3.visibily = true;
         }
     }
 
 
 }
 
-function drawObjects(obj, img) {
+/*function drawObjects(obj, img) {
     push();
     imageMode(CENTER);
     image(img, obj.x, obj.y);
     pop();
 }
-
+*/
 /**
  * This will be called whenever the mouse is pressed while the green variation is active
  */
