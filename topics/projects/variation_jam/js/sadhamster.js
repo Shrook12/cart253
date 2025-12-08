@@ -1,10 +1,5 @@
 /**
- * Variation Menu
- * Pippin Barr
- * 
- * A relatively simple example of a set of variations within a single
- * project. (When we learn Object-Oriented Programming this will be a
- * LOT easier.)
+ * This file contains the code to run *only* the end state with sad hamasterpart of the program.
  */
 
 "use strict";
@@ -24,8 +19,10 @@ function sadHamsterSetup() {
 
 function sadHamsterDraw() {
 
-    image(hamsterSadImg, 0, 0, width, height, 0, 0, hamsterSadImg.width, hamsterSadImg.height, COVER);
+    //background image
+    screen(hamsterSadImg);
 
+    //text
     drawTextEnd("HOW DARE YOU!", "He is not the culprit. You made this innocent hamster cry.", width / 2, height - 150, 600, "#00aaff", fontGhost);
 
 

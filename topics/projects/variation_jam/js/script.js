@@ -1,6 +1,5 @@
 /**
  * Variation Menu
- * Pippin Barr
  * 
  * A relatively simple example of a set of variations within a single
  * project. (When we learn Object-Oriented Programming this will be a
@@ -315,6 +314,27 @@ function drawObjects(obj, img) {
     imageMode(CENTER);
     image(img, obj.x, obj.y);
     pop();
+}
+
+/*for the background images for all the states*/
+function screen(obj) {
+    background(255);
+
+    //background image 
+    image(obj, 0, 0, width, height, 0, 0, obj.width, obj.height, COVER);
+}
+/*if mouse on button change color*/
+function checkOverlap(obj) {
+    if (mouseX > obj.x - obj.w / 2 && mouseX < obj.x + obj.w / 2 && mouseY > obj.y - obj.h / 2 && mouseY < obj.y + obj.h / 2
+
+    ) {
+
+        obj.fill = "#dd3657";
+
+    }
+    else {
+        obj.fill = "black";
+    }
 }
 
 function windowResized() {

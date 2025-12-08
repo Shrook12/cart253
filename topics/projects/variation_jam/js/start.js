@@ -1,28 +1,24 @@
+
 /**
- * Variation Menu
- * Pippin Barr
- * 
- * A relatively simple example of a set of variations within a single
- * project. (When we learn Object-Oriented Programming this will be a
- * LOT easier.)
+ * This file contains the code to run *only* the before start state part of the program.
  */
 
 "use strict";
 
 
-
+//these are the properties for the start button
 let buttonStart = {
-    w: 300,
-    h: 75,
-    x: 300,
-    y: 550,
-    fill: "#000000ff",
-    text: "START"
+    w: 300, //width of the button
+    h: 75, //height of the button
+    x: 300, // x coordinate of the button
+    y: 550,// y coordinate of the button
+    fill: "#000000ff", //color
+    text: "START" //text inside 
 }
-
+// these are the properties for the logo
 let logo = {
-    x: 300,
-    y: 250
+    x: 300,// x coordinate of the logo
+    y: 250 //y coordinate of the logo
 }
 
 
@@ -37,26 +33,23 @@ function startSetup() {
 }
 
 
-
+/* Draw everything inside on the screen*/
 function startDraw() {
-
+    //background image for this section
     screen(fridgeImg);
+
+    //call the start button
     drawButton(buttonStart);
     //drawStartButton();
+
+    //call draw object to draw logo
     drawObjects(logo, logoImg);
+    checkOverlap(buttonStart);
 
 
 }
 
-//for the background images for all the states
-function screen(obj) {
-    background(255);
 
-    //background image 
-    image(obj, 0, 0, width, height, 0, 0, obj.width, obj.height, COVER);
-
-
-}
 /*function drawStartButton() {
     push();
     stroke("white");
@@ -76,11 +69,12 @@ function screen(obj) {
 
 }*/
 
+/* mousePressed for this section*/
 function startMousePressed() {
     if (mouseX > buttonStart.x - buttonStart.w / 2 && mouseX < buttonStart.x + buttonStart.w / 2 && mouseY > buttonStart.y - buttonStart.h / 2 && mouseY < buttonStart.y + buttonStart.h / 2
 
     ) {
-
+        //if mousePressed go story state
         state = "story";
         storyDraw();
 
