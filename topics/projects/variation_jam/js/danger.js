@@ -32,7 +32,7 @@ function dangerDraw() {
     frameAnimation = [frame1, frame2, frame3, frame4, frame5, frame6, frame7];
 
     imageMode(CENTER);
-    image(frameAnimation[indexAnimation], width / 2, height / 2);
+    image(frameAnimation[indexAnimation], width / 2, height / 2, 1920, 1080);
     if (indexAnimation < totalIndex - 1)
         indexAnimation += 1;
 
@@ -40,6 +40,7 @@ function dangerDraw() {
         frameAnimation = frameAnimation[6];
     }
 
+    drawTextEnd("YOU ARE IN DANGER", "Since you discovered only one culprit, the other one was able to rescue their partner in crime, and now they’ve come to eliminate you!", width / 2, height - 200, 800, "#ff0000ff", fontGhost);
 
 
 

@@ -55,7 +55,7 @@ let brainIndication = {
     x: 420,
     instruction: "This is the ghost brain!",
     fill: "white",
-    size: 18,
+    size: 20,
     visibily: true
 }
 
@@ -86,12 +86,13 @@ function blueDraw() {
     drawObjects(ghost, ghostImg);
 
 
-    secretRect();
+
     speechGhost.x = width / 2.5;
     speechGhost.y = height / 1.3;
     drawObjects(speechGhost, speechGhostImg);
     //drawGhostText();
-    drawSpeech(ghostTalk, width / 10, height / 1.29, 600, "pink")
+    drawSpeech(ghostTalk, width / 10, height / 1.29, 600, "pink", fontGhost);
+    secretRect();
     image(brainImg, brain.x, brain.y);
     drawText(brainIndication, 250);
 
@@ -102,6 +103,7 @@ function blueDraw() {
         paintLayer.line(pmouseX, pmouseY, mouseX, mouseY);
     }
     image(paintLayer, 0, 0);
+    indication.visibily = true;
     if (indication.visibily === true) {
         indication.x = width / 2.9;
         drawText(indication, height - 90);
@@ -196,8 +198,17 @@ function secretRectOpen() {
         fill(0);
         rectMode(CENTER);
         textSize(20);
+        textAlign(CENTER);
+        text("Try to read if you can :)", width / 2, height / 2 - 100);
+        pop();
+
+        push();
+        fill(0);
+        rectMode(CENTER);
+        textSize(20);
         textAlign(CENTER, CENTER);
         text(randomClues, width / 2, height / 2, secretCard.w, secretCard.h);
+        pop();
     }
 }
 /*function drawButtonContinueEnd() {

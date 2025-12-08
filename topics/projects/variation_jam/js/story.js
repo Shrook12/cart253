@@ -46,8 +46,8 @@ function storyDraw() {
     speech.x = width / 2.7;
     drawObjects(speech, speechImg);
     //drawSpeech();
-    drawSpeech(story, width / 11, height / 1.4, 700, "pink");
-    drawText(indication, height - 70);
+    drawSpeech(story, width / 11, height / 1.35, 700, "pink", fontGhost);
+    drawText(indication, height - 50);
 
 
 

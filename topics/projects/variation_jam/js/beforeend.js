@@ -39,6 +39,13 @@ let continueButtonEnd = {
     text: "Continue",
     visibily: false
 }
+let indicationChoose = {
+    x: 400,
+    instruction: "Choose...",
+    size: 100,
+    fill: "black",
+    visibily: true
+}
 
 function beforeEndSetup() {
 
@@ -59,6 +66,7 @@ function beforeEndDraw() {
     chooseButton(button2);
     chooseButton(button3);
     drawContinueButtonEnd();
+    drawText(indicationChoose, 100)
 }
 
 function drawCards() {

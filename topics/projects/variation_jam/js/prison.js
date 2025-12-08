@@ -28,7 +28,7 @@ function prisonDraw() {
 
 
 
-
+    drawTextEnd("YOU WIN!", "Now they are in prison for the crime they did.", width / 2, height - 150, 600, "#00c735ff", fontGhost);
 
 
 

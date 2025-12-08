@@ -55,7 +55,7 @@ function redDraw() {
     speechRobot.y = height / 1.2;
     speechRobot.x = width / 3;
     drawObjects(speechRobot, speechRobotImg);
-    drawSpeech(robotTalk, width / 10, height / 1.4, 600, "white");
+    drawSpeech(robotTalk, width / 10, height / 1.35, 600, "white", fontRobot);
     //drawRobotText();
     // drawContinueButton();
     drawContinueButton(continueButton);

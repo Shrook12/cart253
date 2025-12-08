@@ -61,7 +61,7 @@ function greenDraw() {
 
     drawPictureSmaller();
     //drawHamsterText();
-    drawSpeech(hamsterTalk, width / 10, height / 1.4, 600, "black");
+    drawSpeech(hamsterTalk, width / 10, height / 1.32, 600, "black", fontHamster);
 
     if (indication3.visibily === true) {
         drawText(indication3, height - 90);
