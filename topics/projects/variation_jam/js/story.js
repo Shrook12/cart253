@@ -21,6 +21,14 @@ let speech = {
     y: 640
 }
 
+let indication = {
+    x: 250,
+    instruction: "Press <ENTER> to Continue Reading",
+    size: 24,
+    fill: "white",
+    visibily: true
+}
+
 
 /**
  * Create the canvas
@@ -37,6 +45,7 @@ function storyDraw() {
 
     drawObjects(speech, speechImg);
     drawSpeech();
+    drawText(indication, height - 90);
 
 
 
@@ -61,7 +70,7 @@ function drawSpeech() {
     fill("pink");
 
     textSize(32);
-    text(story, 50, height - 200, 800);
+    text(story, 50, height - 250, 800);
     pop();
 }
 

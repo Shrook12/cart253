@@ -27,6 +27,10 @@ let logoImg;
 let screwImg;
 let pictureImg;
 let cardImages = [];
+let hamsterSadImg;
+let prisonImg;
+let frame1, frame2, frame3, frame4, frame5, frame6, frame7;
+
 
 
 
@@ -49,6 +53,15 @@ function preload() {
     logoImg = loadImage('./assets/images/logo.png');
     screwImg = loadImage('./assets/images/screw.png');
     pictureImg = loadImage('./assets/images/picturehamster.png');
+    hamsterSadImg = loadImage('./assets/images/sadhamster.png');
+    prisonImg = loadImage('./assets/images/prison.png');
+    frame1 = loadImage('./assets/images/frame1.png');
+    frame2 = loadImage('./assets/images/frame2.png');
+    frame3 = loadImage('./assets/images/frame3.png');
+    frame4 = loadImage('./assets/images/frame4.png');
+    frame5 = loadImage('./assets/images/frame5.png');
+    frame6 = loadImage('./assets/images/frame6.png');
+    frame7 = loadImage('./assets/images/frame7.png');
 
     ghostData = loadJSON("./assets/data/ghost.json");
     robotData = loadJSON("./assets/data/robot.json");
@@ -60,6 +73,9 @@ function preload() {
     cardImages[0] = loadImage('./assets/images/beforeendrobot.jpg');
     cardImages[1] = loadImage('./assets/images/beforeendhamster.jpg');
     cardImages[2] = loadImage('./assets/images/beforendghost.jpg');
+
+
+
 }
 
 /**
@@ -96,6 +112,15 @@ function draw() {
             break;
         case "before-end":
             beforeEndDraw();
+            break;
+        case "sad-hamster":
+            sadHamsterDraw();
+            break;
+        case "prison":
+            prisonDraw();
+            break;
+        case "danger":
+            dangerDraw();
             break;
 
     }
@@ -152,6 +177,16 @@ function keyPressed(event) {
 
 }
 
+
+function drawText(obj, y) {
+
+    push();
+    fill(obj.fill);
+
+    textSize(24);
+    text(obj.instruction, obj.x, y);
+    pop();
+}
 
 
 function windowResized() {

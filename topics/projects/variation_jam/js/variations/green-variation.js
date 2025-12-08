@@ -27,6 +27,13 @@ picture = {
     height: 405,
     pictureOpen: false
 }
+
+let indication2 = {
+    x: 200,
+    instruction: "Press <ENTER> to Continue Reading",
+    fill: "black",
+    visibily: true
+}
 /**
  * This will be called just before the green variation starts
  */
@@ -48,6 +55,12 @@ function greenDraw() {
 
     drawPictureBigger();
     drawContinueButtonHamster();
+
+    if (indication.visibily === true) {
+        drawText(indication2, height - 90);
+    }
+
+
 
 }
 function drawHamsterText() {
@@ -103,6 +116,9 @@ function greenKeyPressed(event) {
     if (keyCode === ENTER) {
         if (indexHamster < hamsterData.hamster.length - 1) {
             indexHamster++;
+        }
+        if (indexHamster === hamsterData.hamster.length - 1) {
+            indication.visibily = false;
         }
     }
 

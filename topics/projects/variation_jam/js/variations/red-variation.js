@@ -55,8 +55,10 @@ function redDraw() {
     drawObjects(speechRobot, speechRobotImg);
     drawRobotText();
     drawContinueButton();
+    if (indication.visibily === true) {
+        drawText(indication, height - 90);
+    }
     scaleDraw();
-
 }
 
 function scaleDraw() {
@@ -92,6 +94,7 @@ function redKeyPressed(event) {
 
     if (indexRobot === robotData.robot.length - 1) {
         continueButton.visibily = true;
+        indication.visibily = false;
 
     }
 }
@@ -124,6 +127,7 @@ function drawContinueButton() {
     }
 
 }
+
 
 /**
  * This will be called whenever the mouse is pressed while the red variation is active

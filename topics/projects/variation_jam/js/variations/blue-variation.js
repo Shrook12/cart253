@@ -51,6 +51,14 @@ let continueButtonGhost = {
     visibily: false
 
 }
+let brainIndication = {
+    x: 420,
+    instruction: "This is the ghost brain!",
+    fill: "white",
+    size: 18,
+    visibily: true
+}
+
 let paintLayer;
 
 
@@ -83,6 +91,7 @@ function blueDraw() {
     drawGhostText();
 
     image(brainImg, brain.x, brain.y);
+    drawText(brainIndication, 250);
 
 
 
@@ -93,6 +102,10 @@ function blueDraw() {
     image(paintLayer, 0, 0);
     secretRectOpen();
     drawButtonContinueEnd();
+
+    if (indication.visibily === true) {
+        drawText(indication, height - 90);
+    }
 
 }
 function gradient() {
@@ -131,6 +144,10 @@ function blueKeyPressed(event) {
         if (indexGhost < ghostData.ghost.length - 1) {
 
             indexGhost++;
+        }
+
+        if (indexGhost === ghostData.ghost.length - 1) {
+            indication.visibily = false;
         }
     }
 }

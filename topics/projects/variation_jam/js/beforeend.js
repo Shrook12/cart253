@@ -175,18 +175,18 @@ function goToEnd() {
 }
 
 function checkColor() {
-    if (button1.fill === "purple" || button3.fill === "purple") {
-        state = "blue-variation";
-        blueSetup();
+
+    if (button2.fill === "purple" || button1.fill === "purple" && button2.fill === "purple" && button3.fill === "purple" || button1.fill === "purple" && button2.fill === "purple" || button2.fill === "purple" && button3.fill === "purple") {
+        state = "sad-hamster";
+        sadHamsterDraw();
     }
-    if (button2.fill === "purple") {
-
-    }
-    if (button2.fill === "purple" && button1.fill === "purple" || button2.fill === "purple" && button3.fill === "purple") {
-
+    if (button1.fill === "purple" && button2.fill === "black" && button3.fill === "black" || button3.fill === "purple" && button2.fill === "black" && button1.fill === "black") {
+        state = "danger";
+        dangerDraw();
     }
 
-    if (button1.fill === "purple" && button3.fill === "purple") {
-
+    if (button1.fill === "purple" && button3.fill === "purple" && button2.fill === "black") {
+        state = "prison";
+        prisonDraw();
     }
 }
