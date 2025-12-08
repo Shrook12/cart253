@@ -25,6 +25,8 @@ This bit should attribute any code, assets or other elements used taken from oth
 > - This project uses [p5.js](https://p5js.org).
 > - This project uses code from pattvira - magnifying glass excercise change by glitchcowboi: https://editor.p5js.org/glitchcowboi/sketches/CTD_3KnCw
 > - This project uses code from Scratch off by BarneyCodes: https://editor.p5js.org/glitchcowboi/sketches/CTD_3KnCw
+> - The sounds effect are from : https://mixkit.co/free-sound-effects/
+> - This project uses font from Google Fonts: https://fonts.google.com/
 
 ## License
 
