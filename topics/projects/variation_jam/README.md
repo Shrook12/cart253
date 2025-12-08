@@ -1,32 +1,30 @@
-# TITLE OF PROJECT
+# WHO ATE THE ICE CREAM?
 
-AUTHOR NAME
+Shrook Ahmed
 
 [View this project online](URL_FOR_THE_RUNNING_PROJECT)
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+Welcome to the: Who Ate the Ice Cream. This is a detective game. It doesn't really have any other goal than having fun discovering the culprits. You become a detective, and you have to discover who ate the ice cream, as the title says. The suspects are: The robot, the hamaster,and the ghost.
 
-> *The Mayor of Clown Town* is a simulator experience that allows the user to control a small town populated entirely by clowns.
-
-> The experience is controlled via the mouse, with left click selecting a clown and bringing up a menu of options such as "slip of banana peel" or "get into impossible capacious clown-car."
-
-> The project is meant to give the user a sense of what it would be the mayor of a town of clowns, eventually getting the sense that clowns are not taking their civic duties seriously.
+There are different interactions for this. Press the Enter key to read the next line, click the continue button to move to the next state, and explore for hidden clues with different interactive elements.
 
 ## Screenshot(s)
 
 This bit should have some images of the program running so that the reader has a sense of what it looks like. For example:
 
-> ![Image of a clown face](./assets/images/clown.png)
+> ![start state image](./assets/images/screenshot1.png)
+> ![The obot](./assets/images/screenshot2.png)
+> ![Choosing the culprit](./assets/images/screenshot3.png)
 
 ## Attribution
 
 This bit should attribute any code, assets or other elements used taken from other sources. For example:
 
 > - This project uses [p5.js](https://p5js.org).
-> - The clown image is a capture of the clown from the Apple emoji character set.
-> - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
+> - This project uses code from pattvira - magnifying glass excercise change by glitchcowboi: https://editor.p5js.org/glitchcowboi/sketches/CTD_3KnCw
+> - This project uses code from Scratch off by BarneyCodes: https://editor.p5js.org/glitchcowboi/sketches/CTD_3KnCw
 
 ## License
 
@@ -36,12 +34,3 @@ This bit should include the license you want to apply to your work. For example:
 
 
 
-
-    if (mouseX > continueButtonHamster.x - continueButtonHamster.w / 2 && mouseX < continueButtonHamster.x + continueButtonHamster.w / 2 && mouseY > continueButtonHamster.y - continueButtonHamster.h / 2 && mouseY < continueButtonHamster.y + continueButtonHamster.h / 2
-
-    ) {
-
-        state = "blue-variation";
-        blueSetup();
-
-    }

@@ -91,15 +91,18 @@ function menuMousePressed() {
     ) {
         state = "red-variation";
         redSetup();
+        soundOnClick.play();
     }
     //if overlap the second button it will go the hamster section
     else if (mouseX > buttons[1].x - buttons[1].w / 2 && mouseX < buttons[1].x + buttons[1].w / 2 && mouseY > buttons[1].y - buttons[1].h / 2 && mouseY < buttons[1].y + buttons[1].h / 2) {
         state = "green-variation";
         greenSetup();
+        soundOnClick.play();
         //if overlap the third button it will go the ghost section
     } else if (mouseX > buttons[2].x - buttons[2].w / 2 && mouseX < buttons[2].x + buttons[2].w / 2 && mouseY > buttons[2].y - buttons[2].h / 2 && mouseY < buttons[2].y + buttons[2].h / 2) {
         state = "blue-variation";
         blueSetup();
+        soundOnClick.play();
     }
 
 }

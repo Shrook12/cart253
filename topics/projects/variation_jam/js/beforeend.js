@@ -163,6 +163,7 @@ function endMousePressed() {
             button1.fill = "purple";
             //make contine button visible after clicking
             continueButtonEnd.visibily = true;
+            soundOnClick.play();
         }
     }
     if (mouseX > button2.x - buttonW / 2 &&
@@ -173,6 +174,7 @@ function endMousePressed() {
         button2.fill = "purple";
         //make contine button visible after clicking
         continueButtonEnd.visibily = true;
+        soundOnClick.play();
 
     }
     if (mouseX > button3.x - buttonW / 2 &&
@@ -183,6 +185,7 @@ function endMousePressed() {
         button3.fill = "purple";
         //make contine button visible after clicking
         continueButtonEnd.visibily = true;
+        soundOnClick.play();
 
     }
     //call goToEnd function
@@ -194,7 +197,9 @@ function endMousePressed() {
 function goToEnd() {
     //if button clicked call check color
     if (mouseX > continueButtonEnd.x - continueButtonEnd.w / 2 && mouseX < continueButtonEnd.x + continueButtonEnd.w / 2 && mouseY > continueButtonEnd.y - continueButtonEnd.h / 2 && mouseY < continueButtonEnd.y + continueButtonEnd.h / 2) {
+        soundOnClick.play();
         checkColor();
+
 
     }
 }

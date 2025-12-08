@@ -46,7 +46,9 @@ let frame1, frame2, frame3, frame4, frame5, frame6, frame7;//animtion of robot a
 
 let fontIndication;// this font is used for indication
 
-
+//sounds
+let soundOnClick;
+let soundOnClickKeyboard;
 
 
 
@@ -105,6 +107,11 @@ function preload() {
     fontRobot = loadFont('./assets/fonts/silkscreen.ttf');
     fontHamster = loadFont('./assets/fonts/schoolbell.ttf');
     fontGhost = loadFont('./assets/fonts/special.ttf');
+
+    //sounds
+    soundOnClick = loadSound('./assets/sounds/mouseclick.wav');
+    soundOnClickKeyboard = loadSound('./assets/sounds/keyboard.wav');
+
 
     //this part if for the before ending
     cardImages[0] = loadImage('./assets/images/beforeendrobot.jpg');

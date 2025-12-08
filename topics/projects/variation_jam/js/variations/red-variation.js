@@ -131,6 +131,7 @@ function redKeyPressed(event) {
         if (indexRobot < robotData.robot.length - 1)
             //advance to next index
             indexRobot++;
+        soundOnClickKeyboard.play();
     }
 
     //if we are at the last line of text 
@@ -185,6 +186,8 @@ function redMousePressed() {
         //go to hamster section
         state = "green-variation";
         greenDraw();
+        soundOnClick.play();
+
 
     }
 

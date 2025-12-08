@@ -81,6 +81,7 @@ function storyKeyPressed(event) {
 
         //go to next index for story
         index++;
+        soundOnClickKeyboard.play();
         //if the index of story are finished go to menu state
         if (index >= storyData.speech.length) {
             state = "menu";

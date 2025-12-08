@@ -156,6 +156,7 @@ function greenKeyPressed(event) {
     if (keyCode === ENTER) {
         if (indexHamster < hamsterData.hamster.length - 1) {
             indexHamster++;
+            soundOnClickKeyboard.play();
         }
         // if it's last line of text
         if (indexHamster === hamsterData.hamster.length - 1) {
@@ -188,6 +189,7 @@ function greenMousePressed() {
         picture.pictureOpen = true;
         //button become also visible
         continueButtonHamster.visibily = true;
+        soundOnClick.play();
     }
 
 
@@ -198,6 +200,7 @@ function greenMousePressed() {
 
         state = "blue-variation";
         blueSetup();
+        soundOnClick.play();
 
     }
 }

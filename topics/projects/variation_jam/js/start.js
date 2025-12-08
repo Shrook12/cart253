@@ -75,6 +75,7 @@ function startMousePressed() {
 
     ) {
         //if mousePressed go story state
+        soundOnClick.play();
         state = "story";
         storyDraw();
 

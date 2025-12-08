@@ -121,6 +121,7 @@ function blueDraw() {
     // this to make like a brush on the paint layer to remove
     if (mouseIsPressed) {
         paintLayer.line(pmouseX, pmouseY, mouseX, mouseY);
+
     }
     image(paintLayer, 0, 0);
 
@@ -183,6 +184,7 @@ function blueKeyPressed(event) {
         if (indexGhost < ghostData.ghost.length - 1) {
             //go to next index
             indexGhost++;
+            soundOnClickKeyboard.play();
         }
         // if it's last line of text 
         if (indexGhost === ghostData.ghost.length - 1) {
@@ -279,6 +281,7 @@ function blueMousePressed() {
         secretCard.cardOpen = true;
         //and button appear
         continueButtonGhost.visibily = true;
+        soundOnClick.play();
     }
 
     //if button clicked
@@ -288,6 +291,7 @@ function blueMousePressed() {
         //go to before end state
         state = "before-end";
         beforeEndDraw();
+        soundOnClick.play();
 
     }
 }
