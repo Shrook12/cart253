@@ -103,7 +103,7 @@ let soundOnClick;//for the sound on click
 let soundOverlap;//for the sound when hand and human overlap
 let startPage;//bacground image for start state
 let myFont; //for the font
-let music; //
+
 let spaceship1;//for spaceship img player1 for end state
 let spaceship2;//for spaceship  img player2 for end state
 let planetImg;//img for planet
@@ -133,7 +133,7 @@ function preload() {
     startPage = loadImage('../assets/images/start_page.png');
     spaceship1 = loadImage('../assets/images/spaceship1.png');
     spaceship2 = loadImage('../assets/images/spaceship2.png');
-    music = loadSound('../assets/sounds/music_game2.mp3');
+
     myFont = loadFont('../assets/fonts/bitcountgrid.ttf');
     planetImg = loadImage('../assets/images/planet.png');
 
